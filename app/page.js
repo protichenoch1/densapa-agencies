@@ -98,22 +98,6 @@ const vipPlans = [
   {banners[currentBanner]}
 </div>
   
-    <div className="banner-slider">
-  <div className="banner-slide">
-    🎉 Welcome to DENSAPAL AGENCIES
-  </div>
-
-  <div className="banner-slide">
-    💰 Deposit via Till Number 8808802
-  </div>
-
-  <div className="banner-slide">
-    👥 Earn KES 20 Per Successful Referral
-  </div>
-
-  <div className="banner-slide">
-    🏧 Minimum Withdrawal KES 450
-  </div>
 </div>
       <div
         style={{
@@ -251,24 +235,24 @@ const vipPlans = [
       <div className="stats">
 
         <div className="stat-card">
-          <h2>0</h2>
-          <p>Investments</p>
-        </div>
+  <h2>KES 0</h2>
+  <p>Total Deposits</p>
+</div>
 
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Earnings</p>
-        </div>
+<div className="stat-card">
+  <h2>KES 0</h2>
+  <p>Total Withdrawals</p>
+</div>
 
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Referrals</p>
-        </div>
+<div className="stat-card">
+  <h2>KES 0</h2>
+  <p>Referral Earnings</p>
+</div>
 
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Team</p>
-        </div>
+<div className="stat-card">
+  <h2>0</h2>
+  <p>Active Plans</p>
+</div>
 
       </div>
 
