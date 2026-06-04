@@ -8,9 +8,9 @@ export default function AccountPage() {
 
       <div
         style={{
-          background: "white",
+          background: "#fff",
           borderRadius: "20px",
-          padding: "25px",
+          padding: "20px",
           textAlign: "center",
           boxShadow: "0 5px 20px rgba(0,0,0,.08)"
         }}
@@ -21,42 +21,36 @@ export default function AccountPage() {
             height: "90px",
             borderRadius: "50%",
             background: "#0A3D91",
-            color: "white",
-            margin: "0 auto 15px",
+            color: "#fff",
+            fontSize: "40px",
+            margin: "0 auto",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
-            fontSize: "40px"
+            alignItems: "center"
           }}
         >
           👤
         </div>
 
-        <h2>Username</h2>
-        <p>Member ID: DSP001</p>
-      </div>
+        <h2 style={{ marginTop: "15px" }}>
+          Username
+        </h2>
 
-      <div className="announcement">
-        <h3>Account Information</h3>
-
-        <p style={{ marginTop: "10px" }}>
-          📱 Phone Number: Not Set
-        </p>
-
-        <p>
-          📅 Join Date: Today
-        </p>
-
-        <p>
-          🌍 Country: Kenya
+        <p style={{ color: "#777" }}>
+          user@example.com
         </p>
       </div>
 
       <div className="stats">
 
         <div className="stat-card">
-          <h2>0</h2>
-          <p>Investments</p>
+          <h2>KES 0</h2>
+          <p>Total Deposits</p>
+        </div>
+
+        <div className="stat-card">
+          <h2>KES 0</h2>
+          <p>Total Withdrawals</p>
         </div>
 
         <div className="stat-card">
@@ -64,20 +58,101 @@ export default function AccountPage() {
           <p>Referrals</p>
         </div>
 
+        <div className="stat-card">
+          <h2>0</h2>
+          <p>Active Plans</p>
+        </div>
+
       </div>
 
-      <a
-        href="/login"
+      <div
+        className="announcement"
+        style={{ marginTop: "20px" }}
+      >
+        <h3>Account Information</h3>
+
+        <p style={{ marginTop: "10px" }}>
+          📱 Phone: Not Set
+        </p>
+
+        <p>
+          📧 Email: user@example.com
+        </p>
+
+        <p>
+          🔑 Referral Code: USER123
+        </p>
+
+        <p>
+          🗓️ Joined: Today
+        </p>
+      </div>
+
+      <div
+        className="announcement"
+        style={{ marginTop: "20px" }}
+      >
+        <h3>Quick Actions</h3>
+
+        <a
+          href="/wallet"
+          className="invest-btn"
+          style={{
+            display: "block",
+            textAlign: "center",
+            textDecoration: "none",
+            marginTop: "10px"
+          }}
+        >
+          💳 My Wallet
+        </a>
+
+        <a
+          href="/invite"
+          className="invest-btn"
+          style={{
+            display: "block",
+            textAlign: "center",
+            textDecoration: "none",
+            marginTop: "10px"
+          }}
+        >
+          👥 Referral Center
+        </a>
+
+        <a
+          href="/team"
+          className="invest-btn"
+          style={{
+            display: "block",
+            textAlign: "center",
+            textDecoration: "none",
+            marginTop: "10px"
+          }}
+        >
+          👨‍👩‍👧‍👦 My Team
+        </a>
+      </div>
+
+      <button
         className="invest-btn"
         style={{
-          display: "block",
-          textAlign: "center",
           marginTop: "20px",
-          textDecoration: "none"
+          background: "#d9534f"
         }}
       >
         Logout
-      </a>
+      </button>
+
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: "20px",
+          color: "#888"
+        }}
+      >
+        DENSAPAL v1.0.0
+      </p>
 
     </main>
   );
