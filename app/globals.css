@@ -53,10 +53,18 @@ body{
 
 .action-card{
   background:white;
-  border-radius:15px;
-  padding:15px;
+  border-radius:18px;
+  padding:18px 10px;
   text-align:center;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  text-decoration:none;
+  color:#333;
+  font-weight:600;
+  transition:.3s;
+}
+
+.action-card:hover{
+  transform:translateY(-3px);
 }
 
 .tabs{
