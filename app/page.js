@@ -193,9 +193,17 @@ const vipPlans = [
 
           </div>
 
-          <button className="invest-btn">
-            INVEST NOW
-          </button>
+         <a
+  href="/invest"
+  className="invest-btn"
+  style={{
+    display: "block",
+    textAlign: "center",
+    textDecoration: "none"
+  }}
+>
+  INVEST NOW
+</a>
 
         </div>
       ))}
