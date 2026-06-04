@@ -35,11 +35,22 @@ export default function Home() {
       </div>
 
       <div className="quick-actions">
-        <div className="action-card">💰<br/>Deposit</div>
-        <div className="action-card">🏧<br/>Withdraw</div>
-        <div className="action-card">👥<br/>Invite</div>
-        <div className="action-card">📋<br/>Records</div>
-      </div>
+  <a href="/deposit" className="action-card">
+    💰<br/>Deposit
+  </a>
+
+  <a href="/withdraw" className="action-card">
+    🏧<br/>Withdraw
+  </a>
+
+  <a href="/invite" className="action-card">
+    👥<br/>Invite
+  </a>
+
+  <a href="/records" className="action-card">
+    📋<br/>Records
+  </a>
+</div>
 
       <div className="tabs">
         <button
