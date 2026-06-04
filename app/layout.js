@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "DENSAPAL AGENCIES",
-  description: "Investment Platform"
+  description: "Investment Platform",
 };
 
 export default function RootLayout({ children }) {
