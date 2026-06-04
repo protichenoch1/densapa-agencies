@@ -305,11 +305,6 @@ const vipPlans = [
           Home
         </div>
 
-        <div>
-          <span>💼</span>
-          Invest
-        </div>
-
         <a
   href="/team"
   style={{
