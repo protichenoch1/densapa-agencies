@@ -89,23 +89,57 @@ export default function Home() {
 
       {plans.map((plan, index) => (
         <div className="plan-card" key={index}>
-          <div className="plan-top">
-            <h3>{plan.amount}</h3>
 
-            <span className="badge">
-              {tab === "basic" ? "BASIC" : "VIP"}
-            </span>
-          </div>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "15px"
+    }}
+  >
 
-          <p>Daily Income: {plan.daily}</p>
-          <p>Duration: {plan.days}</p>
+    <div
+      style={{
+        width: "80px",
+        height: "80px",
+        borderRadius: "15px",
+        background:
+          tab === "basic"
+            ? "linear-gradient(135deg,#0A3D91,#1E5FD8)"
+            : "linear-gradient(135deg,#D4AF37,#FFD700)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "35px",
+        color: "white"
+      }}
+    >
+      {tab === "basic" ? "💰" : "👑"}
+    </div>
 
-          <button className="invest-btn">
-            INVEST NOW
-          </button>
-        </div>
-      ))}
+    <div style={{ flex: 1 }}>
 
+      <div className="plan-top">
+        <h3>{plan.amount}</h3>
+
+        <span className="badge">
+          {tab === "basic" ? "BASIC" : "VIP"}
+        </span>
+      </div>
+
+      <p>Daily Income: {plan.daily}</p>
+      <p>Duration: {plan.days}</p>
+
+    </div>
+
+  </div>
+
+  <button className="invest-btn">
+    INVEST NOW
+  </button>
+
+</div>
+      
 <div className="stats">
   <div className="stat-card">
     <h2>0</h2>
