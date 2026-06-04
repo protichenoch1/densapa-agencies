@@ -311,10 +311,6 @@ const vipPlans = [
         </marquee>
       </div>
 
-      <div className="support-btn">
-        💬
-      </div>
-
       <div className="bottom-nav">
 
         <div>
