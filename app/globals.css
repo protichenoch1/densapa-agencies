@@ -73,6 +73,22 @@ body{
   box-shadow:0 5px 20px rgba(0,0,0,.15);
 }
 
+.banner-slide{
+  margin:15px 0;
+  background:linear-gradient(
+    135deg,
+    #0A3D91,
+    #D4AF37
+  );
+  color:white;
+  padding:18px;
+  border-radius:18px;
+  text-align:center;
+  font-weight:700;
+  box-shadow:0 8px 25px rgba(0,0,0,.15);
+  transition:all .5s ease;
+}
+
 .quick-actions{
   display:grid;
   grid-template-columns:repeat(4,1fr);
