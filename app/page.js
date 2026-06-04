@@ -124,10 +124,6 @@ const vipPlans = [
         <p>Today's Earnings: KES 0</p>
       </div>
 
-    <div className="banner-slide">
-  {banners[currentBanner]}
-</div>
-
   <div className="banner-slide">
   {banners[currentBanner]}
 </div>
