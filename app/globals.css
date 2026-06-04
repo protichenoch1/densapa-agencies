@@ -44,6 +44,35 @@ body{
   font-size:32px;
 }
 
+.banner-slider{
+  display:flex;
+  overflow-x:auto;
+  gap:12px;
+  padding:10px 0;
+  margin:15px 0;
+  scroll-snap-type:x mandatory;
+}
+
+.banner-slider::-webkit-scrollbar{
+  display:none;
+}
+
+.banner-slide{
+  min-width:100%;
+  background:linear-gradient(
+    135deg,
+    #0A3D91,
+    #D4AF37
+  );
+  color:white;
+  padding:20px;
+  border-radius:18px;
+  font-weight:bold;
+  text-align:center;
+  scroll-snap-align:start;
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
 .quick-actions{
   display:grid;
   grid-template-columns:repeat(4,1fr);
