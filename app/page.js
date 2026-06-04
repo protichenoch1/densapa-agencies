@@ -225,24 +225,16 @@ const vipPlans = [
             }}
           >
 
-            <div
-              style={{
-                width: "80px",
-                height: "80px",
-                borderRadius: "15px",
-                background:
-                  tab === "basic"
-                    ? "linear-gradient(135deg,#0A3D91,#1E5FD8)"
-                    : "linear-gradient(135deg,#D4AF37,#FFD700)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: "35px",
-                color: "white"
-              }}
-            >
-              {tab === "basic" ? "💰" : "👑"}
-            </div>
+            <img
+  src={plan.image}
+  alt={plan.amount}
+  style={{
+    width: "90px",
+    height: "90px",
+    borderRadius: "15px",
+    objectFit: "cover"
+  }}
+/>
 
             <div style={{ flex: 1 }}>
 
