@@ -127,10 +127,8 @@ const vipPlans = [
     <div className="banner-slide">
   {banners[currentBanner]}
 </div>
-  
-</div>
-      <div
-      <div className="banner-slide">
+
+  <div className="banner-slide">
   {banners[currentBanner]}
 </div>
 
