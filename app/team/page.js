@@ -51,7 +51,7 @@ export default function TeamPage() {
         </p>
 
         <p>
-          ✅ There is no limit on referrals.
+          ✅ Unlimited referrals allowed.
         </p>
       </div>
 
@@ -71,3 +71,14 @@ export default function TeamPage() {
         className="invest-btn"
         style={{
           display: "block",
+          textAlign: "center",
+          marginTop: "20px",
+          textDecoration: "none"
+        }}
+      >
+        👥 Invite More Friends
+      </a>
+
+    </main>
+  );
+}
