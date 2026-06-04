@@ -5,6 +5,25 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [tab, setTab] = useState("basic");
 
+  const banners = [
+  "🎉 Welcome to DENSAPAL AGENCIES",
+  "💰 Deposit via Till Number 8808802",
+  "👥 Earn KES 20 Per Successful Referral",
+  "🏧 Minimum Withdrawal KES 450"
+];
+
+const [currentBanner, setCurrentBanner] = useState(0);
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrentBanner((prev) =>
+      prev === banners.length - 1 ? 0 : prev + 1
+    );
+  }, 3000);
+
+  return () => clearInterval(timer);
+}, []);
+  
   const basicPlans = [
   {
     amount: "KES 420",
@@ -75,6 +94,10 @@ const vipPlans = [
         <p>Today's Earnings: KES 0</p>
       </div>
 
+    <div className="banner-slide">
+  {banners[currentBanner]}
+</div>
+  
     <div className="banner-slider">
   <div className="banner-slide">
     🎉 Welcome to DENSAPAL AGENCIES
