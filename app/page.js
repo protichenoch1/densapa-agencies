@@ -78,7 +78,7 @@ const vipPlans = [
     total: "KES 65,000"
   },
   {
-    image: "plans/vip4.jpg",
+    image: "/plans/vip4.jpg",
     amount: "KES 40,000",
     daily: "KES 3,000",
     days: "30 Days",
