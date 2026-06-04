@@ -1,4 +1,16 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
 export default function InvestPage() {
+  const searchParams = useSearchParams();
+
+  const amount = searchParams.get("amount");
+  const daily = searchParams.get("daily");
+  const days = searchParams.get("days");
+  const total = searchParams.get("total");
+  const type = searchParams.get("type");
+
   return (
     <main className="container">
 
@@ -6,26 +18,34 @@ export default function InvestPage() {
 
       <div className="plan-card">
 
-        <h2>KES 420</h2>
+        <h2>{amount}</h2>
 
-        <p>Daily Income: KES 200</p>
+        <span className="badge">
+          {type?.toUpperCase()}
+        </span>
 
-        <p>Duration: 3 Days</p>
+        <p>
+          <strong>Daily Income:</strong> {daily}
+        </p>
+
+        <p>
+          <strong>Duration:</strong> {days}
+        </p>
 
         <p
           style={{
-            color:"#0A3D91",
-            fontWeight:"bold"
+            color: "#0A3D91",
+            fontWeight: "bold"
           }}
         >
-          Total Return: KES 600
+          Total Return: {total}
         </p>
 
       </div>
 
       <div
         className="stat-card"
-        style={{marginTop:"20px"}}
+        style={{ marginTop: "20px" }}
       >
         <h3>Available Balance</h3>
         <h1>KES 0.00</h1>
