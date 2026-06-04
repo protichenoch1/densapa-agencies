@@ -6,14 +6,6 @@ export default function Home() {
   const [tab, setTab] = useState("basic");
 
   const basicPlans = [
-    { amount: "KES 420", daily: "KES 200", days: "3 Days" },
-    { amount: "KES 2,000", daily: "KES 500", days: "7 Days" },
-    { amount: "KES 5,000", daily: "KES 900", days: "10 Days" },
-    { amount: "KES 10,000", daily: "KES 1,800", days: "15 Days" },
-  ];
-
-  const vipPlans = [
-  const basicPlans = [
   {
     amount: "KES 420",
     daily: "KES 200",
