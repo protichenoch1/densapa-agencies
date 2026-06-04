@@ -159,3 +159,13 @@ body{
   border-radius:50%;
   font-size:24px;
   }
+
+.bottom-nav div{
+  text-align:center;
+  font-size:12px;
+}
+
+.bottom-nav div span{
+  display:block;
+  font-size:22px;
+}
