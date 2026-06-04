@@ -1,175 +1,103 @@
 export default function Home() {
   return (
-    <main
-      style={{
-        background: "#f5f7fb",
-        minHeight: "100vh",
-        padding: "15px",
-      }}
-    >
-      {/* Header */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <h2 style={{ color: "#0A3D91" }}>DENSAPAL</h2>
+    <main className="container">
 
-        <div>
-          🔔 👤
-        </div>
+      <div className="header">
+        <div className="logo">DENSAPAL</div>
+        <div>🔔 👤</div>
       </div>
 
-      {/* Balance Card */}
-      <div
-        style={{
-          background: "linear-gradient(135deg,#0A3D91,#D4AF37)",
-          color: "white",
-          borderRadius: "20px",
-          padding: "20px",
-          marginBottom: "20px",
-        }}
-      >
+      <div className="balance-card">
         <p>Total Balance</p>
-
         <h1>KES 0.00</h1>
-
         <p>Today's Earnings: KES 0</p>
       </div>
 
-      {/* Quick Actions */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4,1fr)",
-          gap: "10px",
-          marginBottom: "25px",
-        }}
-      >
-        <button>💰<br />Deposit</button>
-
-        <button>🏧<br />Withdraw</button>
-
-        <button>👥<br />Invite</button>
-
-        <button>📋<br />Records</button>
+      <div className="quick-actions">
+        <div className="action-card">💰<br/>Deposit</div>
+        <div className="action-card">🏧<br/>Withdraw</div>
+        <div className="action-card">👥<br/>Invite</div>
+        <div className="action-card">📋<br/>Records</div>
       </div>
 
-      {/* Plan Tabs */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "20px",
-        }}
-      >
-        <button
-          style={{
-            flex: 1,
-            background: "#0A3D91",
-            color: "white",
-            border: "none",
-            padding: "12px",
-            borderRadius: "10px",
-          }}
-        >
+      <div className="tabs">
+        <button className="tab active-tab">
           BASIC
         </button>
 
-        <button
-          style={{
-            flex: 1,
-            background: "#D4AF37",
-            color: "black",
-            border: "none",
-            padding: "12px",
-            borderRadius: "10px",
-          }}
-        >
+        <button className="tab vip-tab">
           VIP
         </button>
       </div>
 
-      {/* Basic Plans */}
-      <div
-        style={{
-          background: "white",
-          padding: "15px",
-          borderRadius: "15px",
-          marginBottom: "12px",
-        }}
-      >
-        <h3>KES 420</h3>
+      <div className="plan-card">
+        <div className="plan-top">
+          <h3>KES 420</h3>
+          <span className="badge">HOT</span>
+        </div>
+
         <p>Daily Income: KES 200</p>
         <p>Duration: 3 Days</p>
-        <button>Invest Now</button>
+
+        <button className="invest-btn">
+          INVEST NOW
+        </button>
       </div>
 
-      <div
-        style={{
-          background: "white",
-          padding: "15px",
-          borderRadius: "15px",
-          marginBottom: "12px",
-        }}
-      >
-        <h3>KES 2,000</h3>
+      <div className="plan-card">
+        <div className="plan-top">
+          <h3>KES 2,000</h3>
+          <span className="badge">POPULAR</span>
+        </div>
+
         <p>Daily Income: KES 500</p>
         <p>Duration: 7 Days</p>
-        <button>Invest Now</button>
+
+        <button className="invest-btn">
+          INVEST NOW
+        </button>
       </div>
 
-      <div
-        style={{
-          background: "white",
-          padding: "15px",
-          borderRadius: "15px",
-          marginBottom: "12px",
-        }}
-      >
-        <h3>KES 5,000</h3>
-        <p>Daily Income: KES 900</p>
-        <p>Duration: 10 Days</p>
-        <button>Invest Now</button>
+      <div className="stats">
+        <div className="stat-card">
+          <h2>0</h2>
+          <p>Investments</p>
+        </div>
+
+        <div className="stat-card">
+          <h2>0</h2>
+          <p>Earnings</p>
+        </div>
+
+        <div className="stat-card">
+          <h2>0</h2>
+          <p>Referrals</p>
+        </div>
+
+        <div className="stat-card">
+          <h2>0</h2>
+          <p>Team</p>
+        </div>
       </div>
 
-      <div
-        style={{
-          background: "white",
-          padding: "15px",
-          borderRadius: "15px",
-          marginBottom: "80px",
-        }}
-      >
-        <h3>KES 10,000</h3>
-        <p>Daily Income: KES 1,800</p>
-        <p>Duration: 15 Days</p>
-        <button>Invest Now</button>
+      <div className="announcement">
+        <h3>📢 Announcement</h3>
+        <p>Deposit via Till Number 8808802</p>
+        <p>Minimum Withdrawal: KES 450</p>
       </div>
 
-      {/* Bottom Navigation */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          background: "white",
-          display: "flex",
-          justifyContent: "space-around",
-          padding: "12px",
-          borderTop: "1px solid #ddd",
-        }}
-      >
-        <div>🏠<br />Home</div>
-        <div>💼<br />Invest</div>
-        <div>👥<br />Team</div>
-        <div>💳<br />Wallet</div>
-        <div>👤<br />Account</div>
+      <div className="support-btn">
+        💬
       </div>
+
+      <div className="bottom-nav">
+        <div>🏠</div>
+        <div>💼</div>
+        <div>👥</div>
+        <div>💳</div>
+        <div>👤</div>
+      </div>
+
     </main>
   );
-}
+    }
