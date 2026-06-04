@@ -263,17 +263,25 @@ const vipPlans = [
 
           </div>
 
-         <a
-  href={`/invest?amount=${encodeURIComponent(plan.amount)}&daily=${encodeURIComponent(plan.daily)}&days=${encodeURIComponent(plan.days)}&total=${encodeURIComponent(plan.total)}&type=${tab}`}
-  className="invest-btn"
+         <div
   style={{
-    display: "block",
-    textAlign: "center",
-    textDecoration: "none"
+    display: "flex",
+    justifyContent: "flex-end",
+    marginTop: "15px"
   }}
 >
-  INVEST NOW
-</a>
+  <a
+    href={`/invest?amount=${encodeURIComponent(plan.amount)}&daily=${encodeURIComponent(plan.daily)}&days=${encodeURIComponent(plan.days)}&total=${encodeURIComponent(plan.total)}&type=${tab}`}
+    className="invest-btn"
+    style={{
+      width: "120px",
+      textAlign: "center",
+      textDecoration: "none"
+    }}
+  >
+    INVEST NOW
+  </a>
+</div>
 
         </div>
       ))}
