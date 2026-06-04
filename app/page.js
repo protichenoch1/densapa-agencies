@@ -130,23 +130,28 @@ const vipPlans = [
   
 </div>
       <div
-        style={{
-          background: "#fff",
-          padding: "15px",
-          borderRadius: "15px",
-          marginTop: "15px",
-          marginBottom: "15px",
-          boxShadow: "0 4px 15px rgba(0,0,0,.08)"
-        }}
-      >
-        <h3 style={{ color: "#0A3D91" }}>
-          Welcome to DENSAPAL AGENCIES
-        </h3>
+      <div className="banner-slide">
+  {banners[currentBanner]}
+</div>
 
-        <p>
-          Invest and earn daily with our Basic and VIP plans.
-        </p>
-      </div>
+<div
+  style={{
+    background: "#fff",
+    padding: "15px",
+    borderRadius: "15px",
+    marginTop: "15px",
+    marginBottom: "15px",
+    boxShadow: "0 4px 15px rgba(0,0,0,.08)"
+  }}
+>
+  <h3 style={{ color: "#0A3D91" }}>
+    Welcome to DENSAPAL AGENCIES
+  </h3>
+
+  <p>
+    Invest and earn daily with our Basic and VIP plans.
+  </p>
+</div>
 
       <div className="quick-actions">
 
