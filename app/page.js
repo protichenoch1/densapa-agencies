@@ -13,11 +13,59 @@ export default function Home() {
   ];
 
   const vipPlans = [
-    { amount: "KES 15,000", daily: "KES 2,000", days: "15 Days" },
-    { amount: "KES 22,000", daily: "KES 2,200", days: "20 Days" },
-    { amount: "KES 30,000", daily: "KES 2,600", days: "25 Days" },
-    { amount: "KES 40,000", daily: "KES 3,000", days: "30 Days" },
-  ];
+  const basicPlans = [
+  {
+    amount: "KES 420",
+    daily: "KES 200",
+    days: "3 Days",
+    total: "KES 600"
+  },
+  {
+    amount: "KES 2,000",
+    daily: "KES 500",
+    days: "7 Days",
+    total: "KES 3,500"
+  },
+  {
+    amount: "KES 5,000",
+    daily: "KES 900",
+    days: "10 Days",
+    total: "KES 9,000"
+  },
+  {
+    amount: "KES 10,000",
+    daily: "KES 1,800",
+    days: "15 Days",
+    total: "KES 27,000"
+  }
+];
+
+const vipPlans = [
+  {
+    amount: "KES 15,000",
+    daily: "KES 2,000",
+    days: "15 Days",
+    total: "KES 30,000"
+  },
+  {
+    amount: "KES 22,000",
+    daily: "KES 2,200",
+    days: "20 Days",
+    total: "KES 44,000"
+  },
+  {
+    amount: "KES 30,000",
+    daily: "KES 2,600",
+    days: "25 Days",
+    total: "KES 65,000"
+  },
+  {
+    amount: "KES 40,000",
+    daily: "KES 3,000",
+    days: "30 Days",
+    total: "KES 90,000"
+  }
+];
 
   const plans = tab === "basic" ? basicPlans : vipPlans;
 
