@@ -177,7 +177,17 @@ const vipPlans = [
               </div>
 
               <p>Daily Income: {plan.daily}</p>
-              <p>Duration: {plan.days}</p>
+<p>Duration: {plan.days}</p>
+
+<p
+  style={{
+    color: "#0A3D91",
+    fontWeight: "bold",
+    marginTop: "5px"
+  }}
+>
+  Total Return: {plan.total}
+</p>
 
             </div>
 
