@@ -310,10 +310,17 @@ const vipPlans = [
           Invest
         </div>
 
-        <div>
-          <span>👥</span>
-          Team
-        </div>
+        <a
+  href="/team"
+  style={{
+    textDecoration: "none",
+    color: "inherit",
+    textAlign: "center"
+  }}
+>
+  <span>👥</span>
+  Team
+</a>
 
         <a
   href="/wallet"
