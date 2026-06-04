@@ -162,21 +162,6 @@ padding:15px;
 box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
-.support-btn{
-position:fixed;
-right:20px;
-bottom:85px;
-width:60px;
-height:60px;
-border-radius:50%;
-background:#25D366;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-font-size:28px;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
 
 .bottom-nav{
 position:fixed;
