@@ -1,4 +1,25 @@
+"use client";
+
+import { useState } from "react";
 export default function Home() {
+  const [tab, setTab] = useState("basic");
+
+  const basicPlans = [
+    { amount: "KES 420", daily: "KES 200", days: "3 Days" },
+    { amount: "KES 2,000", daily: "KES 500", days: "7 Days" },
+    { amount: "KES 5,000", daily: "KES 900", days: "10 Days" },
+    { amount: "KES 10,000", daily: "KES 1,800", days: "15 Days" },
+  ];
+
+  const vipPlans = [
+    { amount: "KES 15,000", daily: "KES 2,000", days: "15 Days" },
+    { amount: "KES 22,000", daily: "KES 2,200", days: "20 Days" },
+    { amount: "KES 30,000", daily: "KES 2,600", days: "25 Days" },
+    { amount: "KES 40,000", daily: "KES 3,000", days: "30 Days" },
+  ];
+
+  const plans = tab === "basic" ? basicPlans : vipPlans;
+
   return (
     <main className="container">
 
@@ -21,82 +42,39 @@ export default function Home() {
       </div>
 
       <div className="tabs">
-        <button className="tab active-tab">
+        <button
+          onClick={() => setTab("basic")}
+          className={`tab ${tab === "basic" ? "active-tab" : ""}`}
+        >
           BASIC
         </button>
 
-        <button className="tab vip-tab">
+        <button
+          onClick={() => setTab("vip")}
+          className={`tab ${tab === "vip" ? "vip-tab" : ""}`}
+        >
           VIP
         </button>
       </div>
 
-      <div className="plan-card">
-        <div className="plan-top">
-          <h3>KES 420</h3>
-          <span className="badge">HOT</span>
+      {plans.map((plan, index) => (
+        <div className="plan-card" key={index}>
+          <div className="plan-top">
+            <h3>{plan.amount}</h3>
+
+            <span className="badge">
+              {tab === "basic" ? "BASIC" : "VIP"}
+            </span>
+          </div>
+
+          <p>Daily Income: {plan.daily}</p>
+          <p>Duration: {plan.days}</p>
+
+          <button className="invest-btn">
+            INVEST NOW
+          </button>
         </div>
-
-        <p>Daily Income: KES 200</p>
-        <p>Duration: 3 Days</p>
-
-        <button className="invest-btn">
-          INVEST NOW
-        </button>
-      </div>
-
-      <div className="plan-card">
-        <div className="plan-top">
-          <h3>KES 2,000</h3>
-          <span className="badge">POPULAR</span>
-        </div>
-
-        <p>Daily Income: KES 500</p>
-        <p>Duration: 7 Days</p>
-
-        <button className="invest-btn">
-          INVEST NOW
-        </button>
-      </div>
-
-      <div className="stats">
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Investments</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Earnings</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Referrals</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Team</p>
-        </div>
-      </div>
-
-      <div className="announcement">
-        <h3>📢 Announcement</h3>
-        <p>Deposit via Till Number 8808802</p>
-        <p>Minimum Withdrawal: KES 450</p>
-      </div>
-
-      <div className="support-btn">
-        💬
-      </div>
-
-      <div className="bottom-nav">
-        <div>🏠</div>
-        <div>💼</div>
-        <div>👥</div>
-        <div>💳</div>
-        <div>👤</div>
-      </div>
+      ))}
 
     </main>
   );
