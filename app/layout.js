@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "DENSAPAL AGENCIES",
   description: "Investment Platform"
@@ -5,7 +7,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
