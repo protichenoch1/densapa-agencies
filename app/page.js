@@ -75,6 +75,23 @@ const vipPlans = [
         <p>Today's Earnings: KES 0</p>
       </div>
 
+    <div className="banner-slider">
+  <div className="banner-slide">
+    🎉 Welcome to DENSAPAL AGENCIES
+  </div>
+
+  <div className="banner-slide">
+    💰 Deposit via Till Number 8808802
+  </div>
+
+  <div className="banner-slide">
+    👥 Earn KES 20 Per Successful Referral
+  </div>
+
+  <div className="banner-slide">
+    🏧 Minimum Withdrawal KES 450
+  </div>
+</div>
       <div
         style={{
           background: "#fff",
