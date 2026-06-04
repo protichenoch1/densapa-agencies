@@ -124,16 +124,13 @@ font-weight:bold;
 }
 
 .invest-btn{
-width:100%;
-margin-top:15px;
-border:none;
-background:linear-gradient(135deg,#0A3D91,#1E5FD8);
-color:white;
-padding:14px;
-border-radius:12px;
-font-weight:bold;
-text-decoration:none;
-}
+  border:none;
+  background:#0A3D91;
+  color:white;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:bold;
+    }
 
 .stats{
 display:grid;
