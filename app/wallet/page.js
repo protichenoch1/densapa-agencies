@@ -2,32 +2,35 @@ export default function Wallet() {
   return (
     <main className="container">
 
-      <h1>My Wallet</h1>
+      <h1 style={{ marginBottom: "15px" }}>
+        💳 My Wallet
+      </h1>
 
       <div className="balance-card">
         <p>Available Balance</p>
-        <h1>KES 0.00</h1>
+        <h1>KES 12,450</h1>
+        <p>Last Updated: Today</p>
       </div>
 
       <div className="stats">
 
         <div className="stat-card">
-          <h2>KES 0</h2>
+          <h2>KES 15,000</h2>
           <p>Total Deposits</p>
         </div>
 
         <div className="stat-card">
-          <h2>KES 0</h2>
+          <h2>KES 2,550</h2>
           <p>Total Withdrawals</p>
         </div>
 
         <div className="stat-card">
-          <h2>KES 0</h2>
+          <h2>KES 400</h2>
           <p>Referral Earnings</p>
         </div>
 
         <div className="stat-card">
-          <h2>0</h2>
+          <h2>3</h2>
           <p>Active Plans</p>
         </div>
 
@@ -37,9 +40,14 @@ export default function Wallet() {
         className="announcement"
         style={{ marginTop: "20px" }}
       >
-        <h3>Recent Transactions</h3>
+        <h3>📋 Recent Transactions</h3>
 
-        <p>No transactions found.</p>
+        <div style={{ marginTop: "10px" }}>
+          <p>✅ Deposit - KES 2,000</p>
+          <p>✅ Investment - KES 420</p>
+          <p>✅ Withdrawal - KES 500</p>
+          <p>✅ Referral Bonus - KES 20</p>
+        </div>
       </div>
 
       <div
@@ -50,6 +58,7 @@ export default function Wallet() {
           marginTop: "20px"
         }}
       >
+
         <a
           href="/deposit"
           className="invest-btn"
@@ -58,7 +67,7 @@ export default function Wallet() {
             textAlign: "center"
           }}
         >
-          Deposit
+          💰 Deposit
         </a>
 
         <a
@@ -69,10 +78,11 @@ export default function Wallet() {
             textAlign: "center"
           }}
         >
-          Withdraw
+          🏧 Withdraw
         </a>
+
       </div>
 
     </main>
   );
-        }
+            }
