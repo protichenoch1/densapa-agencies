@@ -76,6 +76,64 @@ export default function Home() {
         </div>
       ))}
 
+<div className="stats">
+  <div className="stat-card">
+    <h2>0</h2>
+    <p>Investments</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>0</h2>
+    <p>Earnings</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>0</h2>
+    <p>Referrals</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>0</h2>
+    <p>Team</p>
+  </div>
+</div>
+
+<div className="announcement">
+  <h3>📢 Announcement</h3>
+  <p>Deposit via Till Number 8808802</p>
+  <p>Minimum Withdrawal: KES 450</p>
+</div>
+
+<div className="support-btn">
+  💬
+</div>
+
+<div className="bottom-nav">
+  <div>
+    <span>🏠</span>
+    Home
+  </div>
+
+  <div>
+    <span>💼</span>
+    Invest
+  </div>
+
+  <div>
+    <span>👥</span>
+    Team
+  </div>
+
+  <div>
+    <span>💳</span>
+    Wallet
+  </div>
+
+  <div>
+    <span>👤</span>
+    Account
+  </div>
+</div>
     </main>
   );
     }
