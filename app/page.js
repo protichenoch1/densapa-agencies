@@ -84,7 +84,37 @@ const vipPlans = [
     <main className="container">
 
       <div className="header">
-        <div className="logo">DENSAPAL</div>
+        <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "10px"
+  }}
+>
+  <img
+    src="/logo.png"
+    alt="DENSAPAL"
+    style={{
+      width: "45px",
+      height: "45px"
+    }}
+  />
+
+  <div>
+    <div style={{fontWeight:"bold"}}>
+      DENSAPAL
+    </div>
+
+    <div
+      style={{
+        fontSize:"12px",
+        color:"#D4AF37"
+      }}
+    >
+      AGENCIES
+    </div>
+  </div>
+</div>
         <div>🔔 👤</div>
       </div>
 
