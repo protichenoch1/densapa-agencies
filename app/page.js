@@ -119,10 +119,27 @@ const vipPlans = [
       </div>
 
       <div className="balance-card">
-        <p>Total Balance</p>
-        <h1>KES 0.00</h1>
-        <p>Today's Earnings: KES 0</p>
-      </div>
+  <p>Total Balance</p>
+  <h1>KES 0.00</h1>
+
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      marginTop: "15px"
+    }}
+  >
+    <div>
+      <small>Today's Earnings</small>
+      <h3>KES 0</h3>
+    </div>
+
+    <div>
+      <small>Active Plans</small>
+      <h3>0</h3>
+    </div>
+  </div>
+</div>
 
   <div className="banner-slide">
   {banners[currentBanner]}
