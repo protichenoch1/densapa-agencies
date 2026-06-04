@@ -193,9 +193,10 @@ export default function Home() {
     Wallet
   </div>
 
-  <div>
-    <span>👤</span>
-    Account
+  <a href="/account">
+  <span>👤</span>
+  Account
+</a>
   </div>
 </div>
     </main>
