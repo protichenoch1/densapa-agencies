@@ -368,7 +368,7 @@ const vipPlans = [
   href="/team"
   style={{
     textDecoration: "none",
-    color: "inherit",
+    color: "white",
     textAlign: "center"
   }}
 >
