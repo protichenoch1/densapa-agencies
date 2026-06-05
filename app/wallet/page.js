@@ -5,6 +5,21 @@ export default function Wallet() {
       <h1 style={{ marginBottom: "15px" }}>
         💳 My Wallet
       </h1>
+          <div
+  style={{
+    textAlign: "center",
+    marginBottom: "20px"
+  }}
+>
+  <img
+    src="/wallet.png"
+    alt="Wallet"
+    style={{
+      width: "180px",
+      maxWidth: "100%"
+    }}
+  />
+</div>
 
       <div className="balance-card">
         <p>Available Balance</p>
