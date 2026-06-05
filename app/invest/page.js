@@ -1,4 +1,16 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
 export default function InvestPage() {
+  const searchParams = useSearchParams();
+
+  const amount = searchParams.get("amount");
+  const daily = searchParams.get("daily");
+  const days = searchParams.get("days");
+  const total = searchParams.get("total");
+  const type = searchParams.get("type");
+
   return (
     <main className="container">
 
@@ -7,14 +19,27 @@ export default function InvestPage() {
       </h1>
 
       <div className="plan-card">
-        <h2>Investment Plan</h2>
+        <h2>{type?.toUpperCase()} PLAN</h2>
 
         <p style={{ marginTop: "10px" }}>
-          Select a plan from the homepage.
+          <strong>Investment Amount:</strong> {amount}
         </p>
 
-        <p style={{ marginTop: "10px" }}>
-          Daily income and duration will appear here.
+        <p>
+          <strong>Daily Income:</strong> {daily}
+        </p>
+
+        <p>
+          <strong>Duration:</strong> {days}
+        </p>
+
+        <p
+          style={{
+            color: "#0A3D91",
+            fontWeight: "bold"
+          }}
+        >
+          <strong>Total Return:</strong> {total}
         </p>
       </div>
 
@@ -43,4 +68,4 @@ export default function InvestPage() {
 
     </main>
   );
-}
+          }
