@@ -15,8 +15,8 @@ export default function Wallet() {
     src="/wallet.png"
     alt="Wallet"
     style={{
-      width: "180px",
-      maxWidth: "100%"
+      width: "45px",
+      height: "45px"
     }}
   />
 </div>
