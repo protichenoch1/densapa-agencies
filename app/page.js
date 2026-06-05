@@ -272,17 +272,21 @@ const vipPlans = [
     marginTop: "15px"
   }}
 >
-  <a
-    href={`/invest?amount=${encodeURIComponent(plan.amount)}&daily=${encodeURIComponent(plan.daily)}&days=${encodeURIComponent(plan.days)}&total=${encodeURIComponent(plan.total)}&type=${tab}`}
-    className="invest-btn"
-    style={{
-      width: "120px",
-      textAlign: "center",
-      textDecoration: "none"
-    }}
-  >
-    INVEST NOW
-  </a>
+  <button
+  className="invest-btn"
+  style={{
+    width: "120px"
+  }}
+  onClick={() => {
+    setSelectedPlan({
+      ...plan,
+      type: tab.toUpperCase()
+    });
+    setShowModal(true);
+  }}
+>
+  INVEST NOW
+</button>
 </div>
 
         </div>
