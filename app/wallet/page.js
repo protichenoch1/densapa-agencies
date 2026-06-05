@@ -56,8 +56,8 @@ const totalDailyIncome = investments.reduce(
       <div className="stats">
 
         <div className="stat-card">
-          <h2>KES 15,000</h2>
-          <p>Total Deposits</p>
+          <h2>KES {totalInvested.toLocaleString()}</h2>
+<p>Total Invested</p>
         </div>
 
         <div className="stat-card">
@@ -66,8 +66,8 @@ const totalDailyIncome = investments.reduce(
         </div>
 
         <div className="stat-card">
-          <h2>KES 400</h2>
-          <p>Referral Earnings</p>
+         <h2>KES {totalDailyIncome.toLocaleString()}</h2>
+<p>Daily Earnings</p>
         </div>
 
         <div className="stat-card">
@@ -103,6 +103,12 @@ const totalDailyIncome = investments.reduce(
               <p><strong>Daily Income:</strong> {plan.daily}</p>
               <p><strong>Duration:</strong> {plan.days}</p>
               <p><strong>Total Return:</strong> {plan.total}</p>
+                          <p>
+  <strong>Status:</strong>
+  <span style={{ color: "green" }}>
+    {" "}🟢 Active
+  </span>
+</p>
               <p><strong>Date:</strong> {plan.date}</p>
             </div>
           ))
