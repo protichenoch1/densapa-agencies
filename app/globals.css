@@ -6,9 +6,10 @@ box-sizing:border-box;
 
 body{
   background:linear-gradient(
-    180deg,
-    #f8fbff 0%,
-    #eef4ff 100%
+    135deg,
+    #f5f7fb,
+    #eef4ff,
+    #fff7d6
   );
   font-family:Arial,sans-serif;
 }
