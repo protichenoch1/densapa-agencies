@@ -4,7 +4,18 @@ import { useEffect, useState } from "react";
 
 export default function Wallet() {
   const [investments, setInvestments] = useState([]);
+const totalInvested = investments.reduce(
+  (sum, plan) =>
+    sum + Number(plan.amount.replace(/[^0-9]/g, "")),
+  0
+);
 
+const totalDailyIncome = investments.reduce(
+  (sum, plan) =>
+    sum + Number(plan.daily.replace(/[^0-9]/g, "")),
+  0
+);
+  
   useEffect(() => {
     const saved = JSON.parse(
       localStorage.getItem("investments") || "[]"
