@@ -187,6 +187,15 @@ box-shadow:0 4px 15px rgba(0,0,0,.08);
   z-index:1000;
 }
 
+.bottom-nav a{
+  color:white;
+  text-decoration:none;
+}
+
+.bottom-nav div{
+  color:white;
+}
+
 .bottom-nav a,
 .bottom-nav div{
 text-align:center;
