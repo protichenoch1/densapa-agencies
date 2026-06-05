@@ -125,7 +125,21 @@ const vipPlans = [
     </div>
   </div>
 </div>
-        <div>🔔 👤</div>
+        <div style={{ display: "flex", gap: "10px" }}>
+  <a
+    href="/notifications"
+    style={{
+      textDecoration: "none",
+      fontSize: "22px"
+    }}
+  >
+    🔔
+  </a>
+
+  <span style={{ fontSize: "22px" }}>
+    👤
+  </span>
+</div>
       </div>
 
       <div className="balance-card">
