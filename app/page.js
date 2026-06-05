@@ -127,14 +127,40 @@ const vipPlans = [
 </div>
         <div style={{ display: "flex", gap: "10px" }}>
   <a
-    href="/notifications"
+  href="/notifications"
+  style={{
+    textDecoration: "none",
+    fontSize: "22px"
+  }}
+>
+  <div
     style={{
-      textDecoration: "none",
-      fontSize: "22px"
+      position: "relative",
+      display: "inline-block"
     }}
   >
     🔔
-  </a>
+
+    <span
+      style={{
+        position: "absolute",
+        top: "-5px",
+        right: "-8px",
+        background: "red",
+        color: "white",
+        borderRadius: "50%",
+        width: "16px",
+        height: "16px",
+        fontSize: "10px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}
+    >
+      4
+    </span>
+  </div>
+</a>
 
   <span style={{ fontSize: "22px" }}>
     👤
