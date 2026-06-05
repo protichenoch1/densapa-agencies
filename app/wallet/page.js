@@ -1,25 +1,40 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Wallet() {
+  const [investments, setInvestments] = useState([]);
+
+  useEffect(() => {
+    const saved = JSON.parse(
+      localStorage.getItem("investments") || "[]"
+    );
+
+    setInvestments(saved);
+  }, []);
+
   return (
     <main className="container">
 
       <h1 style={{ marginBottom: "15px" }}>
         💳 My Wallet
       </h1>
-          <div
-  style={{
-    textAlign: "center",
-    marginBottom: "20px"
-  }}
->
-  <img
-    src="/wallet.png"
-    alt="Wallet"
-    style={{
-      width: "45px",
-      height: "45px"
-    }}
-  />
-</div>
+
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "20px"
+        }}
+      >
+        <img
+          src="/wallet.png"
+          alt="Wallet"
+          style={{
+            width: "45px",
+            height: "45px"
+          }}
+        />
+      </div>
 
       <div className="balance-card">
         <p>Available Balance</p>
@@ -45,10 +60,42 @@ export default function Wallet() {
         </div>
 
         <div className="stat-card">
-          <h2>3</h2>
+          <h2>{investments.length}</h2>
           <p>Active Plans</p>
         </div>
 
+      </div>
+
+      <div
+        className="announcement"
+        style={{ marginTop: "20px" }}
+      >
+        <h3>📈 Active Investments</h3>
+
+        {investments.length === 0 ? (
+          <p style={{ marginTop: "10px" }}>
+            No active investments.
+          </p>
+        ) : (
+          investments.map((plan, index) => (
+            <div
+              key={index}
+              style={{
+                marginTop: "15px",
+                padding: "10px",
+                background: "#f5f7fb",
+                borderRadius: "10px"
+              }}
+            >
+              <p><strong>Plan:</strong> {plan.type}</p>
+              <p><strong>Amount:</strong> {plan.amount}</p>
+              <p><strong>Daily Income:</strong> {plan.daily}</p>
+              <p><strong>Duration:</strong> {plan.days}</p>
+              <p><strong>Total Return:</strong> {plan.total}</p>
+              <p><strong>Date:</strong> {plan.date}</p>
+            </div>
+          ))
+        )}
       </div>
 
       <div
@@ -73,7 +120,6 @@ export default function Wallet() {
           marginTop: "20px"
         }}
       >
-
         <a
           href="/deposit"
           className="invest-btn"
@@ -95,9 +141,8 @@ export default function Wallet() {
         >
           🏧 Withdraw
         </a>
-
       </div>
 
     </main>
   );
-            }
+          }
