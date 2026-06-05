@@ -361,7 +361,64 @@ const vipPlans = [
         </a>
 
       </div>
+{showModal && selectedPlan && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: "rgba(0,0,0,0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 9999
+    }}
+  >
+    <div
+      style={{
+        background: "#fff",
+        padding: "20px",
+        borderRadius: "20px",
+        width: "90%",
+        maxWidth: "350px"
+      }}
+    >
+      <h2>💼 Confirm Investment</h2>
 
+      <p><strong>Plan:</strong> {selectedPlan.type}</p>
+      <p><strong>Amount:</strong> {selectedPlan.amount}</p>
+      <p><strong>Daily Income:</strong> {selectedPlan.daily}</p>
+      <p><strong>Duration:</strong> {selectedPlan.days}</p>
+      <p><strong>Total Return:</strong> {selectedPlan.total}</p>
+
+      <button
+        className="invest-btn"
+        style={{ marginTop: "15px" }}
+        onClick={() => {
+          alert("Investment submitted successfully!");
+          setShowModal(false);
+        }}
+      >
+        CONFIRM INVESTMENT
+      </button>
+
+      <button
+        onClick={() => setShowModal(false)}
+        style={{
+          width: "100%",
+          marginTop: "10px",
+          padding: "10px",
+          border: "none",
+          borderRadius: "10px"
+        }}
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+)}
     </main>
   );
     }
