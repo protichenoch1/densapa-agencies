@@ -322,14 +322,6 @@ const vipPlans = [
 
       </div>
 
-      <div className="announcement">
-        <marquee>
-          📢 Welcome to DENSAPAL AGENCIES |
-          Deposit via Till Number 8808802 |
-          Minimum Withdrawal KES 450 |
-          Referral Bonus KES 20
-        </marquee>
-      </div>
 
       <div className="bottom-nav">
 
