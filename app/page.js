@@ -175,22 +175,22 @@ const vipPlans = [
       <div className="quick-actions">
 
         <a href="/deposit" className="action-card">
-          <div style={{ fontSize: "28px" }}>💰</div>
+          <div style={{ fontSize: "20px" }}>💰</div>
           Deposit
         </a>
 
         <a href="/withdraw" className="action-card">
-          <div style={{ fontSize: "28px" }}>🏧</div>
+          <div style={{ fontSize: "20px" }}>🏧</div>
           Withdraw
         </a>
 
         <a href="/invite" className="action-card">
-          <div style={{ fontSize: "28px" }}>👥</div>
+          <div style={{ fontSize: "20px" }}>👥</div>
           Invite
         </a>
 
         <a href="/records" className="action-card">
-          <div style={{ fontSize: "28px" }}>📋</div>
+          <div style={{ fontSize: "20px" }}>📋</div>
           Records
         </a>
 
