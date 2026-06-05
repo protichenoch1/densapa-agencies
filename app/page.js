@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [tab, setTab] = useState("basic");
-
+const [selectedPlan, setSelectedPlan] = useState(null);
+const [showModal, setShowModal] = useState(false);
+  
   const banners = [
   "🎉 Welcome to DENSAPAL AGENCIES",
   "💰 Deposit via Till Number 8808802",
