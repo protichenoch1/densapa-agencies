@@ -11,6 +11,18 @@ export default function Home() {
   "👥 Earn KES 20 Per Successful Referral",
   "🏧 Minimum Withdrawal KES 450"
 ];
+  <div className="banner-slide">
+  {banners[currentBanner]}
+</div>
+
+<div className="announcement">
+  <marquee>
+    📢 Welcome to DENSAPAL AGENCIES |
+    Deposit via Till Number 8808802 |
+    Minimum Withdrawal KES 450 |
+    Referral Bonus KES 20
+  </marquee>
+</div>
 
 const [currentBanner, setCurrentBanner] = useState(0);
 
