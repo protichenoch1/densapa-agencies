@@ -397,9 +397,23 @@ const vipPlans = [
         className="invest-btn"
         style={{ marginTop: "15px" }}
         onClick={() => {
-          alert("Investment submitted successfully!");
-          setShowModal(false);
-        }}
+  const investments = JSON.parse(
+    localStorage.getItem("investments") || "[]"
+  );
+
+  investments.push({
+    ...selectedPlan,
+    date: new Date().toLocaleDateString()
+  });
+
+  localStorage.setItem(
+    "investments",
+    JSON.stringify(investments)
+  );
+
+  alert("Investment submitted successfully!");
+  setShowModal(false);
+}}
       >
         CONFIRM INVESTMENT
       </button>
