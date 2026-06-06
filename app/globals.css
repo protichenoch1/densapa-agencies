@@ -235,3 +235,13 @@ display:block;
 font-size:20px;
 margin-bottom:3px;
 }
+
+.bottom-nav{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  animation: none !important;
+  transform: none !important;
+}
