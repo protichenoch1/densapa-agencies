@@ -194,7 +194,6 @@ const vipPlans = [
     >
       U
     </div>
-  </div>
 
 </div>
       </div>
@@ -411,7 +410,7 @@ const vipPlans = [
   href="/wallet"
   style={{
     textDecoration: "none",
-    color: "inherit",
+    color: "white",
     textAlign: "center"
   }}
 >
@@ -423,7 +422,7 @@ const vipPlans = [
           href="/account"
           style={{
             textDecoration: "none",
-            color: "inherit",
+            color: "white",
             textAlign: "center"
           }}
         >
