@@ -7,6 +7,14 @@ export default function Home() {
   const [tab, setTab] = useState("basic");
 const [selectedPlan, setSelectedPlan] = useState(null);
 const [showModal, setShowModal] = useState(false);
+  const userName = "Enock";
+
+const greeting =
+  new Date().getHours() < 12
+    ? "Good Morning"
+    : new Date().getHours() < 18
+    ? "Good Afternoon"
+    : "Good Evening";
   
   const banners = [
   "🎉 Welcome to DENSAPAL AGENCIES",
@@ -198,7 +206,31 @@ const vipPlans = [
 
 </div>
       </div>
+<div
+  style={{
+    marginBottom: "15px"
+  }}
+>
+  <h2
+    style={{
+      color: "#0A3D91",
+      fontSize: "22px",
+      fontWeight: "bold"
+    }}
+  >
+    {greeting}, {userName} 👋
+  </h2>
 
+  <p
+    style={{
+      color: "#666",
+      fontSize: "14px"
+    }}
+  >
+    Welcome back
+  </p>
+</div>
+      
       <div className="balance-card">
   <p>Total Balance</p>
   <h1>KES 0.00</h1>
