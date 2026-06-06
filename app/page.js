@@ -33,15 +33,7 @@ const greeting =
   "👥 Earn KES 20 Per Successful Referral",
   "🏧 Minimum Withdrawal KES 450"
 ];
-
-  useEffect(() => {
-  const timer = setTimeout(() => {
-    setLoading(false);
-  }, 2500);
-
-  return () => clearTimeout(timer);
-}, []);
-  
+   
 const [currentBanner, setCurrentBanner] = useState(0);
 
 useEffect(() => {
@@ -117,7 +109,6 @@ const vipPlans = [
 ];
 
   const plans = tab === "basic" ? basicPlans : vipPlans;
-const plans = tab === "basic" ? basicPlans : vipPlans;
 
 if (loading) {
   return (
@@ -153,10 +144,7 @@ if (loading) {
 
 return (
   <main className="container">
-  return (
-    <main className="container">
-
-      
+   
         <div className="header">
 
   <div
