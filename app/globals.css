@@ -23,10 +23,14 @@ padding:15px;
 }
 
 .header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+  background:white;
+  padding:12px 15px;
+  border-radius:18px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .balance-card{
