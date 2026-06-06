@@ -93,78 +93,109 @@ const vipPlans = [
   return (
     <main className="container">
 
-      <div className="header">
-        <div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "10px"
-  }}
->
-  <img
-    src="/logo.png"
-    alt="DENSAPAL"
-    style={{
-      width: "45px",
-      height: "45px"
-    }}
-  />
+      
+        <div className="header">
 
-  <div>
-    <div style={{fontWeight:"bold"}}>
-      DENSAPAL
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "10px"
+    }}
+  >
+    <img
+      src="/logo.png"
+      alt="DENSAPAL"
+      style={{
+        width: "45px",
+        height: "45px",
+        borderRadius: "50%"
+      }}
+    />
+
+    <div>
+      <div
+        style={{
+          fontWeight: "bold",
+          fontSize: "18px",
+          color: "#0A3D91"
+        }}
+      >
+        DENSAPAL
+      </div>
+
+      <div
+        style={{
+          fontSize: "11px",
+          color: "#D4AF37",
+          letterSpacing: "2px"
+        }}
+      >
+        AGENCIES
+      </div>
     </div>
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "15px"
+    }}
+  >
+    <a
+      href="/notifications"
+      style={{
+        textDecoration: "none"
+      }}
+    >
+      <div
+        style={{
+          position: "relative",
+          fontSize: "22px"
+        }}
+      >
+        🔔
+
+        <span
+          style={{
+            position: "absolute",
+            top: "-5px",
+            right: "-8px",
+            background: "#D4AF37",
+            color: "#000",
+            borderRadius: "50%",
+            width: "16px",
+            height: "16px",
+            fontSize: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontWeight: "bold"
+          }}
+        >
+          4
+        </span>
+      </div>
+    </a>
 
     <div
       style={{
-        fontSize:"12px",
-        color:"#D4AF37"
-      }}
-    >
-      AGENCIES
-    </div>
-  </div>
-</div>
-        <div style={{ display: "flex", gap: "10px" }}>
-  <a
-  href="/notifications"
-  style={{
-    textDecoration: "none",
-    fontSize: "22px"
-  }}
->
-  <div
-    style={{
-      position: "relative",
-      display: "inline-block"
-    }}
-  >
-    🔔
-
-    <span
-      style={{
-        position: "absolute",
-        top: "-5px",
-        right: "-8px",
-        background: "red",
-        color: "white",
+        width: "36px",
+        height: "36px",
         borderRadius: "50%",
-        width: "16px",
-        height: "16px",
-        fontSize: "10px",
+        background: "#0A3D91",
+        color: "#fff",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        fontWeight: "bold"
       }}
     >
-      4
-    </span>
+      U
+    </div>
   </div>
-</a>
 
-  <span style={{ fontSize: "22px" }}>
-    👤
-  </span>
 </div>
       </div>
 
