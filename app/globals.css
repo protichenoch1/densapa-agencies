@@ -110,6 +110,15 @@ background:#D4AF37;
 color:black;
 }
 
+.plans-wrapper{
+  overflow:hidden;
+  position:relative;
+}
+
+.plans-container{
+  transition:all .4s ease;
+}
+
 .plan-card{
   background:white;
   border-radius:18px;
