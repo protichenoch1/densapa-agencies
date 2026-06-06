@@ -13,7 +13,7 @@ const [showModal, setShowModal] = useState(false);
 useEffect(() => {
   const timer = setTimeout(() => {
     setLoading(false);
-  }, 2500);
+  }, 1000);
 
   return () => clearTimeout(timer);
 }, []);
