@@ -160,7 +160,8 @@ const totalDailyIncome = investments.reduce(
           🏧 Withdraw
         </a>
       </div>
-
+            
+<BottomNav />
     </main>
   );
           }
