@@ -504,6 +504,7 @@ const vipPlans = [
     </div>
   </div>
 )}
+  <BottomNav />
     </main>
   );
     }
