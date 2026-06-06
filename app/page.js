@@ -7,6 +7,17 @@ export default function Home() {
   const [tab, setTab] = useState("basic");
 const [selectedPlan, setSelectedPlan] = useState(null);
 const [showModal, setShowModal] = useState(false);
+  
+  const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 2500);
+
+  return () => clearTimeout(timer);
+}, []);
+  
   const userName = "Enock";
 
 const greeting =
@@ -22,6 +33,14 @@ const greeting =
   "👥 Earn KES 20 Per Successful Referral",
   "🏧 Minimum Withdrawal KES 450"
 ];
+
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 2500);
+
+  return () => clearTimeout(timer);
+}, []);
   
 const [currentBanner, setCurrentBanner] = useState(0);
 
