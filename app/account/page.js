@@ -155,7 +155,8 @@ export default function AccountPage() {
       >
         DENSAPAL v1.0.0
       </p>
-
+          
+<BottomNav />
     </main>
   );
             }
