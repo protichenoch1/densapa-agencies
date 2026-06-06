@@ -117,7 +117,42 @@ const vipPlans = [
 ];
 
   const plans = tab === "basic" ? basicPlans : vipPlans;
+const plans = tab === "basic" ? basicPlans : vipPlans;
 
+if (loading) {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg,#0A3D91,#06275e)"
+      }}
+    >
+      <img
+        src="/logo.png"
+        alt="DENSAPAL"
+        style={{
+          width: "100px",
+          height: "100px"
+        }}
+      />
+
+      <h1 style={{ color: "#fff" }}>
+        DENSAPAL
+      </h1>
+
+      <p style={{ color: "#D4AF37" }}>
+        AGENCIES
+      </p>
+    </div>
+  );
+}
+
+return (
+  <main className="container">
   return (
     <main className="container">
 
