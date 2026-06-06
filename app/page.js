@@ -436,6 +436,7 @@ return (
 </div>
 </div>
       ))}
+        </div>
 
       <div className="stats">
 
