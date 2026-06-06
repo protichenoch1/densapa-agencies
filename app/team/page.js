@@ -1,3 +1,5 @@
+import BottomNav from "../../components/BottomNav";
+
 export default function TeamPage() {
   return (
     <main className="container">
