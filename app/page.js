@@ -360,7 +360,7 @@ return (
         </button>
 
       </div>
-<div className="plans-container" key={tab}>
+<div className="plans-container">
             
       {plans.map((plan, index) => (
         <div className="plan-card" key={index}>
