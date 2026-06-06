@@ -1,3 +1,5 @@
+import BottomNav from "../../components/BottomNav";
+
 export default function AccountPage() {
   return (
     <main className="container">
