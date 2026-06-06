@@ -80,7 +80,8 @@ export default function TeamPage() {
       >
         👥 Invite More Friends
       </a>
-
+          
+<BottomNav />
     </main>
   );
 }
