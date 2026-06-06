@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import BottomNav from "../../components/BottomNav";
 
 export default function Wallet() {
   const [investments, setInvestments] = useState([]);
