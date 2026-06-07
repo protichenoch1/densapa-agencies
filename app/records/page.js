@@ -106,9 +106,8 @@ export default function Records() {
       </div>
     </div>
   </div>
-))}
-        ))
-      )}
+   ))
+  )}
 
       <BottomNav />
     </main>
