@@ -30,7 +30,7 @@ export default function Records() {
           <p>No investments found.</p>
         </div>
       ) : (
-        {investments.map((item, index) => (
+        investments.map((item, index) => (
   <div
     key={index}
     className="plan-card"
@@ -54,13 +54,33 @@ export default function Records() {
       />
 
       <div style={{ flex: 1 }}>
-        <div className="plan-top">
-          <h3>{item.amount}</h3>
+        <div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "8px"
+  }}
+>
+  <span
+    style={{
+      background: "#28a745",
+      color: "#fff",
+      padding: "4px 10px",
+      borderRadius: "20px",
+      fontSize: "12px",
+      fontWeight: "bold"
+    }}
+  >
+    ACTIVE
+  </span>
 
-          <span className="badge">
-            {item.type}
-          </span>
-        </div>
+  <span className="badge">
+    {item.type}
+  </span>
+</div>
+
+<h3>{item.amount}</h3>
 
         <p>Daily Income: {item.daily}</p>
         <p>Duration: {item.days}</p>
