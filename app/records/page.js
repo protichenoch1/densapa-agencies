@@ -30,46 +30,78 @@ export default function Records() {
           <p>No investments found.</p>
         </div>
       ) : (
-        investments.map((item, index) => (
-          <div
-            key={index}
-            className="plan-card"
-          >
-            <div className="plan-top">
-              <h3>{item.amount}</h3>
+        {investments.map((item, index) => (
+  <div
+    key={index}
+    className="plan-card"
+  >
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "15px"
+      }}
+    >
+      <img
+        src={item.image}
+        alt={item.amount}
+        style={{
+          width: "90px",
+          height: "90px",
+          borderRadius: "15px",
+          objectFit: "cover"
+        }}
+      />
 
-              <span className="badge">
-                {item.type}
-              </span>
-            </div>
+      <div style={{ flex: 1 }}>
+        <div className="plan-top">
+          <h3>{item.amount}</h3>
 
-            <p>
-              Daily Income: {item.daily}
-            </p>
+          <span className="badge">
+            {item.type}
+          </span>
+        </div>
 
-            <p>
-              Duration: {item.days}
-            </p>
+        <p>Daily Income: {item.daily}</p>
+        <p>Duration: {item.days}</p>
 
-            <p
-              style={{
-                color: "#0A3D91",
-                fontWeight: "bold"
-              }}
-            >
-              Total Return: {item.total}
-            </p>
+        <p
+          style={{
+            color: "#0A3D91",
+            fontWeight: "bold"
+          }}
+        >
+          Total Return: {item.total}
+        </p>
 
-            <p
-              style={{
-                fontSize: "12px",
-                color: "#666",
-                marginTop: "10px"
-              }}
-            >
-              Date: {item.date}
-            </p>
-          </div>
+        <span
+          style={{
+            display: "inline-block",
+            marginTop: "8px",
+            background: "#28a745",
+            color: "#fff",
+            padding: "4px 10px",
+            borderRadius: "20px",
+            fontSize: "12px",
+            fontWeight: "bold"
+          }}
+        >
+          ACTIVE
+        </span>
+
+        <p
+          style={{
+            fontSize: "12px",
+            color: "#666",
+            marginTop: "8px"
+          }}
+        >
+          Date: {item.date}
+        </p>
+      </div>
+    </div>
+  </div>
+))}
         ))
       )}
 
