@@ -94,22 +94,7 @@ export default function Records() {
           Total Return: {item.total}
         </p>
 
-        <span
-          style={{
-            display: "inline-block",
-            marginTop: "8px",
-            background: "#28a745",
-            color: "#fff",
-            padding: "4px 10px",
-            borderRadius: "20px",
-            fontSize: "12px",
-            fontWeight: "bold"
-          }}
-        >
-          ACTIVE
-        </span>
-
-        <p
+          <p
           style={{
             fontSize: "12px",
             color: "#666",
