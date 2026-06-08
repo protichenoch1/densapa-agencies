@@ -431,32 +431,24 @@ return (
 >
   <button
   className="invest-btn"
+  disabled={isLocked}
   style={{
-    width: "120px"
+    width: "120px",
+    background: isLocked ? "#999" : "",
+    cursor: isLocked ? "not-allowed" : "pointer"
   }}
   onClick={() => {
-  const investments = JSON.parse(
-    localStorage.getItem("investments") || "[]"
-  );
+    if (isLocked) return;
 
-  const alreadyInvested = investments.some(
-    (item) => item.amount === plan.amount
-  );
+    setSelectedPlan({
+      ...plan,
+      type: tab.toUpperCase()
+    });
 
-  if (alreadyInvested) {
-    alert("You have already invested in this product.");
-    return;
-  }
-
-  setSelectedPlan({
-    ...plan,
-    type: tab.toUpperCase()
-  });
-
-  setShowModal(true);
-}}
+    setShowModal(true);
+  }}
 >
-  INVEST NOW
+  {isLocked ? "🔒 LOCKED" : "INVEST NOW"}
 </button>
 </div>
 </div>
