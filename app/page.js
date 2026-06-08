@@ -424,12 +424,26 @@ return (
     width: "120px"
   }}
   onClick={() => {
-    setSelectedPlan({
-      ...plan,
-      type: tab.toUpperCase()
-    });
-    setShowModal(true);
-  }}
+  const investments = JSON.parse(
+    localStorage.getItem("investments") || "[]"
+  );
+
+  const alreadyInvested = investments.some(
+    (item) => item.amount === plan.amount
+  );
+
+  if (alreadyInvested) {
+    alert("You have already invested in this product.");
+    return;
+  }
+
+  setSelectedPlan({
+    ...plan,
+    type: tab.toUpperCase()
+  });
+
+  setShowModal(true);
+}}
 >
   INVEST NOW
 </button>
