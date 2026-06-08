@@ -452,7 +452,8 @@ return (
 </button>
 </div>
 </div>
-      ))}
+      );
+})}
         </div>
 
       <div className="stats">
