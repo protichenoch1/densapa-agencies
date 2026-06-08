@@ -45,6 +45,14 @@ useEffect(() => {
 
   return () => clearInterval(timer);
 }, []);
+
+  useEffect(() => {
+  const storedInvestments = JSON.parse(
+    localStorage.getItem("investments") || "[]"
+  );
+
+  setInvestments(storedInvestments);
+}, []);
   
   const basicPlans = [
   {
@@ -110,9 +118,7 @@ const vipPlans = [
 
   const plans = tab === "basic" ? basicPlans : vipPlans;
   
-  const investments = JSON.parse(
-  localStorage.getItem("investments") || "[]"
-);
+  const [investments, setInvestments] = useState([]);
   
 if (loading) {
   return (
