@@ -109,7 +109,11 @@ const vipPlans = [
 ];
 
   const plans = tab === "basic" ? basicPlans : vipPlans;
-
+  
+  const investments = JSON.parse(
+  localStorage.getItem("investments") || "[]"
+);
+  
 if (loading) {
   return (
     <div
@@ -362,7 +366,14 @@ return (
       </div>
 <div className="plans-container">
             
-      {plans.map((plan, index) => (
+      {plans.map((plan, index) => {
+  const isLocked = investments.some(
+    (item) =>
+      item.amount === plan.amount &&
+      item.type === tab.toUpperCase()
+  );
+
+  return (
         <div className="plan-card" key={index}>
 
           <div
