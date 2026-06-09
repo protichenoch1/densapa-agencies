@@ -99,16 +99,25 @@ export default function DepositPage() {
 
       <button
   disabled={loading}
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginTop: "20px",
+    border: "none",
+    borderRadius: "10px",
+    background: "#0A3D91",
+    color: "#fff",
+    fontWeight: "bold"
+  }}
   onClick={() => {
     setLoading(true);
 
     setTimeout(() => {
-      // your existing deposit code here
       setLoading(false);
     }, 2000);
   }}
 >
-  {loading ? <div className="small-loader"></div> : "Submit Deposit"}
+  {loading ? "Processing..." : "Submit Deposit"}
 </button>
 
     </main>
