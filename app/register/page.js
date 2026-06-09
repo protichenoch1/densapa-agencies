@@ -10,6 +10,8 @@ export default function Register() {
   const [confirmPin, setConfirmPin] = useState("");
   const [referralCode, setReferralCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPin, setShowPin] = useState(false);
+const [showConfirmPin, setShowConfirmPin] = useState(false);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -121,23 +123,71 @@ export default function Register() {
             style={inputStyle}
           />
 
-          <input
-            type="password"
-            placeholder="Create PIN"
-            value={pin}
-            onChange={(e) => setPin(e.target.value)}
-            required
-            style={inputStyle}
-          />
+          <div style={{ position: "relative", marginBottom: "12px" }}>
+  <input
+    type={showPin ? "text" : "password"}
+    placeholder="Create PIN"
+    value={pin}
+    onChange={(e) => setPin(e.target.value)}
+    required
+    style={{
+      ...inputStyle,
+      marginBottom: 0,
+      paddingRight: "70px",
+    }}
+  />
 
-          <input
-            type="password"
-            placeholder="Confirm PIN"
-            value={confirmPin}
-            onChange={(e) => setConfirmPin(e.target.value)}
-            required
-            style={inputStyle}
-          />
+  <button
+    type="button"
+    onClick={() => setShowPin(!showPin)}
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      border: "none",
+      background: "none",
+      cursor: "pointer",
+      color: "#0A3D91",
+      fontWeight: "bold",
+    }}
+  >
+    {showPin ? "Hide" : "Show"}
+  </button>
+</div>
+
+          <div style={{ position: "relative", marginBottom: "12px" }}>
+  <input
+    type={showConfirmPin ? "text" : "password"}
+    placeholder="Confirm PIN"
+    value={confirmPin}
+    onChange={(e) => setConfirmPin(e.target.value)}
+    required
+    style={{
+      ...inputStyle,
+      marginBottom: 0,
+      paddingRight: "70px",
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowConfirmPin(!showConfirmPin)}
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      border: "none",
+      background: "none",
+      cursor: "pointer",
+      color: "#0A3D91",
+      fontWeight: "bold",
+    }}
+  >
+    {showConfirmPin ? "Hide" : "Show"}
+  </button>
+</div>
 
           <input
             type="text"
