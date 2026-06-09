@@ -16,6 +16,11 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
   async function handleRegister(e) {
     e.preventDefault();
 
+    if (pin.length !== 4) {
+  alert("PIN must be exactly 4 digits");
+  return;
+    }
+
     if (pin !== confirmPin) {
       alert("PINs do not match");
       return;
@@ -166,26 +171,25 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
 
           <div style={{ position: "relative", marginBottom: "12px" }}>
   <input
-  <input
-  type={showConfirmPin ? "text" : "password"}
-  inputMode="numeric"
-  pattern="[0-9]*"
-  maxLength={4}
-  placeholder="Confirm 4-Digit PIN"
-  value={confirmPin}
-  onChange={(e) => {
-    const value = e.target.value.replace(/\D/g, "");
-    if (value.length <= 4) {
-      setConfirmPin(value);
-    }
-  }}
-  required
-  style={{
-    ...inputStyle,
-    marginBottom: 0,
-    paddingRight: "70px",
-  }}
-/>
+    type={showConfirmPin ? "text" : "password"}
+    inputMode="numeric"
+    pattern="[0-9]*"
+    maxLength={4}
+    placeholder="Confirm 4-Digit PIN"
+    value={confirmPin}
+    onChange={(e) => {
+      const value = e.target.value.replace(/\D/g, "");
+      if (value.length <= 4) {
+        setConfirmPin(value);
+      }
+    }}
+    required
+    style={{
+      ...inputStyle,
+      marginBottom: 0,
+      paddingRight: "70px",
+    }}
+  />
 
   <button
     type="button"
