@@ -32,7 +32,7 @@ export default function Login() {
       .select("*")
       .eq("phone_number", phoneNumber)
       .eq("pin", pin)
-      .single();
+      .maybeSingle();
 
     setLoading(false);
 
