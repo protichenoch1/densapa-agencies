@@ -1,2 +1,2 @@
-# densapa-agencies
+# densapal-agencies
 DENSAPAL AGENCIES Investment platform
