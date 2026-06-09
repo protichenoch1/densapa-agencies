@@ -13,7 +13,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [showPin, setShowPin] = useState(false);
 const [showConfirmPin, setShowConfirmPin] = useState(false);
-  
   const searchParams = useSearchParams();
 
   useEffect(() => {
