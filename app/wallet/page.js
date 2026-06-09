@@ -5,6 +5,8 @@ import BottomNav from "../../components/BottomNav";
 
 export default function Wallet() {
   const [investments, setInvestments] = useState([]);
+  const [user, setUser] = useState(null);
+  
 const totalInvested = investments.reduce(
   (sum, plan) =>
     sum + Number(plan.amount.replace(/[^0-9]/g, "")),
@@ -18,12 +20,18 @@ const totalDailyIncome = investments.reduce(
 );
   
   useEffect(() => {
-    const saved = JSON.parse(
-      localStorage.getItem("investments") || "[]"
-    );
+  const savedUser = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
 
-    setInvestments(saved);
-  }, []);
+  setUser(savedUser);
+
+  const savedInvestments = JSON.parse(
+    localStorage.getItem("investments") || "[]"
+  );
+
+  setInvestments(savedInvestments);
+}, []);
 
   return (
     <main className="container">
@@ -50,7 +58,9 @@ const totalDailyIncome = investments.reduce(
 
       <div className="balance-card">
         <p>Available Balance</p>
-        <h1>KES 12,450</h1>
+        <h1>
+  KES {(user?.wallet_balance || 0).toLocaleString()}
+</h1>
         <p>Last Updated: Today</p>
       </div>
 
@@ -62,7 +72,9 @@ const totalDailyIncome = investments.reduce(
         </div>
 
         <div className="stat-card">
-          <h2>KES 2,550</h2>
+          <h2>
+  KES {(user?.total_withdrawals || 0).toLocaleString()}
+</h2>
           <p>Total Withdrawals</p>
         </div>
 
@@ -114,20 +126,6 @@ const totalDailyIncome = investments.reduce(
             </div>
           ))
         )}
-      </div>
-
-      <div
-        className="announcement"
-        style={{ marginTop: "20px" }}
-      >
-        <h3>📋 Recent Transactions</h3>
-
-        <div style={{ marginTop: "10px" }}>
-          <p>✅ Deposit - KES 2,000</p>
-          <p>✅ Investment - KES 420</p>
-          <p>✅ Withdrawal - KES 500</p>
-          <p>✅ Referral Bonus - KES 20</p>
-        </div>
       </div>
 
       <div
