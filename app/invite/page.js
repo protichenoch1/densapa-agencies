@@ -7,7 +7,6 @@ export default function InvitePage() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-  useEffect(() => {
   async function loadUser() {
     const savedUser = JSON.parse(
       localStorage.getItem("user") || "{}"
@@ -33,6 +32,10 @@ export default function InvitePage() {
 
   loadUser();
 }, []);
+
+  if (!user) {
+  return <p style={{ padding: "20px" }}>Loading...</p>;
+}
 
   const referralLink =
     `https://densapal-agencies.vercel.app/register?ref=${user.my_referral_code}`;
