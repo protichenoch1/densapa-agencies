@@ -167,6 +167,27 @@ export default function Login() {
             marginTop: "20px",
           }}
         >
+
+<p
+  style={{
+    textAlign: "center",
+    marginTop: "15px",
+  }}
+>
+  <a
+    href="https://wa.me/254111721048?text=Hello%20Admin,%20I%20forgot%20my%20PIN.%20My%20phone%20number%20is%20________."
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      color: "#0A3D91",
+      fontWeight: "bold",
+      textDecoration: "none",
+    }}
+  >
+    Forgot PIN?
+  </a>
+</p>
+
           Don't have an account?{" "}
           <a
             href="/register"
