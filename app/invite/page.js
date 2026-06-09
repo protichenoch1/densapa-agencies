@@ -1,6 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function InvitePage() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  if (!user) {
+    return <p style={{ padding: "20px" }}>Loading...</p>;
+  }
+
+  const referralLink =
+    `https://densapal-agencies.vercel.app/register?ref=${user.my_referral_code}`;
+
   return (
     <main className="container">
 
@@ -32,6 +51,40 @@ export default function InvitePage() {
         className="announcement"
         style={{ marginTop: "20px" }}
       >
+        <h3>Your Referral Code</h3>
+
+        <div
+          style={{
+            marginTop: "10px",
+            padding: "12px",
+            background: "#f5f7fb",
+            borderRadius: "10px",
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: "20px",
+          }}
+        >
+          {user.my_referral_code}
+        </div>
+
+        <button
+          className="invest-btn"
+          style={{ marginTop: "15px" }}
+          onClick={() => {
+            navigator.clipboard.writeText(
+              user.my_referral_code
+            );
+            alert("Referral code copied!");
+          }}
+        >
+          📋 Copy Referral Code
+        </button>
+      </div>
+
+      <div
+        className="announcement"
+        style={{ marginTop: "20px" }}
+      >
         <h3>Your Referral Link</h3>
 
         <div
@@ -40,10 +93,10 @@ export default function InvitePage() {
             padding: "12px",
             background: "#f5f7fb",
             borderRadius: "10px",
-            wordBreak: "break-all"
+            wordBreak: "break-all",
           }}
         >
-          https://densapa-agencies.vercel.app/register?ref=USER123
+          {referralLink}
         </div>
 
         <button
@@ -51,7 +104,7 @@ export default function InvitePage() {
           style={{ marginTop: "15px" }}
           onClick={() => {
             navigator.clipboard.writeText(
-              "https://densapa-agencies.vercel.app/register?ref=USER123"
+              referralLink
             );
             alert("Referral link copied!");
           }}
@@ -92,4 +145,4 @@ export default function InvitePage() {
 
     </main>
   );
-            }
+}
