@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@lib/supabase-js";
+import { supabase } from "@lib/supabase.js";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
