@@ -64,14 +64,14 @@ export default function AccountPage() {
 <div className="stats">
 
         <div className="stat-card">
-          <h2>KES 0</h2>
-          <p>Total Deposits</p>
-        </div>
+  <h2>KES {user.balance || 0}</h2>
+  <p>Wallet Balance</p>
+</div>
 
         <div className="stat-card">
-          <h2>KES 0</h2>
-          <p>Total Withdrawals</p>
-        </div>
+  <h2>KES {user.referral_earnings || 0}</h2>
+  <p>Referral Earnings</p>
+</div>
 
         <div className="stat-card">
   <h2>{user.referral_count || 0}</h2>
