@@ -29,19 +29,19 @@ export default function InvitePage() {
 
       <div className="balance-card">
         <p>Referral Earnings</p>
-        <h1>KES 0</h1>
+        <h1>KES {user.referral_earnings || 0}</h1>
         <p>KES 20 Per Successful Registration</p>
       </div>
 
       <div className="stats">
 
         <div className="stat-card">
-          <h2>0</h2>
+          <h2>{user.referral_count || 0}</h2>
           <p>Total Referrals</p>
         </div>
 
         <div className="stat-card">
-          <h2>KES 0</h2>
+          <h2>KES {user.referral_earnings || 0}</h2>
           <p>Total Earnings</p>
         </div>
 
