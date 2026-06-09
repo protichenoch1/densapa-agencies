@@ -7,16 +7,32 @@ export default function InvitePage() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
+  useEffect(() => {
+  async function loadUser() {
+    const savedUser = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
 
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+    if (!savedUser.id) return;
+
+    const { data } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", savedUser.id)
+      .maybeSingle();
+
+    if (data) {
+      setUser(data);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data)
+      );
     }
-  }, []);
-
-  if (!user) {
-    return <p style={{ padding: "20px" }}>Loading...</p>;
   }
+
+  loadUser();
+}, []);
 
   const referralLink =
     `https://densapal-agencies.vercel.app/register?ref=${user.my_referral_code}`;
