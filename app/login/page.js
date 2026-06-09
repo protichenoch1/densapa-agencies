@@ -8,11 +8,17 @@ export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [pin, setPin] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPin, setShowPin] = useState(false);
 
   const router = useRouter();
 
   async function handleLogin(e) {
     e.preventDefault();
+    if (pin.length !== 4) {
+  alert("PIN must be exactly 4 digits");
+  return;
+    }
+    
     setLoading(true);
 
     const { data, error } = await supabase
@@ -83,14 +89,46 @@ export default function Login() {
             style={inputStyle}
           />
 
-          <input
-            type="password"
-            placeholder="PIN"
-            value={pin}
-            onChange={(e) => setPin(e.target.value)}
-            required
-            style={inputStyle}
-          />
+          <div style={{ position: "relative", marginBottom: "12px" }}>
+  <input
+    type={showPin ? "text" : "password"}
+    inputMode="numeric"
+    pattern="[0-9]*"
+    maxLength={4}
+    placeholder="Enter 4-Digit PIN"
+    value={pin}
+    onChange={(e) => {
+      const value = e.target.value.replace(/\D/g, "");
+      if (value.length <= 4) {
+        setPin(value);
+      }
+    }}
+    required
+    style={{
+      ...inputStyle,
+      marginBottom: 0,
+      paddingRight: "70px",
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowPin(!showPin)}
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      border: "none",
+      background: "none",
+      cursor: "pointer",
+      color: "#0A3D91",
+      fontWeight: "bold",
+    }}
+  >
+    {showPin ? "Hide" : "Show"}
+  </button>
+</div>
 
           <button
             type="submit"
