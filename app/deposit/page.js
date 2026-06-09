@@ -118,6 +118,9 @@ export default function DepositPage() {
   }}
 >
   {loading ? "Processing..." : "Submit Deposit"}
+
+<div className="floating-loader"></div>
+  
 </button>
 
     </main>
