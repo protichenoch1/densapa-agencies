@@ -35,11 +35,8 @@ export default function Login() {
       .maybeSingle();
 
     setLoading(false);
-
-    if (error || !data) {
-      alert("Invalid phone number or PIN");
-      return;
-    }
+alert("Invalid phone number or PIN");
+return;
 
     localStorage.setItem("user", JSON.stringify(data));
 
