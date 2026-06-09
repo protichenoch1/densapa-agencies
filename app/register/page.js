@@ -73,6 +73,25 @@ if (existingUser) {
       return;
     }
 
+    if (referralCode) {
+  const { data: referrer } = await supabase
+    .from("users")
+    .select("id, referral_count, referral_earnings")
+    .eq("my_referral_code", referralCode)
+    .maybeSingle();
+
+  if (referrer) {
+    await supabase
+      .from("users")
+      .update({
+        referral_count: (referrer.referral_count || 0) + 1,
+        referral_earnings: (referrer.referral_earnings || 0) + 20,
+        balance: (referrer.balance || 0) + 20,
+      })
+      .eq("id", referrer.id);
+  }
+    }
+
     alert("Registration successful!");
     window.location.href = "/login";
   }
