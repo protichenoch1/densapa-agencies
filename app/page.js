@@ -17,6 +17,9 @@ useEffect(() => {
 
   return () => clearTimeout(timer);
 }, []);
+
+  const [showSuccess, setShowSuccess] = useState(false);
+const [successMessage, setSuccessMessage] = useState("");
   
   const userName = "Enock";
 
@@ -537,8 +540,12 @@ return (
     JSON.stringify(investments)
   );
 
-  alert("Investment submitted successfully!");
-  setShowModal(false);
+  setSuccessMessage(
+  "Your investment has been activated successfully."
+);
+
+setShowSuccess(true);
+setShowModal(false);
 }}
       >
         CONFIRM INVESTMENT
@@ -555,6 +562,71 @@ return (
         }}
       >
         Cancel
+      </button>
+    </div>
+  </div>
+)}
+
+  {showSuccess && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: "rgba(0,0,0,0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 10000
+    }}
+  >
+    <div
+      style={{
+        background: "#fff",
+        padding: "25px",
+        borderRadius: "20px",
+        width: "90%",
+        maxWidth: "320px",
+        textAlign: "center"
+      }}
+    >
+      <div
+        style={{
+          fontSize: "50px",
+          marginBottom: "10px"
+        }}
+      >
+        ✅
+      </div>
+
+      <h2
+        style={{
+          color: "#0A3D91"
+        }}
+      >
+        Success
+      </h2>
+
+      <p
+        style={{
+          marginTop: "10px",
+          color: "#555"
+        }}
+      >
+        {successMessage}
+      </p>
+
+      <button
+        className="invest-btn"
+        style={{
+          marginTop: "20px",
+          width: "100%"
+        }}
+        onClick={() => setShowSuccess(false)}
+      >
+        OK
       </button>
     </div>
   </div>
