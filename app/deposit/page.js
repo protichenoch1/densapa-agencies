@@ -10,6 +10,8 @@ export default function DepositPage() {
   return (
     <main className="container">
 
+    <div className="center-loader"></div>
+
       <h1 style={{ marginBottom: "15px" }}>
         💰 Deposit Funds
       </h1>
