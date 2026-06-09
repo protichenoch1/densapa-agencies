@@ -11,8 +11,7 @@ export default function Login() {
   const [showPin, setShowPin] = useState(false);
 
   const router = useRouter();
-
-  async function handleLogin(e) {
+  
   async function handleLogin(e) {
   e.preventDefault();
 
