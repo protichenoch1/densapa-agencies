@@ -55,7 +55,13 @@ export default function AccountPage() {
   {user.full_name}
 </h2>
 
-      <div className="stats">
+<p style={{ color: "#777" }}>
+  {user.phone_number}
+</p>
+
+</div>
+
+<div className="stats">
 
         <div className="stat-card">
           <h2>KES 0</h2>
@@ -71,9 +77,14 @@ export default function AccountPage() {
           <h2>{user.referral_count || 0}</h2>
 
         <div className="stat-card">
-          <h2>0</h2>
-          <p>Active Plans</p>
-        </div>
+  <h2>{user.referral_count || 0}</h2>
+  <p>Referrals</p>
+</div>
+
+<div className="stat-card">
+  <h2>0</h2>
+  <p>Active Plans</p>
+</div>
 
       </div>
 
