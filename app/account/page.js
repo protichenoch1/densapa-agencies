@@ -1,6 +1,23 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import BottomNav from "../../components/BottomNav";
 
 export default function AccountPage() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  if (!user) {
+    return <p style={{ padding: "20px" }}>Loading...</p>;
+  }
+
   return (
     <main className="container">
 
@@ -35,13 +52,8 @@ export default function AccountPage() {
         </div>
 
         <h2 style={{ marginTop: "15px" }}>
-          Username
-        </h2>
-
-        <p style={{ color: "#777" }}>
-          user@example.com
-        </p>
-      </div>
+  {user.full_name}
+</h2>
 
       <div className="stats">
 
@@ -56,9 +68,7 @@ export default function AccountPage() {
         </div>
 
         <div className="stat-card">
-          <h2>0</h2>
-          <p>Referrals</p>
-        </div>
+          <h2>{user.referral_count || 0}</h2>
 
         <div className="stat-card">
           <h2>0</h2>
@@ -74,20 +84,16 @@ export default function AccountPage() {
         <h3>Account Information</h3>
 
         <p style={{ marginTop: "10px" }}>
-          📱 Phone: Not Set
-        </p>
+  📱 Phone: {user.phone_number}
+</p>
 
         <p>
-          📧 Email: user@example.com
-        </p>
+  🔑 Referral Code: {user.my_referral_code}
+</p>
 
         <p>
-          🔑 Referral Code: USER123
-        </p>
-
-        <p>
-          🗓️ Joined: Today
-        </p>
+  🗓️ Joined: {new Date(user.created_at).toLocaleDateString()}
+</p>
       </div>
 
       <div
@@ -137,14 +143,18 @@ export default function AccountPage() {
       </div>
 
       <button
-        className="invest-btn"
-        style={{
-          marginTop: "20px",
-          background: "#d9534f"
-        }}
-      >
-        Logout
-      </button>
+  className="invest-btn"
+  style={{
+    marginTop: "20px",
+    background: "#d9534f"
+  }}
+  onClick={() => {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  }}
+>
+  Logout
+</button>
 
       <p
         style={{
