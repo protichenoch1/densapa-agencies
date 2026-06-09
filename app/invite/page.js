@@ -5,6 +5,7 @@ import { supabase } from "../../lib/supabase";
 
 export default function InvitePage() {
   const [user, setUser] = useState(null);
+  const [referrals, setReferrals] = useState([]);
 
   useEffect(() => {
   async function loadUser() {
@@ -27,6 +28,13 @@ export default function InvitePage() {
         "user",
         JSON.stringify(data)
       );
+
+      const { data: referralList } = await supabase
+  .from("users")
+  .select("id, full_name")
+  .eq("referral_code", data.my_referral_code);
+
+setReferrals(referralList || []);
     }
   }
 
@@ -158,9 +166,23 @@ export default function InvitePage() {
       >
         <h3>My Referrals</h3>
 
-        <p style={{ marginTop: "10px" }}>
-          No referrals yet.
-        </p>
+        {referrals.length === 0 ? (
+  <p style={{ marginTop: "10px" }}>
+    No referrals yet.
+  </p>
+) : (
+  referrals.map((referral) => (
+    <div
+      key={referral.id}
+      style={{
+        padding: "10px",
+        borderBottom: "1px solid #eee",
+      }}
+    >
+      {referral.full_name}
+    </div>
+  ))
+)}
       </div>
 
     </main>
