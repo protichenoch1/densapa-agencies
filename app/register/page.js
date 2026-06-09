@@ -44,6 +44,17 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
 
     setLoading(true);
 
+    const { data: existingUser } = await supabase
+  .from("users")
+  .select("id")
+  .eq("phone_number", phoneNumber)
+  .maybeSingle();
+
+if (existingUser) {
+  alert("Phone number already registered");
+  return;
+}
+
     const { error } = await supabase.from("users").insert([
       {
         full_name: fullName,
