@@ -45,6 +45,8 @@ export default function Login() {
 
   localStorage.setItem("user", JSON.stringify(data));
 
+    alert("Login successful");
+
   router.push("/dashboard");
   }
 
