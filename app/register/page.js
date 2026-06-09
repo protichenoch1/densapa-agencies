@@ -53,15 +53,18 @@ if (existingUser) {
   alert("Phone number already registered");
   return;
 }
+   const myReferralCode =
+  Math.random().toString(36).substring(2, 8).toUpperCase(); 
 
     const { error } = await supabase.from("users").insert([
-      {
-        full_name: fullName,
-        phone_number: phoneNumber,
-        pin,
-        referral_code: referralCode,
-      },
-    ]);
+  {
+    full_name: fullName,
+    phone_number: phoneNumber,
+    pin,
+    referral_code: referralCode,
+    my_referral_code: myReferralCode,
+  },
+]);
 
     setLoading(false);
 
