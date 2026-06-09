@@ -12,10 +12,9 @@ export default function Register() {
   const [referralCode, setReferralCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPin, setShowPin] = useState(false);
-const [showConfirmPin, setShowConfirmPin] = useState(false);
+  const [showConfirmPin, setShowConfirmPin] = useState(false);
   
-  import { useSearchParams } from "next/navigation";
-const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
 useEffect(() => {
   const ref = searchParams.get("ref");
@@ -52,6 +51,7 @@ useEffect(() => {
   .maybeSingle();
 
 if (existingUser) {
+  setLoading(false);
   alert("Phone number already registered");
   return;
 }
