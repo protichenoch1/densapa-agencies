@@ -74,9 +74,6 @@ export default function AccountPage() {
         </div>
 
         <div className="stat-card">
-          <h2>{user.referral_count || 0}</h2>
-
-        <div className="stat-card">
   <h2>{user.referral_count || 0}</h2>
   <p>Referrals</p>
 </div>
