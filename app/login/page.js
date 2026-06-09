@@ -36,6 +36,11 @@ export default function Login() {
     .eq("pin", pin)
     .maybeSingle();
 
+    console.log("DATA:", data);
+console.log("ERROR:", error);
+
+alert(JSON.stringify({ data, error }));
+
   setLoading(false);
 
   if (error || !data) {
