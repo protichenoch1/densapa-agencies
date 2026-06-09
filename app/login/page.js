@@ -13,34 +13,40 @@ export default function Login() {
   const router = useRouter();
 
   async function handleLogin(e) {
-    e.preventDefault();
-    
-    if (!/^0(1|7)\d{8}$/.test(phoneNumber)) {
-  alert("Enter a valid 10-digit phone number");
-  return;
-    }
-    
-    if (pin.length !== 4) {
-  alert("PIN must be exactly 4 digits");
-  return;
-    }
-    
-    setLoading(true);
+  async function handleLogin(e) {
+  e.preventDefault();
 
-    const { data, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("phone_number", phoneNumber)
-      .eq("pin", pin)
-      .maybeSingle();
+  if (!/^0(1|7)\d{8}$/.test(phoneNumber)) {
+    alert("Enter a valid 10-digit phone number");
+    return;
+  }
 
-    setLoading(false);
-alert("Invalid phone number or PIN");
-return;
+  if (pin.length !== 4) {
+    alert("PIN must be exactly 4 digits");
+    return;
+  }
 
-    localStorage.setItem("user", JSON.stringify(data));
+  setLoading(true);
 
-    router.push("/dashboard");
+  const cleanPhone = phoneNumber.replace(/\D/g, "");
+
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("phone_number", cleanPhone)
+    .eq("pin", pin)
+    .maybeSingle();
+
+  setLoading(false);
+
+  if (error || !data) {
+    alert("Invalid phone number or PIN");
+    return;
+  }
+
+  localStorage.setItem("user", JSON.stringify(data));
+
+  router.push("/dashboard");
   }
 
   return (
