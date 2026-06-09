@@ -1,78 +1,142 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "../../lib/supabase";
+
 export default function Login() {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [pin, setPin] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    setLoading(true);
+
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("phone_number", phoneNumber)
+      .eq("pin", pin)
+      .single();
+
+    setLoading(false);
+
+    if (error || !data) {
+      alert("Invalid phone number or PIN");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify(data));
+
+    router.push("/dashboard");
+  }
+
   return (
     <div
       style={{
-        maxWidth: "400px",
-        margin: "50px auto",
+        minHeight: "100vh",
+        background: "linear-gradient(135deg,#0A3D91,#06275e)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         padding: "20px",
-        background: "white",
-        borderRadius: "10px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.1)"
       }}
     >
-      <h1
+      <div
         style={{
-          textAlign: "center",
-          color: "#0A3D91",
-          marginBottom: "20px"
+          background: "#fff",
+          width: "100%",
+          maxWidth: "420px",
+          borderRadius: "25px",
+          padding: "30px",
+          boxShadow: "0 10px 30px rgba(0,0,0,.2)",
         }}
       >
-        Login
-      </h1>
+        <div style={{ textAlign: "center", marginBottom: "25px" }}>
+          <img
+            src="/logo.png"
+            alt="DENSAPAL"
+            style={{
+              width: "90px",
+              height: "90px",
+              borderRadius: "50%",
+            }}
+          />
 
-      <form>
-        <input
-          type="email"
-          placeholder="Email Address"
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "15px",
-            border: "1px solid #ddd",
-            borderRadius: "5px"
-          }}
-        />
+          <h1 style={{ color: "#0A3D91" }}>Welcome Back</h1>
 
-        <input
-          type="password"
-          placeholder="Password"
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginBottom: "15px",
-            border: "1px solid #ddd",
-            borderRadius: "5px"
-          }}
-        />
+          <p style={{ color: "#666" }}>
+            Login to your account
+          </p>
+        </div>
 
-        <button
-          type="submit"
+        <form onSubmit={handleLogin}>
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+            style={inputStyle}
+          />
+
+          <input
+            type="password"
+            placeholder="PIN"
+            value={pin}
+            onChange={(e) => setPin(e.target.value)}
+            required
+            style={inputStyle}
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              width: "100%",
+              padding: "14px",
+              border: "none",
+              borderRadius: "12px",
+              background: "#D4AF37",
+              color: "#fff",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            {loading ? "Logging In..." : "LOGIN"}
+          </button>
+        </form>
+
+        <p
           style={{
-            width: "100%",
-            padding: "12px",
-            background: "#D4AF37",
-            color: "#000",
-            border: "none",
-            borderRadius: "5px",
-            fontWeight: "bold",
-            cursor: "pointer"
+            textAlign: "center",
+            marginTop: "20px",
           }}
         >
-          Login
-        </button>
-      </form>
-
-      <p
-        style={{
-          textAlign: "center",
-          marginTop: "15px"
-        }}
-      >
-        Don't have an account?{" "}
-        <a href="/register" style={{ color: "#0A3D91" }}>
-          Register
-        </a>
-      </p>
+          Don't have an account?{" "}
+          <a
+            href="/register"
+            style={{
+              color: "#0A3D91",
+              fontWeight: "bold",
+            }}
+          >
+            Register
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
+
+const inputStyle = {
+  width: "100%",
+  padding: "14px",
+  marginBottom: "12px",
+  border: "1px solid #ddd",
+  borderRadius: "12px",
+  outline: "none",
+};
