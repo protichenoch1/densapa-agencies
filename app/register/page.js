@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@lib/supabase.js";
+import { supabase } from "../lib/supabase";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
@@ -13,23 +13,22 @@ export default function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
+
     if (pin !== confirmPin) {
-  alert("PINs do not match");
-  return;
+      alert("PINs do not match");
+      return;
     }
 
     setLoading(true);
 
-    const { error } = await supabase
-      .from("users")
-      .insert([
-        {
-          full_name: fullName,
-          phone_number: phoneNumber,
-          pin: pin,
-          referral_code: referralCode,
-        },
-      ]);
+    const { error } = await supabase.from("users").insert([
+      {
+        full_name: fullName,
+        phone_number: phoneNumber,
+        pin: pin,
+        referral_code: referralCode,
+      },
+    ]);
 
     setLoading(false);
 
@@ -43,6 +42,7 @@ export default function Register() {
     setFullName("");
     setPhoneNumber("");
     setPin("");
+    setConfirmPin("");
     setReferralCode("");
   }
 
@@ -90,18 +90,18 @@ export default function Register() {
           }}
         />
 
-          <input
-  type="password"
-  placeholder="Confirm PIN"
-  value={confirmPin}
-  onChange={(e) => setConfirmPin(e.target.value)}
-  style={{
-    display: "block",
-    width: "100%",
-    marginBottom: "10px",
-    padding: "10px",
-  }}
-/>
+        <input
+          type="password"
+          placeholder="Confirm PIN"
+          value={confirmPin}
+          onChange={(e) => setConfirmPin(e.target.value)}
+          style={{
+            display: "block",
+            width: "100%",
+            marginBottom: "10px",
+            padding: "10px",
+          }}
+        />
 
         <input
           type="text"
@@ -132,4 +132,4 @@ export default function Register() {
       </form>
     </div>
   );
-              }
+            }
