@@ -13,23 +13,23 @@ export default function Register() {
 
   async function handleRegister(e) {
     e.preventDefault();
-
-    // ✅ PIN validation goes here
     if (pin !== confirmPin) {
-      alert("PINs do not match");
-      return;
+  alert("PINs do not match");
+  return;
     }
 
     setLoading(true);
 
-    const { error } = await supabase.from("users").insert([
-      {
-        full_name: fullName,
-        phone_number: phoneNumber,
-        pin: pin,
-        referral_code: referralCode,
-      },
-    ]);
+    const { error } = await supabase
+      .from("users")
+      .insert([
+        {
+          full_name: fullName,
+          phone_number: phoneNumber,
+          pin: pin,
+          referral_code: referralCode,
+        },
+      ]);
 
     setLoading(false);
 
@@ -43,7 +43,6 @@ export default function Register() {
     setFullName("");
     setPhoneNumber("");
     setPin("");
-    setConfirmPin("");
     setReferralCode("");
   }
 
@@ -57,7 +56,12 @@ export default function Register() {
           placeholder="Full Name"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          style={{ display: "block", width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={{
+            display: "block",
+            width: "100%",
+            marginBottom: "10px",
+            padding: "10px",
+          }}
         />
 
         <input
@@ -65,7 +69,12 @@ export default function Register() {
           placeholder="Phone Number"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
-          style={{ display: "block", width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={{
+            display: "block",
+            width: "100%",
+            marginBottom: "10px",
+            padding: "10px",
+          }}
         />
 
         <input
@@ -73,23 +82,38 @@ export default function Register() {
           placeholder="PIN"
           value={pin}
           onChange={(e) => setPin(e.target.value)}
-          style={{ display: "block", width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={{
+            display: "block",
+            width: "100%",
+            marginBottom: "10px",
+            padding: "10px",
+          }}
         />
 
-        <input
-          type="password"
-          placeholder="Confirm PIN"
-          value={confirmPin}
-          onChange={(e) => setConfirmPin(e.target.value)}
-          style={{ display: "block", width: "100%", marginBottom: "10px", padding: "10px" }}
-        />
+          <input
+  type="password"
+  placeholder="Confirm PIN"
+  value={confirmPin}
+  onChange={(e) => setConfirmPin(e.target.value)}
+  style={{
+    display: "block",
+    width: "100%",
+    marginBottom: "10px",
+    padding: "10px",
+  }}
+/>
 
         <input
           type="text"
           placeholder="Referral Code (Optional)"
           value={referralCode}
           onChange={(e) => setReferralCode(e.target.value)}
-          style={{ display: "block", width: "100%", marginBottom: "10px", padding: "10px" }}
+          style={{
+            display: "block",
+            width: "100%",
+            marginBottom: "10px",
+            padding: "10px",
+          }}
         />
 
         <button
@@ -108,4 +132,4 @@ export default function Register() {
       </form>
     </div>
   );
-            }
+              }
