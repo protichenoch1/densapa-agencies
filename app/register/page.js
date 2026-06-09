@@ -13,9 +13,11 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [showPin, setShowPin] = useState(false);
 const [showConfirmPin, setShowConfirmPin] = useState(false);
-  const searchParams = useSearchParams();
+  
+  import { useSearchParams } from "next/navigation";
+const searchParams = useSearchParams();
 
-  useEffect(() => {
+useEffect(() => {
   const ref = searchParams.get("ref");
 
   if (ref) {
