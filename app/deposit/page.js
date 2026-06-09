@@ -4,6 +4,8 @@ import { useState } from "react";
 
 export default function DepositPage() {
   const [image, setImage] = useState(null);
+  
+  const [loading, setLoading] = useState(false);
 
   return (
     <main className="container">
@@ -96,11 +98,18 @@ export default function DepositPage() {
       </div>
 
       <button
-        className="invest-btn"
-        style={{ marginTop: "20px" }}
-      >
-        SUBMIT DEPOSIT
-      </button>
+  disabled={loading}
+  onClick={() => {
+    setLoading(true);
+
+    setTimeout(() => {
+      // your existing deposit code here
+      setLoading(false);
+    }, 2000);
+  }}
+>
+  {loading ? <div className="small-loader"></div> : "Submit Deposit"}
+</button>
 
     </main>
   );
