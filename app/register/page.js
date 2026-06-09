@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { supabase } from "../../lib/supabase";
 
 export default function Register() {
@@ -12,6 +13,16 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [showPin, setShowPin] = useState(false);
 const [showConfirmPin, setShowConfirmPin] = useState(false);
+  
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+  const ref = searchParams.get("ref");
+
+  if (ref) {
+    setReferralCode(ref);
+  }
+}, [searchParams]);
 
   async function handleRegister(e) {
     e.preventDefault();
