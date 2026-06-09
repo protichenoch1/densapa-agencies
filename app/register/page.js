@@ -25,7 +25,7 @@ export default function Register() {
       {
         full_name: fullName,
         phone_number: phoneNumber,
-        pin: pin,
+        pin,
         referral_code: referralCode,
       },
     ]);
@@ -38,98 +38,162 @@ export default function Register() {
     }
 
     alert("Registration successful!");
-
-    setFullName("");
-    setPhoneNumber("");
-    setPin("");
-    setConfirmPin("");
-    setReferralCode("");
+    window.location.href = "/login";
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Register</h1>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg,#0A3D91,#06275e)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          background: "#fff",
+          width: "100%",
+          maxWidth: "420px",
+          borderRadius: "25px",
+          padding: "30px",
+          boxShadow: "0 10px 30px rgba(0,0,0,.2)",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "25px" }}>
+          <img
+            src="/logo.png"
+            alt="DENSAPAL"
+            style={{
+              width: "90px",
+              height: "90px",
+              borderRadius: "50%",
+            }}
+          />
 
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          style={{
-            display: "block",
-            width: "100%",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        />
+          <h1
+            style={{
+              color: "#0A3D91",
+              marginTop: "10px",
+            }}
+          >
+            DENSAPAL
+          </h1>
 
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          style={{
-            display: "block",
-            width: "100%",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        />
+          <p
+            style={{
+              color: "#D4AF37",
+              fontWeight: "bold",
+              letterSpacing: "2px",
+            }}
+          >
+            AGENCIES
+          </p>
 
-        <input
-          type="password"
-          placeholder="PIN"
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
-          style={{
-            display: "block",
-            width: "100%",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        />
+          <p
+            style={{
+              color: "#666",
+              marginTop: "10px",
+            }}
+          >
+            Create your account
+          </p>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Confirm PIN"
-          value={confirmPin}
-          onChange={(e) => setConfirmPin(e.target.value)}
-          style={{
-            display: "block",
-            width: "100%",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        />
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            required
+            style={inputStyle}
+          />
 
-        <input
-          type="text"
-          placeholder="Referral Code (Optional)"
-          value={referralCode}
-          onChange={(e) => setReferralCode(e.target.value)}
-          style={{
-            display: "block",
-            width: "100%",
-            marginBottom: "10px",
-            padding: "10px",
-          }}
-        />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+            style={inputStyle}
+          />
 
-        <button
-          type="submit"
-          disabled={loading}
+          <input
+            type="password"
+            placeholder="Create PIN"
+            value={pin}
+            onChange={(e) => setPin(e.target.value)}
+            required
+            style={inputStyle}
+          />
+
+          <input
+            type="password"
+            placeholder="Confirm PIN"
+            value={confirmPin}
+            onChange={(e) => setConfirmPin(e.target.value)}
+            required
+            style={inputStyle}
+          />
+
+          <input
+            type="text"
+            placeholder="Referral Code (Optional)"
+            value={referralCode}
+            onChange={(e) => setReferralCode(e.target.value)}
+            style={inputStyle}
+          />
+
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              width: "100%",
+              padding: "14px",
+              border: "none",
+              borderRadius: "12px",
+              background: "#D4AF37",
+              color: "#fff",
+              fontWeight: "bold",
+              fontSize: "16px",
+              cursor: "pointer",
+              marginTop: "10px",
+            }}
+          >
+            {loading ? "Creating Account..." : "CREATE ACCOUNT"}
+          </button>
+        </form>
+
+        <p
           style={{
-            background: "#D4AF37",
-            padding: "10px 20px",
-            border: "none",
-            color: "#fff",
-            fontWeight: "bold",
+            textAlign: "center",
+            marginTop: "20px",
           }}
         >
-          {loading ? "Creating Account..." : "Register"}
-        </button>
-      </form>
+          Already have an account?{" "}
+          <a
+            href="/login"
+            style={{
+              color: "#0A3D91",
+              fontWeight: "bold",
+            }}
+          >
+            Login
+          </a>
+        </p>
+      </div>
     </div>
   );
-            }
+}
+
+const inputStyle = {
+  width: "100%",
+  padding: "14px",
+  marginBottom: "12px",
+  border: "1px solid #ddd",
+  borderRadius: "12px",
+  outline: "none",
+};
