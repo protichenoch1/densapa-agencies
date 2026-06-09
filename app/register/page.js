@@ -16,6 +16,11 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
   async function handleRegister(e) {
     e.preventDefault();
 
+    if (!/^0(1|7)\d{8}$/.test(phoneNumber)) {
+  alert("Enter a valid 10-digit phone number");
+  return;
+    }
+
     if (pin.length !== 4) {
   alert("PIN must be exactly 4 digits");
   return;
@@ -120,13 +125,20 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
           />
 
           <input
-            type="tel"
-            placeholder="Phone Number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-            style={inputStyle}
-          />
+  type="tel"
+  inputMode="numeric"
+  maxLength={10}
+  placeholder="07xx xxxxxx / 01xx xxxxxx"
+  value={phoneNumber}
+  onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    if (value.length <= 10) {
+      setPhoneNumber(value);
+    }
+  }}
+  required
+  style={inputStyle}
+/>
 
           <div style={{ position: "relative", marginBottom: "12px" }}>
   <input
