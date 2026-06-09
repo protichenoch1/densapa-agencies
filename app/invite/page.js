@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 
 export default function InvitePage() {
   const [user, setUser] = useState(null);
