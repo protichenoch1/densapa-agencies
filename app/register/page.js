@@ -125,17 +125,25 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
 
           <div style={{ position: "relative", marginBottom: "12px" }}>
   <input
-    type={showPin ? "text" : "password"}
-    placeholder="Create PIN"
-    value={pin}
-    onChange={(e) => setPin(e.target.value)}
-    required
-    style={{
-      ...inputStyle,
-      marginBottom: 0,
-      paddingRight: "70px",
-    }}
-  />
+  type={showPin ? "text" : "password"}
+  inputMode="numeric"
+  pattern="[0-9]*"
+  maxLength={4}
+  placeholder="Create 4-Digit PIN"
+  value={pin}
+  onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    if (value.length <= 4) {
+      setPin(value);
+    }
+  }}
+  required
+  style={{
+    ...inputStyle,
+    marginBottom: 0,
+    paddingRight: "70px",
+  }}
+/>
 
   <button
     type="button"
@@ -158,17 +166,26 @@ const [showConfirmPin, setShowConfirmPin] = useState(false);
 
           <div style={{ position: "relative", marginBottom: "12px" }}>
   <input
-    type={showConfirmPin ? "text" : "password"}
-    placeholder="Confirm PIN"
-    value={confirmPin}
-    onChange={(e) => setConfirmPin(e.target.value)}
-    required
-    style={{
-      ...inputStyle,
-      marginBottom: 0,
-      paddingRight: "70px",
-    }}
-  />
+  <input
+  type={showConfirmPin ? "text" : "password"}
+  inputMode="numeric"
+  pattern="[0-9]*"
+  maxLength={4}
+  placeholder="Confirm 4-Digit PIN"
+  value={confirmPin}
+  onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, "");
+    if (value.length <= 4) {
+      setConfirmPin(value);
+    }
+  }}
+  required
+  style={{
+    ...inputStyle,
+    marginBottom: 0,
+    paddingRight: "70px",
+  }}
+/>
 
   <button
     type="button"
