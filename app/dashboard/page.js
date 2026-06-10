@@ -558,20 +558,13 @@ return (
   alert("Insufficient balance");
   return;
           }
-  const investments = JSON.parse(
-    localStorage.getItem("investments") || "[]"
-  );
 
   investments.push({
     ...selectedPlan,
     date: new Date().toLocaleString("en-KE", {
   timeZone: "Africa/Nairobi",
+    }),
 });
-
-  localStorage.setItem(
-    "investments",
-    JSON.stringify(investments)
-  );
           const { error } = await supabase
   .from("investments")
   .insert([
