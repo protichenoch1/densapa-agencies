@@ -35,7 +35,6 @@ export default function WithdrawalHistory() {
       </h1>
 
       {withdrawals.length === 0 ? (
-      {withdrawals.length === 0 ? (
 
   <p style={{ marginTop: "20px" }}>
     No withdrawals found.
