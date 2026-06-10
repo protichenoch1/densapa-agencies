@@ -89,47 +89,48 @@ const [loading, setLoading] = useState(false);
       </div>
 
       <div
-        className="announcement"
-        style={{ marginTop: "20px" }}
-      >
-        <h3>Withdrawal Details</h3>
+  className="announcement"
+  style={{ marginTop: "20px" }}
+>
+  <h3>Withdrawal Details</h3>
 
-        <div style={{ marginTop: "15px" }}>
-  <label>Withdrawal Number</label>
+  <div style={{ marginTop: "15px" }}>
+    <label>Withdrawal Number</label>
 
-  <input
-    type="text"
-    value={user?.phone_number || ""}
-    readOnly
-    style={{
-      width: "100%",
-      padding: "12px",
-      marginTop: "8px",
-      borderRadius: "10px",
-      border: "1px solid #ddd",
-      background: "#f5f5f5"
-    }}
-  />
+    <input
+      type="text"
+      value={user?.phone_number || ""}
+      readOnly
+      style={{
+        width: "100%",
+        padding: "12px",
+        marginTop: "8px",
+        borderRadius: "10px",
+        border: "1px solid #ddd",
+        background: "#f5f5f5"
+      }}
+    />
+  </div>
+
+  <div style={{ marginTop: "15px" }}>
+    <label>Withdrawal Amount</label>
+
+    <input
+      type="number"
+      placeholder="Enter Amount"
+      value={amount}
+      onChange={(e) => setAmount(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "12px",
+        marginTop: "8px",
+        borderRadius: "10px",
+        border: "1px solid #ddd"
+      }}
+    />
+  </div>
+
 </div>
-
-        <div style={{ marginTop: "15px" }}>
-
-          <label>Withdrawal Amount</label>
-
-          <input
-  type="number"
-  placeholder="Enter Amount"
-  value={amount}
-  onChange={(e) => setAmount(e.target.value)}
-  style={{
-    width: "100%",
-    padding: "12px",
-    marginTop: "8px",
-    borderRadius: "10px",
-    border: "1px solid #ddd"
-  }}
-/>
-        </div>
 
       </div>
 
