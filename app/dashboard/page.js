@@ -566,7 +566,7 @@ return (
     ...selectedPlan,
     date: new Date().toLocaleString("en-KE", {
   timeZone: "Africa/Nairobi",
-})
+});
 
   localStorage.setItem(
     "investments",
