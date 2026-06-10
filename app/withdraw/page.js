@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
@@ -74,6 +76,10 @@ const [loading, setLoading] = useState(false);
 
   alert("Withdrawal request submitted successfully");
   }
+
+  if (!user) {
+  return <p style={{ padding: "20px" }}>Loading...</p>;
+}
   
   return (
     <main className="container">
