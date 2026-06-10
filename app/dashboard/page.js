@@ -60,12 +60,21 @@ useEffect(() => {
 }, []);
 
   useEffect(() => {
-  const storedInvestments = JSON.parse(
-    localStorage.getItem("investments") || "[]"
-  );
+  async function loadInvestments() {
+    if (!user?.id) return;
 
-  setInvestments(storedInvestments);
-}, []);
+    const { data, error } = await supabase
+      .from("investments")
+      .select("*")
+      .eq("user_id", user.id);
+
+    if (!error) {
+      setInvestments(data || []);
+    }
+  }
+
+  loadInvestments();
+}, [user]);
   
   const basicPlans = [
   {
