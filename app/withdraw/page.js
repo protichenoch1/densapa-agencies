@@ -168,6 +168,19 @@ const [loading, setLoading] = useState(false);
     : "SUBMIT WITHDRAWAL"}
 </button>
 
+  <a
+  href="/withdraw-history"
+  className="invest-btn"
+  style={{
+    display: "block",
+    textAlign: "center",
+    textDecoration: "none",
+    marginTop: "10px",
+  }}
+>
+  📋 Withdrawal History
+</a>
+
     </main>
   );
 }
