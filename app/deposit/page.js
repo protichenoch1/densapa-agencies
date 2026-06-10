@@ -158,6 +158,28 @@ export default function DepositPage() {
   
 </button>
 
+    <a
+  href="/deposit-history"
+  style={{
+    display: "block",
+    textDecoration: "none",
+    color: "inherit",
+    marginTop: "20px"
+  }}
+>
+  <div
+    className="announcement"
+    style={{
+      cursor: "pointer"
+    }}
+  >
+    <h3>📋 Deposit History</h3>
+    <p style={{ marginTop: "10px" }}>
+      View all your deposit requests and their status
+    </p>
+  </div>
+</a>
+
     </main>
   );
               }
