@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
 
 export default function Wallet() {
@@ -20,17 +21,30 @@ const totalDailyIncome = investments.reduce(
 );
   
   useEffect(() => {
-  const savedUser = JSON.parse(
-    localStorage.getItem("user") || "{}"
-  );
+  async function loadUser() {
+    const savedUser = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
 
-  setUser(savedUser);
+    if (!savedUser.id) return;
 
-  const savedInvestments = JSON.parse(
-    localStorage.getItem("investments") || "[]"
-  );
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", savedUser.id)
+      .single();
 
-  setInvestments(savedInvestments);
+    if (!error && data) {
+      setUser(data);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data)
+      );
+    }
+  }
+
+  loadUser();
 }, []);
 
   return (
