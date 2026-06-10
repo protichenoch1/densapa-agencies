@@ -572,7 +572,6 @@ return (
       daily_income: selectedPlan.daily,
       days: selectedPlan.days,
       total_return: selectedPlan.total,
-      image: selectedPlan.image,
     },
   ]);
 
