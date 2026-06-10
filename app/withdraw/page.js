@@ -132,8 +132,6 @@ const [loading, setLoading] = useState(false);
 
 </div>
 
-      </div>
-
       <div
         className="announcement"
         style={{ marginTop: "20px" }}
