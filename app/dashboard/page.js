@@ -21,11 +21,30 @@ useEffect(() => {
 }, []);
 
   useEffect(() => {
-  const savedUser = JSON.parse(
-    localStorage.getItem("user") || "{}"
-  );
+  async function loadUser() {
+    const savedUser = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
 
-  setUser(savedUser);
+    if (!savedUser.id) return;
+
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", savedUser.id)
+      .single();
+
+    if (!error && data) {
+      setUser(data);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data)
+      );
+    }
+  }
+
+  loadUser();
 }, []);
 
   const [showSuccess, setShowSuccess] = useState(false);
