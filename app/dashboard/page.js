@@ -562,7 +562,7 @@ return (
     "investments",
     JSON.stringify(investments)
   );
-          await supabase
+          const { error } = await supabase
   .from("investments")
   .insert([
     {
@@ -575,6 +575,12 @@ return (
       image: selectedPlan.image,
     },
   ]);
+
+if (error) {
+  alert(error.message);
+  console.log(error);
+  return;
+      }
           const newBalance =
   Number(user.balance || 0) - planAmount;
           await supabase
