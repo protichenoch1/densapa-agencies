@@ -50,26 +50,36 @@ const [loading, setLoading] = useState(false);
   }
 
   const newBalance =
-    Number(user.balance) - Number(amount);
+  const newBalance =
+  Number(user.balance) - Number(amount);
 
-  await supabase
-    .from("users")
-    .update({
-      balance: newBalance,
-    })
-    .eq("id", user.id);
-
-  const updatedUser = {
-    ...user,
+const { data, error: updateError } = await supabase
+  .from("users")
+  .update({
     balance: newBalance,
-  };
+  })
+  .eq("id", user.id)
+  .select();
 
-  localStorage.setItem(
-    "user",
-    JSON.stringify(updatedUser)
-  );
+console.log("Updated user:", data);
 
-  setUser(updatedUser);
+if (updateError) {
+  alert(updateError.message);
+  console.log(updateError);
+  return;
+}
+
+const updatedUser = {
+  ...user,
+  balance: newBalance,
+};
+
+localStorage.setItem(
+  "user",
+  JSON.stringify(updatedUser)
+);
+
+setUser(updatedUser);
 
   setAmount("");
   setLoading(false);
