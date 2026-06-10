@@ -562,6 +562,19 @@ return (
     "investments",
     JSON.stringify(investments)
   );
+          await supabase
+  .from("investments")
+  .insert([
+    {
+      user_id: user.id,
+      plan_type: selectedPlan.type,
+      amount: selectedPlan.amount,
+      daily_income: selectedPlan.daily,
+      days: selectedPlan.days,
+      total_return: selectedPlan.total,
+      image: selectedPlan.image,
+    },
+  ]);
           const newBalance =
   Number(user.balance || 0) - planAmount;
           await supabase
