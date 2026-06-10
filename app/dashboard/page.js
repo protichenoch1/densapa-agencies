@@ -585,7 +585,9 @@ daily_income: Number(
   selectedPlan.daily.replace(/[^0-9]/g, "")
 ),
       days: selectedPlan.days,
-      total_return: selectedPlan.total,
+      total_return: Number(
+  selectedPlan.total.replace(/[^0-9]/g, "")
+),
     },
   ]);
 
