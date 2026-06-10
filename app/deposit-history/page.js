@@ -42,7 +42,7 @@ export default function DepositHistory() {
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
         padding: "12px",
         fontWeight: "bold",
-        fontsize: "11px",
+        fontSize: "11px",
         background: "#f5f5f5"
       }}
     >
