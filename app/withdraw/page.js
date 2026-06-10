@@ -48,8 +48,7 @@ const [loading, setLoading] = useState(false);
     alert(error.message);
     return;
   }
-
-  const newBalance =
+    
   const newBalance =
   Number(user.balance) - Number(amount);
 
