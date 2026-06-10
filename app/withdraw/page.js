@@ -13,6 +13,67 @@ const [loading, setLoading] = useState(false);
 
   setUser(savedUser);
 }, []);
+
+  async function handleWithdraw() {
+  if (!amount || Number(amount) <= 0) {
+    alert("Enter a valid amount");
+    return;
+  }
+
+  if (Number(amount) < 450) {
+    alert("Minimum withdrawal is KES 450");
+    return;
+  }
+
+  if (Number(amount) > Number(user.balance || 0)) {
+    alert("Insufficient balance");
+    return;
+  }
+
+  setLoading(true);
+
+  const { error } = await supabase
+    .from("withdrawals")
+    .insert([
+      {
+        user_id: user.id,
+        amount: Number(amount),
+      },
+    ]);
+
+  if (error) {
+    setLoading(false);
+    alert(error.message);
+    return;
+  }
+
+  const newBalance =
+    Number(user.balance) - Number(amount);
+
+  await supabase
+    .from("users")
+    .update({
+      balance: newBalance,
+    })
+    .eq("id", user.id);
+
+  const updatedUser = {
+    ...user,
+    balance: newBalance,
+  };
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify(updatedUser)
+  );
+
+  setUser(updatedUser);
+
+  setAmount("");
+  setLoading(false);
+
+  alert("Withdrawal request submitted successfully");
+  }
   
   return (
     <main className="container">
