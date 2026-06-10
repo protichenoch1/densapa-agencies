@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function DepositPage() {
   const [image, setImage] = useState(null);
-  
+  const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
 
   return (
@@ -32,16 +32,18 @@ export default function DepositPage() {
           <label>Deposit Amount</label>
 
           <input
-            type="number"
-            placeholder="Enter Deposit Amount"
-            style={{
-              width: "100%",
-              padding: "12px",
-              marginTop: "8px",
-              borderRadius: "10px",
-              border: "1px solid #ddd"
-            }}
-          />
+  type="number"
+  placeholder="Enter Deposit Amount"
+  value={amount}
+  onChange={(e) => setAmount(e.target.value)}
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginTop: "8px",
+    borderRadius: "10px",
+    border: "1px solid #ddd"
+  }}
+/>
         </div>
 
         <div style={{ marginTop: "15px" }}>
