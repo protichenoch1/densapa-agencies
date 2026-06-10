@@ -77,21 +77,22 @@ export default function DepositHistory() {
         </span>
 
         <span
-          style={{
-            background:
-              deposit.status === "SUCCESSFUL"
-                ? "#28a745"
-                : deposit.status === "FAILED"
-                ? "#dc3545"
-                : "#D4AF37",
-            color: "#fff",
-            padding: "4px 10px",
-            borderRadius: "20px",
-            fontSize: "12px",
-            fontWeight: "bold",
-            textAlign: "center"
-          }}
-        >
+  style={{
+    background:
+      deposit.status === "SUCCESSFUL"
+        ? "#28a745"
+        : deposit.status === "FAILED"
+        ? "#dc3545"
+        : "#D4AF37",
+    color: "#fff",
+    padding: "4px 10px",
+    borderRadius: "20px",
+    fontSize: "12px",
+    fontWeight: "bold",
+    textAlign: "center",
+    display: "inline-block"
+  }}
+>
           {deposit.status}
         </span>
       </div>
