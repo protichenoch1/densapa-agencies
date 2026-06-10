@@ -20,6 +20,61 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, []);
 
+  async function processDailyEarnings(userId) {
+  const today = new Date().toLocaleDateString("en-CA", {
+    timeZone: "Africa/Nairobi",
+  });
+
+  const { data: investments, error } = await supabase
+    .from("investments")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("status", "active");
+
+  if (error || !investments) return;
+
+  for (const investment of investments) {
+    if (investment.last_earning_date === today) {
+      continue;
+    }
+
+    const dailyIncome = Number(investment.daily_income || 0);
+
+    const { data: currentUser } = await supabase
+      .from("users")
+      .select("balance")
+      .eq("id", userId)
+      .single();
+
+    const newBalance =
+      Number(currentUser?.balance || 0) + dailyIncome;
+
+    await supabase
+      .from("users")
+      .update({
+        balance: newBalance,
+      })
+      .eq("id", userId);
+
+    const earningsPaid =
+      Number(investment.earnings_paid || 0) + 1;
+
+    const updateData = {
+      earnings_paid: earningsPaid,
+      last_earning_date: today,
+    };
+
+    if (earningsPaid >= Number(investment.days)) {
+      updateData.status = "completed";
+    }
+
+    await supabase
+      .from("investments")
+      .update(updateData)
+      .eq("id", investment.id);
+  }
+  }
+
   useEffect(() => {
   async function loadUser() {
     const savedUser = JSON.parse(
@@ -35,12 +90,21 @@ useEffect(() => {
       .single();
 
     if (!error && data) {
-      setUser(data);
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify(data)
-      );
+  await processDailyEarnings(data.id);
+
+  const { data: updatedUser } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", data.id)
+    .single();
+
+  setUser(updatedUser);
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify(updatedUser)
+  );
     }
   }
 
