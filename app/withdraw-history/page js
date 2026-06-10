@@ -1,0 +1,72 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
+
+export default function WithdrawalHistory() {
+  const [withdrawals, setWithdrawals] = useState([]);
+
+  useEffect(() => {
+    async function loadWithdrawals() {
+      const user = JSON.parse(
+        localStorage.getItem("user") || "{}"
+      );
+
+      if (!user.id) return;
+
+      const { data } = await supabase
+        .from("withdrawals")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", {
+          ascending: false,
+        });
+
+      setWithdrawals(data || []);
+    }
+
+    loadWithdrawals();
+  }, []);
+
+  return (
+    <main className="container">
+      <h1 style={{ marginBottom: "15px" }}>
+        🏧 Withdrawal History
+      </h1>
+
+      {withdrawals.length === 0 ? (
+        <div className="announcement">
+          No withdrawal requests found.
+        </div>
+      ) : (
+        withdrawals.map((item) => (
+          <div
+            key={item.id}
+            className="announcement"
+            style={{ marginBottom: "15px" }}
+          >
+            <p>
+              <strong>Amount:</strong>
+              {" "}
+              KES {Number(item.amount).toLocaleString()}
+            </p>
+
+            <p>
+              <strong>Status:</strong>
+              {" "}
+              {item.status}
+            </p>
+
+            <p>
+              <strong>Date:</strong>
+              {" "}
+              {new Date(
+                item.created_at
+              ).toLocaleString()}
+            </p>
+          </div>
+        ))
+      )}
+    </main>
+  );
+}
