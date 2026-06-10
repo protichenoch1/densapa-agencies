@@ -61,7 +61,7 @@ export default function DepositHistory() {
           padding: "12px",
           borderBottom: "1px solid #eee",
           alignItems: "center",
-          fontsize: "11px"
+          fontSize: "11px"
         }}
       >
         <span>KES {deposit.amount}</span>
