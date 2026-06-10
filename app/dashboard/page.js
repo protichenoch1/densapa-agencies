@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
 
 export default function Home() {
@@ -538,7 +539,16 @@ return (
       <button
         className="invest-btn"
         style={{ marginTop: "15px" }}
-        onClick={() => {
+
+        onClick={async() => {
+          const planAmount = Number(
+  selectedPlan.amount.replace(/[^0-9]/g, "")
+);
+          
+          if (Number(user?.balance || 0) < planAmount) {
+  alert("Insufficient balance");
+  return;
+          }
   const investments = JSON.parse(
     localStorage.getItem("investments") || "[]"
   );
@@ -552,6 +562,26 @@ return (
     "investments",
     JSON.stringify(investments)
   );
+          const newBalance =
+  Number(user.balance || 0) - planAmount;
+          await supabase
+  .from("users")
+  .update({
+    balance: newBalance,
+  })
+  .eq("id", user.id);
+
+          const updatedUser = {
+  ...user,
+  balance: newBalance,
+};
+
+localStorage.setItem(
+  "user",
+  JSON.stringify(updatedUser)
+);
+
+setUser(updatedUser);
 
   setSuccessMessage(
   "Your investment has been activated successfully."
