@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "../../lib/supabase";
 
 export default function DepositPage() {
   const [image, setImage] = useState(null);
@@ -113,13 +114,44 @@ export default function DepositPage() {
     color: "#fff",
     fontWeight: "bold"
   }}
-  onClick={() => {
-    setLoading(true);
+  onClick={async () => {
+  if (!amount) {
+    alert("Enter deposit amount");
+    return;
+  }
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }}
+  const user = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+
+  if (!user.id) {
+    alert("Please login again");
+    return;
+  }
+
+  setLoading(true);
+
+  const { error } = await supabase
+    .from("deposits")
+    .insert([
+      {
+        user_id: user.id,
+        amount: Number(amount),
+        status: "Pending",
+      },
+    ]);
+
+  setLoading(false);
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Deposit submitted successfully");
+
+  setAmount("");
+}}
 >
   {loading ? "Processing..." : "Submit Deposit"}
 <div className="floating-loader"></div>
