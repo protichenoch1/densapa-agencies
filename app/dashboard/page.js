@@ -5,6 +5,7 @@ import BottomNav from "../../components/BottomNav";
 
 export default function Home() {
   const [tab, setTab] = useState("basic");
+  const [user, setUser] = useState(null);
 const [selectedPlan, setSelectedPlan] = useState(null);
 const [showModal, setShowModal] = useState(false);
   
@@ -18,11 +19,19 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, []);
 
+  useEffect(() => {
+  const savedUser = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+
+  setUser(savedUser);
+}, []);
+
   const [showSuccess, setShowSuccess] = useState(false);
 const [successMessage, setSuccessMessage] = useState("");
   
-  const userName = "Enock";
-
+  const userName = user?.full_name || "User";
+  
 const greeting =
   new Date().getHours() < 12
     ? "Good Morning"
@@ -288,7 +297,9 @@ return (
       
       <div className="balance-card">
   <p>Total Balance</p>
-  <h1>KES 0.00</h1>
+  <h1>
+  KES {Number(user?.balance || 0).toLocaleString()}
+</h1>
 
   <div
     style={{
@@ -304,7 +315,7 @@ return (
 
     <div>
       <small>Active Plans</small>
-      <h3>0</h3>
+      <h3>{investments.length}</h3>
     </div>
   </div>
 </div>
@@ -478,8 +489,10 @@ return (
 </div>
 
 <div className="stat-card">
-  <h2>KES 0</h2>
-  <p>Referral Earnings</p>
+  <h2>
+  KES {Number(user?.referral_earnings || 0).toLocaleString()}
+</h2>
+<p>Referral Earnings</p>
 </div>
 
 <div className="stat-card">
