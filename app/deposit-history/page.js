@@ -42,6 +42,7 @@ export default function DepositHistory() {
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
         padding: "12px",
         fontWeight: "bold",
+        fontsize: "11px",
         background: "#f5f5f5"
       }}
     >
@@ -59,7 +60,8 @@ export default function DepositHistory() {
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
           padding: "12px",
           borderBottom: "1px solid #eee",
-          alignItems: "center"
+          alignItems: "center",
+          fontsize: "11px"
         }}
       >
         <span>KES {deposit.amount}</span>
@@ -85,9 +87,9 @@ export default function DepositHistory() {
         ? "#dc3545"
         : "#D4AF37",
     color: "#fff",
-    padding: "4px 10px",
+    padding: "3px 8px",
     borderRadius: "20px",
-    fontSize: "12px",
+    fontSize: "10px",
     fontWeight: "bold",
     textAlign: "center",
     display: "inline-block"
