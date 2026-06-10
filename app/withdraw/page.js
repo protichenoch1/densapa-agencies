@@ -112,8 +112,6 @@ const [loading, setLoading] = useState(false);
   />
 </div>
 
-        </div>
-
         <div style={{ marginTop: "15px" }}>
 
           <label>Withdrawal Amount</label>
