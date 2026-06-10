@@ -171,19 +171,6 @@ const totalDailyIncome = investments.reduce(
         >
           🏧 Withdraw
         </a>
-
-            <a
-  href="/deposit-history"
-  className="invest-btn"
-  style={{
-    textDecoration: "none",
-    textAlign: "center",
-    marginTop: "10px",
-    display: "block"
-  }}
->
-  📜 Deposit History
-</a>
       </div>
             
 <BottomNav />
