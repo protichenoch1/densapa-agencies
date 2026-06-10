@@ -35,38 +35,80 @@ export default function WithdrawalHistory() {
       </h1>
 
       {withdrawals.length === 0 ? (
-        <div className="announcement">
-          No withdrawal requests found.
-        </div>
-      ) : (
-        withdrawals.map((item) => (
-          <div
-            key={item.id}
-            className="announcement"
-            style={{ marginBottom: "15px" }}
-          >
-            <p>
-              <strong>Amount:</strong>
-              {" "}
-              KES {Number(item.amount).toLocaleString()}
-            </p>
+      {withdrawals.length === 0 ? (
 
-            <p>
-              <strong>Status:</strong>
-              {" "}
-              {item.status}
-            </p>
+  <p style={{ marginTop: "20px" }}>
+    No withdrawals found.
+  </p>
+) : (
+  <>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        padding: "12px",
+        fontWeight: "bold",
+        fontSize: "11px",
+        background: "#f5f5f5"
+      }}
+    >
+      <span>Amount</span>
+      <span>Date</span>
+      <span>Time</span>
+      <span>Status</span>
+    </div>{withdrawals.map((item) => (
+  <div
+    key={item.id}
+    style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      padding: "12px",
+      borderBottom: "1px solid #eee",
+      alignItems: "center",
+      fontSize: "11px"
+    }}
+  >
+    <span>
+      KES {Number(item.amount).toLocaleString()}
+    </span>
 
-            <p>
-              <strong>Date:</strong>
-              {" "}
-              {new Date(
-                item.created_at
-              ).toLocaleString()}
-            </p>
-          </div>
-        ))
+    <span>
+      {new Date(item.created_at).toLocaleDateString("en-KE")}
+    </span>
+
+    <span>
+      {new Date(item.created_at).toLocaleTimeString(
+        "en-KE",
+        {
+          timeZone: "Africa/Nairobi"
+        }
       )}
+    </span>
+
+    <span
+      style={{
+        background:
+          item.status === "SUCCESSFUL"
+            ? "#28a745"
+            : item.status === "FAILED"
+            ? "#dc3545"
+            : "#D4AF37",
+        color: "#fff",
+        padding: "3px 8px",
+        borderRadius: "20px",
+        fontSize: "10px",
+        fontWeight: "bold",
+        textAlign: "center",
+        display: "inline-block"
+      }}
+    >
+      {item.status}
+    </span>
+  </div>
+))}
+
+</>
+)}
     </main>
   );
 }
