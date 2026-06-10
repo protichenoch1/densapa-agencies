@@ -35,67 +35,69 @@ export default function DepositHistory() {
           No deposits found.
         </p>
       ) : (
-
-        <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr 1fr",
-    padding: "12px",
-    fontWeight: "bold",
-    background: "#f5f5f5"
-  }}
->
-  <span>Amount</span>
-  <span>Date</span>
-  <span>Time</span>
-  <span>Status</span>
-</div>
-  
-        {deposits.map((deposit) => (
-  <div
-    key={deposit.id}
-    style={{
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr 1fr 1fr",
-      padding: "12px",
-      borderBottom: "1px solid #eee",
-      alignItems: "center"
-    }}
-  >
-    <span>KES {deposit.amount}</span>
-
-    <span>
-      {new Date(deposit.created_at)
-        .toLocaleDateString("en-KE")}
-    </span>
-
-    <span>
-      {new Date(deposit.created_at)
-        .toLocaleTimeString("en-KE", {
-          timeZone: "Africa/Nairobi"
-        })}
-    </span>
-
-    <span
+  <>
+    <div
       style={{
-        background:
-          deposit.status === "SUCCESSFUL"
-            ? "#28a745"
-            : deposit.status === "FAILED"
-            ? "#dc3545"
-            : "#D4AF37",
-        color: "#fff",
-        padding: "4px 10px",
-        borderRadius: "20px",
-        fontSize: "12px",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        padding: "12px",
         fontWeight: "bold",
-        textAlign: "center"
+        background: "#f5f5f5"
       }}
     >
-      {deposit.status}
-    </span>
-  </div>
-))}
+      <span>Amount</span>
+      <span>Date</span>
+      <span>Time</span>
+      <span>Status</span>
+    </div>
+
+    {deposits.map((deposit) => (
+      <div
+        key={deposit.id}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          padding: "12px",
+          borderBottom: "1px solid #eee",
+          alignItems: "center"
+        }}
+      >
+        <span>KES {deposit.amount}</span>
+
+        <span>
+          {new Date(deposit.created_at)
+            .toLocaleDateString("en-KE")}
+        </span>
+
+        <span>
+          {new Date(deposit.created_at)
+            .toLocaleTimeString("en-KE", {
+              timeZone: "Africa/Nairobi"
+            })}
+        </span>
+
+        <span
+          style={{
+            background:
+              deposit.status === "SUCCESSFUL"
+                ? "#28a745"
+                : deposit.status === "FAILED"
+                ? "#dc3545"
+                : "#D4AF37",
+            color: "#fff",
+            padding: "4px 10px",
+            borderRadius: "20px",
+            fontSize: "12px",
+            fontWeight: "bold",
+            textAlign: "center"
+          }}
+        >
+          {deposit.status}
+        </span>
+      </div>
+    ))}
+  </>
+)}
     </main>
   );
                   }
