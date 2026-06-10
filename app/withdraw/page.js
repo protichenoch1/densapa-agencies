@@ -170,15 +170,17 @@ const [loading, setLoading] = useState(false);
 
   <a
   href="/withdraw-history"
-  className="invest-btn"
   style={{
     display: "block",
     textAlign: "center",
+    marginTop: "15px",
+    color: "#0A3D91",
     textDecoration: "none",
-    marginTop: "10px",
+    fontWeight: "bold",
+    fontSize: "14px"
   }}
 >
-  📋 Withdrawal History
+  📋 View Withdrawal History
 </a>
 
     </main>
