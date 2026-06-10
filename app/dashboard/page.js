@@ -577,8 +577,13 @@ return (
     {
       user_id: user.id,
       plan_type: selectedPlan.type,
-      amount: selectedPlan.amount,
-      daily_income: selectedPlan.daily,
+      amount: Number(
+  selectedPlan.amount.replace(/[^0-9]/g, "")
+),
+
+daily_income: Number(
+  selectedPlan.daily.replace(/[^0-9]/g, "")
+),
       days: selectedPlan.days,
       total_return: selectedPlan.total,
     },
