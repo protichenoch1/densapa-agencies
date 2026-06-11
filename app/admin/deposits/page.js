@@ -122,38 +122,43 @@ export default function AdminDeposits() {
   </div>
 
   <div
+  style={{
+    display: "flex",
+    gap: "8px"
+  }}
+>
   <button
-  style={{
-    flex: 1,
-    padding: "8px",
-    border: "none",
-    borderRadius: "8px",
-    background: "#28a745",
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: "12px"
-  }}
-  onClick={() => approveDeposit(deposit)}
->
-  APPROVE
-</button>
+    style={{
+      flex: 1,
+      padding: "8px",
+      border: "none",
+      borderRadius: "8px",
+      background: "#28a745",
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: "12px"
+    }}
+    onClick={() => approveDeposit(deposit)}
+  >
+    APPROVE
+  </button>
 
-<button
-  style={{
-    flex: 1,
-    padding: "8px",
-    border: "none",
-    borderRadius: "8px",
-    background: "#dc3545",
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: "12px"
-  }}
-  onClick={() => rejectDeposit(deposit)}
->
-  REJECT
-</button>
-  </div>
+  <button
+    style={{
+      flex: 1,
+      padding: "8px",
+      border: "none",
+      borderRadius: "8px",
+      background: "#dc3545",
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: "12px"
+    }}
+    onClick={() => rejectDeposit(deposit)}
+  >
+    REJECT
+  </button>
+</div>
 </div>
       ))}
     </main>
