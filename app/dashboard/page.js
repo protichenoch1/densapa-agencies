@@ -29,7 +29,7 @@ useEffect(() => {
     .from("investments")
     .select("*")
     .eq("user_id", userId)
-    .eq("status", "active");
+    .eq("status", "Active");
 
   if (error || !investments) return;
 
@@ -65,7 +65,7 @@ useEffect(() => {
     };
 
     if (earningsPaid >= Number(investment.days)) {
-      updateData.status = "completed";
+      updateData.status = "Completed";
     }
 
     await supabase
