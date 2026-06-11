@@ -21,20 +21,19 @@ export default function AdminWithdrawals() {
 
   async function approveWithdrawal(withdrawal) {
   const { error } = await supabase
-    .from("withdrawals")
-    .update({
-      status: "SUCCESSFUL",
-    })
-    .eq("id", withdrawal.id);
+  .from("withdrawals")
+  .update({
+    status: "SUCCESSFUL",
+  })
+  .eq("id", withdrawal.id);
 
-  if (error) {
-    alert(error.message);
-    console.log(error);
-    return;
-  }
+alert(
+  error
+    ? `Error: ${error.message}`
+    : "Withdrawal approved successfully"
+);
 
-  alert("Withdrawal approved successfully");
-  loadWithdrawals();
+loadWithdrawals();
   }
 
    async function rejectWithdrawal(withdrawal) {
