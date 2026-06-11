@@ -29,6 +29,8 @@ export default function AdminWithdrawals() {
       })
       .eq("id", withdrawal.id);
 
+    alert("Withdrawal approved successfully");
+
     loadWithdrawals();
   }
 
@@ -58,6 +60,8 @@ export default function AdminWithdrawals() {
         status: "FAILED",
       })
       .eq("id", withdrawal.id);
+
+    alert("Withdrawal rejected successfully");
 
     loadWithdrawals();
   }
