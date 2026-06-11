@@ -57,16 +57,21 @@ export default function AdminDeposits() {
   }
 
   async function rejectDeposit(deposit) {
-    await supabase
-      .from("deposits")
-      .update({
-        status: "FAILED",
-      })
-      .eq("id", deposit.id);
+  const { error } = await supabase
+    .from("deposits")
+    .update({
+      status: "FAILED",
+    })
+    .eq("id", deposit.id);
 
-      alert("Deposit rejected successfully");
+  if (error) {
+    alert(error.message);
+    console.log(error);
+    return;
+  }
 
-    loadDeposits();
+  alert("Deposit rejected successfully");
+  loadDeposits();
   }
 
   return (
