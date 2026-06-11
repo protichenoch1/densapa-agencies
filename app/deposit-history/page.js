@@ -67,12 +67,12 @@ export default function DepositHistory() {
         <span>KES {deposit.amount}</span>
 
         <span>
-          {new Date(deposit.created_at)
+          {new Date(deposit.created_at + "Z")
             .toLocaleDateString("en-KE")}
         </span>
 
         <span>
-          {new Date(deposit.created_at)
+          {new Date(deposit.created_at + "Z")
             .toLocaleTimeString("en-KE", {
               timeZone: "Africa/Nairobi"
             })}
