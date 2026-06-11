@@ -1,0 +1,172 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "../../../lib/supabase";
+
+export default function AdminWithdrawals() {
+  const [withdrawals, setWithdrawals] = useState([]);
+
+  useEffect(() => {
+    loadWithdrawals();
+  }, []);
+
+  async function loadWithdrawals() {
+    const { data } = await supabase
+      .from("withdrawals")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    setWithdrawals(data || []);
+  }
+
+  async function approveWithdrawal(withdrawal) {
+    if (withdrawal.status === "SUCCESSFUL") return;
+
+    await supabase
+      .from("withdrawals")
+      .update({
+        status: "SUCCESSFUL",
+      })
+      .eq("id", withdrawal.id);
+
+    loadWithdrawals();
+  }
+
+  async function rejectWithdrawal(withdrawal) {
+    if (withdrawal.status === "FAILED") return;
+
+    const { data: user } = await supabase
+      .from("users")
+      .select("*")
+      .eq("id", withdrawal.user_id)
+      .single();
+
+    const refundedBalance =
+      Number(user.balance || 0) +
+      Number(withdrawal.amount);
+
+    await supabase
+      .from("users")
+      .update({
+        balance: refundedBalance,
+      })
+      .eq("id", user.id);
+
+    await supabase
+      .from("withdrawals")
+      .update({
+        status: "FAILED",
+      })
+      .eq("id", withdrawal.id);
+
+    loadWithdrawals();
+  }
+
+  return (
+    <main className="container">
+      <h1>🏧 Manage Withdrawals</h1>
+
+      {withdrawals.map((withdrawal) => (
+        <div
+          key={withdrawal.id}
+          className="announcement"
+          style={{ marginBottom: "15px" }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "8px"
+            }}
+          >
+            <span><strong>Amount:</strong></span>
+            <span>
+              KES {Number(withdrawal.amount).toLocaleString()}
+            </span>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "8px"
+            }}
+          >
+            <span><strong>Status:</strong></span>
+            <span>{withdrawal.status}</span>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "8px"
+            }}
+          >
+            <span><strong>Phone:</strong></span>
+            <span>{withdrawal.phone_number}</span>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: "15px"
+            }}
+          >
+            <span><strong>Submitted:</strong></span>
+            <span>
+              {new Date(
+                withdrawal.created_at
+              ).toLocaleString("en-KE", {
+                timeZone: "Africa/Nairobi"
+              })}
+            </span>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "20px"
+            }}
+          >
+            <button
+              style={{
+                width: "100px",
+                padding: "8px",
+                border: "none",
+                borderRadius: "8px",
+                background: "#28a745",
+                color: "#fff",
+                fontWeight: "bold"
+              }}
+              onClick={() =>
+                approveWithdrawal(withdrawal)
+              }
+            >
+              APPROVE
+            </button>
+
+            <button
+              style={{
+                width: "100px",
+                padding: "8px",
+                border: "none",
+                borderRadius: "8px",
+                background: "#dc3545",
+                color: "#fff",
+                fontWeight: "bold"
+              }}
+              onClick={() =>
+                rejectWithdrawal(withdrawal)
+              }
+            >
+              REJECT
+            </button>
+          </div>
+        </div>
+      ))}
+    </main>
+  );
+    }
