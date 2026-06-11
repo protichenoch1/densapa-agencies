@@ -40,7 +40,7 @@ const [loading, setLoading] = useState(false);
       {
         user_id: user.id,
         amount: Number(amount),
-        phone_number: user phone_number,
+        phone_number: user.phone_number,
       },
     ]);
 
