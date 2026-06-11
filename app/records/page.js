@@ -125,8 +125,7 @@ export default function Records() {
     color: "#666"
   }}
 >
-  Date:
-  {" "}
+  
   <p>
   Date:{" "}
   {new Date(item.created_at + "Z").toLocaleDateString(
