@@ -124,7 +124,7 @@ export default function AdminDeposits() {
   <div
   style={{
     display: "flex",
-    gap: "25px"
+    gap: "70px"
   }}
 >
   <button
