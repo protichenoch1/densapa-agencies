@@ -66,44 +66,91 @@ export default function AdminDeposits() {
 
       {deposits.map((deposit) => (
         <div
-          key={deposit.id}
-          className="announcement"
-          style={{ marginBottom: "15px" }}
-        >
-          <p>Amount: KES {deposit.amount}</p>
-          <p>Status: {deposit.status}</p>
-          <p>Phone: {deposit.phone_number}</p>
-          <p>
-  Submitted:
-  {" "}
-  {new Date(deposit.created_at)
-    .toLocaleString("en-KE", {
-      timeZone: "Africa/Nairobi"
-    })}
-</p>
+  key={deposit.id}
+  className="announcement"
+  style={{ marginBottom: "15px" }}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "8px"
+    }}
+  >
+    <span><strong>Amount:</strong></span>
+    <span>KES {Number(deposit.amount).toLocaleString()}</span>
+  </div>
 
-          <button
-            className="invest-btn"
-            onClick={() => approveDeposit(deposit)}
-          >
-            APPROVE
-          </button>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "8px"
+    }}
+  >
+    <span><strong>Status:</strong></span>
+    <span>{deposit.status}</span>
+  </div>
 
-          <button
-            onClick={() => rejectDeposit(deposit)}
-            style={{
-              marginTop: "10px",
-              width: "100%",
-              padding: "10px",
-              border: "none",
-              borderRadius: "10px",
-              background: "#dc3545",
-              color: "#fff"
-            }}
-          >
-            REJECT
-          </button>
-        </div>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "8px"
+    }}
+  >
+    <span><strong>Phone:</strong></span>
+    <span>{deposit.phone_number}</span>
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: "15px"
+    }}
+  >
+    <span><strong>Submitted:</strong></span>
+    <span>
+      {new Date(deposit.created_at).toLocaleString(
+        "en-KE",
+        {
+          timeZone: "Africa/Nairobi"
+        }
+      )}
+    </span>
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      gap: "10px"
+    }}
+  >
+    <button
+      className="invest-btn"
+      style={{ flex: 1 }}
+      onClick={() => approveDeposit(deposit)}
+    >
+      APPROVE
+    </button>
+
+    <button
+      style={{
+        flex: 1,
+        padding: "10px",
+        border: "none",
+        borderRadius: "10px",
+        background: "#dc3545",
+        color: "#fff",
+        fontWeight: "bold"
+      }}
+      onClick={() => rejectDeposit(deposit)}
+    >
+      REJECT
+    </button>
+  </div>
+</div>
       ))}
     </main>
   );
