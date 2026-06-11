@@ -89,7 +89,23 @@ export default function AdminDeposits() {
     }}
   >
     <span><strong>Status:</strong></span>
-    <span>{deposit.status}</span>
+    <span
+  style={{
+    background:
+      deposit.status === "SUCCESSFUL"
+        ? "#28a745"
+        : deposit.status === "FAILED"
+        ? "#dc3545"
+        : "#D4AF37",
+    color: "#fff",
+    padding: "4px 10px",
+    borderRadius: "20px",
+    fontSize: "11px",
+    fontWeight: "bold"
+  }}
+>
+  {deposit.status}
+</span>
   </div>
 
   <div
