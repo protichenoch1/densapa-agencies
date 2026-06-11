@@ -180,6 +180,7 @@ export default function AdminDeposits() {
     REJECT
   </button>
 </div>
+      )}
 </div>
       ))}
     </main>
