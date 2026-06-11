@@ -58,15 +58,15 @@ export default function Records() {
       }}
     >
       <img
-        src={item.image}
-        alt={item.amount}
-        style={{
-          width: "90px",
-          height: "90px",
-          borderRadius: "15px",
-          objectFit: "cover"
-        }}
-      />
+  src="/plans/basic1.jpg"
+  alt="Investment"
+  style={{
+    width: "90px",
+    height: "90px",
+    borderRadius: "15px",
+    objectFit: "cover"
+  }}
+/>
 
       <div style={{ flex: 1 }}>
         <div
@@ -78,24 +78,27 @@ export default function Records() {
   }}
 >
   <span
-    style={{
-      background: "#28a745",
-      color: "#fff",
-      padding: "4px 10px",
-      borderRadius: "20px",
-      fontSize: "12px",
-      fontWeight: "bold"
-    }}
-  >
-    ACTIVE
-  </span>
+  style={{
+    background:
+      item.status === "completed"
+        ? "#0A3D91"
+        : "#28a745",
+    color: "#fff",
+    padding: "4px 10px",
+    borderRadius: "20px",
+    fontSize: "12px",
+    fontWeight: "bold"
+  }}
+>
+  {item.status?.toUpperCase()}
+</span>
 
   <span className="badge">
   {item.plan_type}
 </span>
-  </span>
 </div>
 
+  <h3>
   KES {Number(item.amount).toLocaleString()}
 </h3>
 
