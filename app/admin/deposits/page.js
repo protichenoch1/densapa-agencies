@@ -73,6 +73,14 @@ export default function AdminDeposits() {
           <p>Amount: KES {deposit.amount}</p>
           <p>Status: {deposit.status}</p>
           <p>Phone: {deposit.phone_number}</p>
+          <p>
+  Submitted:
+  {" "}
+  {new Date(deposit.created_at)
+    .toLocaleString("en-KE", {
+      timeZone: "Africa/Nairobi"
+    })}
+</p>
 
           <button
             className="invest-btn"
