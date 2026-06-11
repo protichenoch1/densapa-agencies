@@ -91,33 +91,46 @@ export default function Records() {
   </span>
 
   <span className="badge">
-    {item.type}
+  {item.plan_type}
+</span>
   </span>
 </div>
 
 <h3>{item.amount}</h3>
+<h3>
+  KES {Number(item.amount).toLocaleString()}
+</h3>
 
-        <p>Daily Income: {item.daily}</p>
-        <p>Duration: {item.days}</p>
+<p>
+  Daily Income: KES {Number(item.daily_income).toLocaleString()}
+</p>
 
-        <p
-          style={{
-            color: "#0A3D91",
-            fontWeight: "bold"
-          }}
-        >
-          Total Return: {item.total}
-        </p>
+<p>
+  Duration: {item.days} Days
+</p>
 
-          <p
-          style={{
-            fontSize: "12px",
-            color: "#666",
-            marginTop: "8px"
-          }}
-        >
-          Date: {item.date}
-        </p>
+<p
+  style={{
+    color: "#0A3D91",
+    fontWeight: "bold"
+  }}
+>
+  Total Return: KES {Number(item.total_return).toLocaleString()}
+</p>
+
+<p
+  style={{
+    fontSize: "12px",
+    color: "#666"
+  }}
+>
+  Date:
+  {" "}
+  {new Date(item.created_at).toLocaleString(
+    "en-KE",
+    { timeZone: "Africa/Nairobi" }
+  )}
+</p>
       </div>
     </div>
   </div>
