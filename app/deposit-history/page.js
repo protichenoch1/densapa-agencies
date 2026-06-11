@@ -74,7 +74,10 @@ export default function DepositHistory() {
         <span>
           {new Date(deposit.created_at + "Z")
             .toLocaleTimeString("en-KE", {
-              timeZone: "Africa/Nairobi"
+              timeZone: "Africa/Nairobi",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true
             })}
         </span>
 
