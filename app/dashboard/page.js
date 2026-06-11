@@ -52,6 +52,15 @@ console.log("INVESTMENTS FOUND:", investments);
     const newBalance =
       Number(currentUser?.balance || 0) + dailyIncome;
 
+    const { error: userUpdateError } = await supabase
+  .from("users")
+  .update({
+    balance: newBalance,
+  })
+  .eq("id", userId);
+
+console.log("USER UPDATE ERROR:", userUpdateError);
+
     console.log("ADDING DAILY INCOME:", dailyIncome);
 console.log("NEW BALANCE:", newBalance);
 
