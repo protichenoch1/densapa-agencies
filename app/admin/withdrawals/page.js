@@ -137,7 +137,7 @@ export default function AdminWithdrawals() {
             <span><strong>Submitted:</strong></span>
             <span>
               {new Date(
-                withdrawal.created_at
+                withdrawal.created_at + "Z"
               ).toLocaleString("en-KE", {
                 timeZone: "Africa/Nairobi"
               })}
