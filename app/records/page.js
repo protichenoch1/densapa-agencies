@@ -139,7 +139,7 @@ export default function Records() {
 
 <p>
   Time:{" "}
-  {new Date(item.created_at).toLocaleTimeString(
+  {new Date(item.created_at + "Z").toLocaleTimeString(
     "en-KE",
     {
       timeZone: "Africa/Nairobi",
