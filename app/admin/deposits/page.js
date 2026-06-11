@@ -141,7 +141,8 @@ export default function AdminDeposits() {
     </span>
   </div>
 
-  <div
+  {deposit.status === "PENDING" && (
+    <div
   style={{
     display: "flex",
     gap: "70px"
