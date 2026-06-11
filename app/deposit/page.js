@@ -137,6 +137,7 @@ export default function DepositPage() {
       {
         user_id: user.id,
         amount: Number(amount),
+        phone_number: user.phone_number,
         status: "Pending",
       },
     ]);
