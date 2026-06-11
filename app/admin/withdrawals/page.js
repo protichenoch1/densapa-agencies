@@ -93,7 +93,23 @@ export default function AdminWithdrawals() {
             }}
           >
             <span><strong>Status:</strong></span>
-            <span>{withdrawal.status}</span>
+            <span
+  style={{
+    background:
+      withdrawal.status === "SUCCESSFUL"
+        ? "#28a745"
+        : withdrawal.status === "FAILED"
+        ? "#dc3545"
+        : "#D4AF37",
+    color: "#fff",
+    padding: "4px 10px",
+    borderRadius: "20px",
+    fontSize: "11px",
+    fontWeight: "bold"
+  }}
+>
+  {withdrawal.status}
+</span>
           </div>
 
           <div
