@@ -20,35 +20,40 @@ export default function AdminDeposits() {
   }
 
   async function approveDeposit(deposit) {
-    if (deposit.status === "SUCCESSFUL") return;
+  if (deposit.status === "SUCCESSFUL") return;
 
-    const { data: user } = await supabase
-      .from("users")
-      .select("*")
-      .eq("id", deposit.user_id)
-      .single();
+  const { data: user } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", deposit.user_id)
+    .single();
 
-    const newBalance =
-      Number(user.balance || 0) +
-      Number(deposit.amount);
+  const newBalance =
+    Number(user.balance || 0) +
+    Number(deposit.amount);
 
-    await supabase
-      .from("users")
-      .update({
-        balance: newBalance,
-      })
-      .eq("id", user.id);
+  await supabase
+    .from("users")
+    .update({
+      balance: newBalance,
+    })
+    .eq("id", user.id);
 
-    await supabase
-      .from("deposits")
-      .update({
-        status: "SUCCESSFUL",
-      })
-      .eq("id", deposit.id);
+  const { error } = await supabase
+    .from("deposits")
+    .update({
+      status: "SUCCESSFUL",
+    })
+    .eq("id", deposit.id);
 
-    alert("Deposit approved successfully");
+  if (error) {
+    alert(error.message);
+    console.log(error);
+    return;
+  }
 
-    loadDeposits();
+  alert("Deposit approved successfully");
+  loadDeposits();
   }
 
   async function rejectDeposit(deposit) {
