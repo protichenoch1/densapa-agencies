@@ -129,7 +129,7 @@ export default function AdminDeposits() {
 >
   <button
     style={{
-      flex: 1,
+      width: "90px",
       padding: "8px",
       border: "none",
       borderRadius: "8px",
@@ -145,7 +145,7 @@ export default function AdminDeposits() {
 
   <button
     style={{
-      flex: 1,
+      width: "90px",
       padding: "8px",
       border: "none",
       borderRadius: "8px",
