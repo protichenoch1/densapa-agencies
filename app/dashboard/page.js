@@ -33,6 +33,9 @@ useEffect(() => {
 
   if (error || !investments) return;
 
+    console.log("TODAY:", today);
+console.log("INVESTMENTS FOUND:", investments);
+
   for (const investment of investments) {
     if (investment.last_earning_date === today) {
       continue;
@@ -48,6 +51,9 @@ useEffect(() => {
 
     const newBalance =
       Number(currentUser?.balance || 0) + dailyIncome;
+
+    console.log("ADDING DAILY INCOME:", dailyIncome);
+console.log("NEW BALANCE:", newBalance);
 
     await supabase
       .from("users")
