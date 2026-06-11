@@ -144,6 +144,7 @@ export default function AdminWithdrawals() {
             </span>
           </div>
 
+       {withdrawal.status === "PENDING" && (
           <div
             style={{
               display: "flex",
@@ -185,6 +186,7 @@ export default function AdminWithdrawals() {
               REJECT
             </button>
           </div>
+             )}
         </div>
       ))}
     </main>
