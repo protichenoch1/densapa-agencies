@@ -50,7 +50,6 @@ const [loading, setLoading] = useState(false);
   }
     
   const newBalance =
-  const newBalance =
   Number(user.balance) - Number(amount);
 
 const { data, error: updateError } = await supabase
