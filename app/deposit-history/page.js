@@ -84,11 +84,11 @@ export default function DepositHistory() {
         <span
   style={{
     background:
-      deposit.status === "Approved"
-        ? "#28a745"
-        : deposit.status === "Rejected"
-        ? "#dc3545"
-        : "#D4AF37",
+  deposit.status === "SUCCESSFUL"
+    ? "#28a745"
+    : deposit.status === "FAILED"
+    ? "#dc3545"
+    : "#D4AF37",
     color: "#fff",
     padding: "3px 8px",
     borderRadius: "20px",
@@ -98,11 +98,7 @@ export default function DepositHistory() {
     display: "inline-block"
   }}
 >
-  {deposit.status === "Approved"
-    ? "SUCCESSFUL"
-    : deposit.status === "Rejected"
-    ? "FAILED"
-    : "PENDING"}
+  {deposit.status}
 </span>
       </div>
     ))}
