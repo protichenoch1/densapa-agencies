@@ -132,7 +132,7 @@ export default function AdminDeposits() {
   >
     <span><strong>Submitted:</strong></span>
     <span>
-      {new Date(deposit.created_at).toLocaleString(
+      {new Date(deposit.created_at + "Z").toLocaleString(
         "en-KE",
         {
           timeZone: "Africa/Nairobi"
