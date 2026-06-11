@@ -1,18 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
 
 export default function Records() {
   const [investments, setInvestments] = useState([]);
 
   useEffect(() => {
-    const data = JSON.parse(
-      localStorage.getItem("investments") || "[]"
+  async function loadInvestments() {
+    const user = JSON.parse(
+      localStorage.getItem("user") || "{}"
     );
 
-    setInvestments(data);
-  }, []);
+    if (!user.id) return;
+
+    const { data } = await supabase
+      .from("investments")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", {
+        ascending: false,
+      });
+
+    setInvestments(data || []);
+  }
+
+  loadInvestments();
+}, []);
 
   return (
     <main className="container">
