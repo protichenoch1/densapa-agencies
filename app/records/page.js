@@ -127,10 +127,28 @@ export default function Records() {
 >
   Date:
   {" "}
-  {new Date(item.created_at).toLocaleString(
+  <p>
+  Date:{" "}
+  {new Date(item.created_at).toLocaleDateString(
     "en-KE",
-    { timeZone: "Africa/Nairobi" }
+    {
+      timeZone: "Africa/Nairobi"
+    }
   )}
+</p>
+
+<p>
+  Time:{" "}
+  {new Date(item.created_at).toLocaleTimeString(
+    "en-KE",
+    {
+      timeZone: "Africa/Nairobi",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    }
+  )}
+</p>
 </p>
       </div>
     </div>
