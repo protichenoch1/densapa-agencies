@@ -96,8 +96,6 @@ export default function Records() {
   </span>
 </div>
 
-<h3>{item.amount}</h3>
-<h3>
   KES {Number(item.amount).toLocaleString()}
 </h3>
 
