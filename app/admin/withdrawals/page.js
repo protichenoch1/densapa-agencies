@@ -37,10 +37,10 @@ export default function AdminWithdrawals() {
   loadWithdrawals();
   }
 
-   function rejectWithdrawal(withdrawal) {
+   async function rejectWithdrawal(withdrawal) {
     if (withdrawal.status === "FAILED") return;
 
-    const { dataasync: user } = await supabase
+    const { data: user } = await supabase
       .from("users")
       .select("*")
       .eq("id", withdrawal.user_id)
