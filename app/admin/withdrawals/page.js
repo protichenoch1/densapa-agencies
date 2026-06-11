@@ -20,24 +20,27 @@ export default function AdminWithdrawals() {
   }
 
   async function approveWithdrawal(withdrawal) {
-    if (withdrawal.status === "SUCCESSFUL") return;
+  const { error } = await supabase
+    .from("withdrawals")
+    .update({
+      status: "SUCCESSFUL",
+    })
+    .eq("id", withdrawal.id);
 
-    await supabase
-      .from("withdrawals")
-      .update({
-        status: "SUCCESSFUL",
-      })
-      .eq("id", withdrawal.id);
-
-    alert("Withdrawal approved successfully");
-
-    loadWithdrawals();
+  if (error) {
+    alert(error.message);
+    console.log(error);
+    return;
   }
 
-  async function rejectWithdrawal(withdrawal) {
+  alert("Withdrawal approved successfully");
+  loadWithdrawals();
+  }
+
+   function rejectWithdrawal(withdrawal) {
     if (withdrawal.status === "FAILED") return;
 
-    const { data: user } = await supabase
+    const { dataasync: user } = await supabase
       .from("users")
       .select("*")
       .eq("id", withdrawal.user_id)
@@ -54,16 +57,22 @@ export default function AdminWithdrawals() {
       })
       .eq("id", user.id);
 
-    await supabase
-      .from("withdrawals")
-      .update({
-        status: "FAILED",
-      })
-      .eq("id", withdrawal.id);
+    const { error } = await supabase
+  .from("withdrawals")
+  .update({
+    status: "FAILED",
+  })
+  .eq("id", withdrawal.id);
 
-    alert("Withdrawal rejected successfully");
+if (error) {
+  alert(error.message);
+  console.log(error);
+  return;
+}
 
-    loadWithdrawals();
+alert("Withdrawal rejected successfully");
+
+loadWithdrawals();
   }
 
   return (
