@@ -72,11 +72,11 @@ export default function WithdrawalHistory() {
     </span>
 
     <span>
-      {new Date(item.created_at).toLocaleDateString("en-KE")}
+      {new Date(item.created_at + "Z").toLocaleDateString("en-KE")}
     </span>
 
     <span>
-      {new Date(item.created_at).toLocaleTimeString(
+      {new Date(item.created_at + "Z").toLocaleTimeString(
         "en-KE",
         {
           timeZone: "Africa/Nairobi"
