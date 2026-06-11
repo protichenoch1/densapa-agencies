@@ -79,7 +79,8 @@ export default function WithdrawalHistory() {
       {new Date(item.created_at + "Z").toLocaleTimeString(
         "en-KE",
         {
-          timeZone: "Africa/Nairobi"
+          timeZone: "Africa/Nairobi",
+          hour12: true
         }
       )}
     </span>
