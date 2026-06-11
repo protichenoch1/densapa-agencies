@@ -80,6 +80,8 @@ export default function WithdrawalHistory() {
         "en-KE",
         {
           timeZone: "Africa/Nairobi",
+          hour: "nuneric",
+          minute: "2-digit",
           hour12: true
         }
       )}
