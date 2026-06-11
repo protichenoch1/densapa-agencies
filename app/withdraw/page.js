@@ -50,6 +50,7 @@ const [loading, setLoading] = useState(false);
   }
     
   const newBalance =
+  const newBalance =
   Number(user.balance) - Number(amount);
 
 const { data, error: updateError } = await supabase
@@ -60,11 +61,14 @@ const { data, error: updateError } = await supabase
   .eq("id", user.id)
   .select();
 
-console.log("Updated user:", data);
+console.log("USER ID:", user.id);
+console.log("NEW BALANCE:", newBalance);
+console.log("UPDATED DATA:", data);
+console.log("UPDATE ERROR:", updateError);
 
 if (updateError) {
   alert(updateError.message);
-  console.log(updateError);
+  setLoading(false);
   return;
 }
 
