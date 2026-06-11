@@ -128,7 +128,7 @@ export default function AdminWithdrawals() {
             style={{
               display: "flex",
               justifyContent: "center",
-              gap: "20px"
+              gap: "70px"
             }}
           >
             <button
