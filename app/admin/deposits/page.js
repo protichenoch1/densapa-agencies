@@ -46,6 +46,8 @@ export default function AdminDeposits() {
       })
       .eq("id", deposit.id);
 
+    alert("Deposit approved successfully");
+
     loadDeposits();
   }
 
@@ -56,6 +58,8 @@ export default function AdminDeposits() {
         status: "FAILED",
       })
       .eq("id", deposit.id);
+
+      alert("Deposit rejected successfully");
 
     loadDeposits();
   }
