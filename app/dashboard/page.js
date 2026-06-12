@@ -9,6 +9,7 @@ export default function Home() {
   const [user, setUser] = useState(null);
 const [selectedPlan, setSelectedPlan] = useState(null);
 const [showModal, setShowModal] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
   
   const [loading, setLoading] = useState(true);
 
@@ -94,6 +95,28 @@ useEffect(() => {
       message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
     },
   ]);
+
+    useEffect(() => {
+  async function loadNotificationCount() {
+    const savedUser = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
+
+    if (!savedUser.id) return;
+
+    const { count } = await supabase
+      .from("notifications")
+      .select("*", {
+        count: "exact",
+        head: true,
+      })
+      .eq("user_id", savedUser.id);
+
+    setNotificationCount(count || 0);
+  }
+
+  loadNotificationCount();
+}, []);
 
     const newEarningsPaid =
       Number(investment.earnings_paid || 0) +
