@@ -47,13 +47,25 @@ export default function AdminDeposits() {
     .eq("id", deposit.id);
 
   if (error) {
-    alert(error.message);
-    console.log(error);
-    return;
-  }
+  alert(error.message);
+  console.log(error);
+  return;
+}
 
-  alert("Deposit approved successfully");
-  loadDeposits();
+await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: deposit.user_id,
+      title: "✅ Deposit Approved",
+      message: `Your deposit of KES ${Number(
+        deposit.amount
+      ).toLocaleString()} has been approved.`,
+    },
+  ]);
+
+alert("Deposit approved successfully");
+loadDeposits();
   }
 
   async function rejectDeposit(deposit) {
