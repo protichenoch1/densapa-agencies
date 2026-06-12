@@ -170,9 +170,7 @@ localStorage.setItem(
 }}
 >
   {loading ? "Processing..." : "Submit Deposit"}
-<div className="floating-loader"></div>
-  
-</button>
+  </button>
 
     <a
   href="/deposit-history"
