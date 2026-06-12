@@ -9,14 +9,12 @@ export default function Wallet() {
   const [user, setUser] = useState(null);
   
 const totalInvested = investments.reduce(
-  (sum, plan) =>
-    sum + Number(plan.amount.replace(/[^0-9]/g, "")),
+  (sum, plan) => sum + Number(plan.amount || 0),
   0
 );
 
 const totalDailyIncome = investments.reduce(
-  (sum, plan) =>
-    sum + Number(plan.daily.replace(/[^0-9]/g, "")),
+  (sum, plan) => sum + Number(plan.daily_income || 0),
   0
 );
   
@@ -45,6 +43,24 @@ const totalDailyIncome = investments.reduce(
   }
 
   loadUser();
+    
+    useEffect(() => {
+  async function loadInvestments() {
+    if (!user?.id) return;
+
+    const { data, error } = await supabase
+      .from("investments")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("status", "Active");
+
+    if (!error) {
+      setInvestments(data || []);
+    }
+  }
+
+  loadInvestments();
+}, [user]);
 }, []);
 
   return (
@@ -73,7 +89,7 @@ const totalDailyIncome = investments.reduce(
       <div className="balance-card">
         <p>Available Balance</p>
         <h1>
-  KES {(user?.wallet_balance || 0).toLocaleString()}
+  KES {(user?.balance || 0).toLocaleString()}
 </h1>
         <p>Last Updated: Today</p>
       </div>
