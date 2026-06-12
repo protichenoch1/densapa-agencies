@@ -85,6 +85,21 @@ localStorage.setItem(
 
 setUser(updatedUser);
 
+    const notifications = JSON.parse(
+  localStorage.getItem("notifications") || "[]"
+);
+
+notifications.push({
+  title: "🏧 Withdrawal",
+  message: `Withdrawal request of KES ${Number(amount).toLocaleString()} submitted successfully.`,
+  date: new Date().toLocaleString(),
+});
+
+localStorage.setItem(
+  "notifications",
+  JSON.stringify(notifications)
+);
+
   setAmount("");
   setLoading(false);
 
