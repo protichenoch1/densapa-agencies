@@ -19,7 +19,7 @@ useEffect(() => {
 
   return () => clearTimeout(timer);
 }, []);
-
+  
   async function processDailyEarnings(userId) {
   const today = new Date().toLocaleDateString("en-CA", {
     timeZone: "Africa/Nairobi",
@@ -33,18 +33,30 @@ useEffect(() => {
 
   if (error || !investments) return;
 
-    console.log("TODAY:", today);
-console.log("INVESTMENTS FOUND:", investments);
-
   for (const investment of investments) {
-    if (investment.last_earning_date === today) {
-      continue;
+    const lastDate = new Date(investment.last_earning_date);
+    const currentDate = new Date(today);
+
+    let daysMissed = Math.floor(
+      (currentDate - lastDate) /
+        (1000 * 60 * 60 * 24)
+    );
+
+    if (daysMissed <= 0) continue;
+
+    const remainingDays =
+      Number(investment.days) -
+      Number(investment.earnings_paid || 0);
+
+    if (remainingDays <= 0) continue;
+
+    if (daysMissed > remainingDays) {
+      daysMissed = remainingDays;
     }
 
-    const dailyIncome = Number(investment.daily_income || 0);
-
-    console.log("PROCESSING:", investment);
-console.log("DAILY INCOME:", dailyIncome);
+    const totalEarnings =
+      Number(investment.daily_income) *
+      daysMissed;
 
     const { data: currentUser } = await supabase
       .from("users")
@@ -53,43 +65,38 @@ console.log("DAILY INCOME:", dailyIncome);
       .single();
 
     const newBalance =
-      Number(currentUser?.balance || 0) + dailyIncome;
+      Number(currentUser?.balance || 0) +
+      totalEarnings;
 
-    const { error: userUpdateError } = await supabase
-  .from("users")
-  .update({
-    balance: newBalance,
-  })
-  .eq("id", userId);
+    await supabase
+      .from("users")
+      .update({
+        balance: newBalance,
+      })
+      .eq("id", userId);
 
-console.log("USER UPDATE ERROR:", userUpdateError);
-
-    console.log("ADDING DAILY INCOME:", dailyIncome);
-console.log("NEW BALANCE:", newBalance);
-    const earningsPaid =
-      Number(investment.earnings_paid || 0) + 1;
+    const newEarningsPaid =
+      Number(investment.earnings_paid || 0) +
+      daysMissed;
 
     const updateData = {
-      earnings_paid: earningsPaid,
+      earnings_paid: newEarningsPaid,
       last_earning_date: today,
     };
 
-    if (earningsPaid >= Number(investment.days)) {
+    if (
+      newEarningsPaid >=
+      Number(investment.days)
+    ) {
       updateData.status = "Completed";
     }
 
-    const { error: investmentUpdateError } =
-  await supabase
-    .from("investments")
-    .update(updateData)
-    .eq("id", investment.id);
-
-console.log(
-  "INVESTMENT UPDATE ERROR:",
-  investmentUpdateError
-);
+    await supabase
+      .from("investments")
+      .update(updateData)
+      .eq("id", investment.id);
   }
-  }
+    }
 
   useEffect(() => {
   async function loadUser() {
