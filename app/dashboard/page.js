@@ -425,13 +425,29 @@ return (
     }}
   >
     <div>
-      <small>Today's Earnings</small>
-      <h3>KES 0</h3>
-    </div>
+  <small>Total Earnings</small>
+  <h3>
+    KES {
+      investments.reduce(
+        (sum, item) =>
+          sum +
+          Number(item.daily_income || 0) *
+          Number(item.earnings_paid || 0),
+        0
+      ).toLocaleString()
+    }
+  </h3>
+</div>
 
     <div>
       <small>Active Plans</small>
-      <h3>{investments.length}</h3>
+      <h3>
+{
+investments.filter(
+(item) => item.status === "Active"
+).length
+}
+</h3>
     </div>
   </div>
 </div>
