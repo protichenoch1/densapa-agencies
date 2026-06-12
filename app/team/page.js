@@ -109,6 +109,54 @@ setReferrals(referralList || []);
         </button>
       </div>
 
+            <div
+  style={{
+    display: "flex",
+    gap: "10px",
+    marginTop: "15px",
+    flexWrap: "wrap"
+  }}
+>
+  <button
+    className="invest-btn"
+    onClick={() =>
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(
+          `Join DENSAPAL AGENCIES and earn daily.\n${referralLink}`
+        )}`
+      )
+    }
+  >
+    🟢 WhatsApp
+  </button>
+
+  <button
+    className="invest-btn"
+    onClick={() =>
+      window.open(
+        `https://t.me/share/url?url=${encodeURIComponent(
+          referralLink
+        )}`
+      )
+    }
+  >
+    🔵 Telegram
+  </button>
+
+  <button
+    className="invest-btn"
+    onClick={() =>
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          referralLink
+        )}`
+      )
+    }
+  >
+    🔵 Facebook
+  </button>
+</div>
+
       <div
         className="announcement"
         style={{ marginTop: "20px" }}
