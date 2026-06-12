@@ -75,6 +75,21 @@ useEffect(() => {
       })
       .eq("id", userId);
 
+    const notifications = JSON.parse(
+  localStorage.getItem("notifications") || "[]"
+);
+
+notifications.push({
+  title: "🎉 Daily Earnings",
+  message: `KES ${totalEarnings.toLocaleString()} credited successfully.`,
+  date: new Date().toLocaleString(),
+});
+
+localStorage.setItem(
+  "notifications",
+  JSON.stringify(notifications)
+);
+
     const newEarningsPaid =
       Number(investment.earnings_paid || 0) +
       daysMissed;
@@ -715,21 +730,6 @@ localStorage.setItem(
     balance: newBalance,
   })
   .eq("id", user.id);
-
-          const notifications = JSON.parse(
-  localStorage.getItem("notifications") || "[]"
-);
-
-notifications.push({
-  title: "🎉 Daily Earnings",
-  message: `KES ${totalEarnings.toLocaleString()} has been credited to your account.`,
-  date: new Date().toLocaleString(),
-});
-
-localStorage.setItem(
-  "notifications",
-  JSON.stringify(notifications)
-);
 
           const updatedUser = {
   ...user,
