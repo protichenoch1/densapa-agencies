@@ -45,15 +45,15 @@ export default function TeamPage() {
         <h3>Referral Program</h3>
 
         <p style={{ marginTop: "10px" }}>
-          ✅ Earn KES 20 for every successful registration.
+          📌 Earn KES 20 for every successful registration.
         </p>
 
         <p>
-          ✅ Referral bonuses are credited to your wallet.
+          📌 Referral bonuses are credited to your wallet.
         </p>
 
         <p>
-          ✅ Unlimited referrals allowed.
+          📌 Unlimited referrals allowed.
         </p>
       </div>
 
