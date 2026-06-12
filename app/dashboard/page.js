@@ -383,7 +383,7 @@ return (
             fontWeight: "bold"
           }}
         >
-          4
+{notificationCount}
         </span>
       </div>
     </a>
