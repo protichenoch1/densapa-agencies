@@ -275,17 +275,17 @@ setReferrals(referralList || []);
   <h3>My Referrals</h3>
 
   <div
-    style={{
-      background: "#0A3D91",
-      color: "#fff",
-      padding: "5px 12px",
-      borderRadius: "20px",
-      fontWeight: "bold",
-      fontSize: "14px"
-    }}
-  >
-    {referrals.length}
-  </div>
+  style={{
+    background: "#D4AF37",
+    color: "#000",
+    padding: "5px 12px",
+    borderRadius: "20px",
+    fontWeight: "bold",
+    fontSize: "14px"
+  }}
+>
+  👥 {referrals.length}
+</div>
 </div>
 
         {referrals.length === 0 ? (
