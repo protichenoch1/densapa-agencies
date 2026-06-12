@@ -60,32 +60,8 @@ export default function AccountPage() {
 </p>
 
 </div>
-
-<div className="stats">
-
-        <div className="stat-card">
-  <h2>KES {user.balance || 0}</h2>
-  <p>Wallet Balance</p>
-</div>
-
-        <div className="stat-card">
-  <h2>KES {user.referral_earnings || 0}</h2>
-  <p>Referral Earnings</p>
-</div>
-
-        <div className="stat-card">
-  <h2>{user.referral_count || 0}</h2>
-  <p>Referrals</p>
-</div>
-
-<div className="stat-card">
-  <h2>0</h2>
-  <p>Active Plans</p>
-</div>
-
-      </div>
-
-      <div
+  
+     <div
         className="announcement"
         style={{ marginTop: "20px" }}
       >
