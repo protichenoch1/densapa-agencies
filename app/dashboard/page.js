@@ -716,6 +716,21 @@ localStorage.setItem(
   })
   .eq("id", user.id);
 
+          const notifications = JSON.parse(
+  localStorage.getItem("notifications") || "[]"
+);
+
+notifications.push({
+  title: "🎉 Daily Earnings",
+  message: `KES ${totalEarnings.toLocaleString()} has been credited to your account.`,
+  date: new Date().toLocaleString(),
+});
+
+localStorage.setItem(
+  "notifications",
+  JSON.stringify(notifications)
+);
+
           const updatedUser = {
   ...user,
   balance: newBalance,
