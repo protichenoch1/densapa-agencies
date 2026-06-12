@@ -31,7 +31,7 @@ export default function InvitePage() {
 
       const { data: referralList } = await supabase
   .from("users")
-  .select("id, full_name")
+  .select("id, full_name, created_at")
   .eq("referral_code", data.my_referral_code);
 
 setReferrals(referralList || []);
@@ -172,16 +172,47 @@ setReferrals(referralList || []);
   </p>
 ) : (
   referrals.map((referral) => (
+  <div
+    key={referral.id}
+    style={{
+      padding: "15px",
+      borderBottom: "1px solid #eee",
+    }}
+  >
     <div
-      key={referral.id}
       style={{
-        padding: "10px",
-        borderBottom: "1px solid #eee",
+        fontWeight: "bold",
+        color: "#0A3D91",
       }}
     >
-      {referral.full_name}
+      👤 {referral.full_name}
     </div>
-  ))
+
+    <div
+      style={{
+        marginTop: "5px",
+        color: "#666",
+        fontSize: "14px",
+      }}
+    >
+      📅 Joined:
+      {" "}
+      {new Date(
+        referral.created_at
+      ).toLocaleDateString()}
+    </div>
+
+    <div
+      style={{
+        marginTop: "5px",
+        color: "green",
+        fontWeight: "bold",
+      }}
+    >
+      🟢 Active
+    </div>
+  </div>
+))
 )}
       </div>
 
