@@ -264,7 +264,29 @@ setReferrals(referralList || []);
         className="announcement"
         style={{ marginTop: "20px" }}
       >
-        <h3>My Referrals</h3>
+        <div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "15px"
+  }}
+>
+  <h3>My Referrals</h3>
+
+  <div
+    style={{
+      background: "#0A3D91",
+      color: "#fff",
+      padding: "5px 12px",
+      borderRadius: "20px",
+      fontWeight: "bold",
+      fontSize: "14px"
+    }}
+  >
+    {referrals.length}
+  </div>
+</div>
 
         {referrals.length === 0 ? (
   <p style={{ marginTop: "10px" }}>
