@@ -90,6 +90,16 @@ if (existingUser) {
   })
   .eq("id", referrer.id);
 
+    await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: referrer.id,
+      title: "👥 Referral Bonus",
+      message: "KES 20 referral bonus has been added to your wallet.",
+    },
+  ]);
+
     const notifications = JSON.parse(
   localStorage.getItem("notifications") || "[]"
 );
