@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import BottomNav from "../../components/BottomNav";
 
 export default function InvitePage() {
   const [user, setUser] = useState(null);
