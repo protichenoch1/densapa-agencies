@@ -692,6 +692,21 @@ if (error) {
   console.log(error);
   return;
       }
+          
+    const notifications = JSON.parse(
+  localStorage.getItem("notifications") || "[]"
+);
+
+notifications.push({
+  title: "📈 Investment Activated",
+  message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
+  date: new Date().toLocaleString()
+});
+
+localStorage.setItem(
+  "notifications",
+  JSON.stringify(notifications)
+);
           const newBalance =
   Number(user.balance || 0) - planAmount;
           await supabase
