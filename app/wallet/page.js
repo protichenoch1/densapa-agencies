@@ -43,8 +43,9 @@ const totalDailyIncome = investments.reduce(
   }
 
   loadUser();
-    
-    useEffect(() => {
+    }, []);
+
+  useEffect(() => {
   async function loadInvestments() {
     if (!user?.id) return;
 
@@ -61,7 +62,6 @@ const totalDailyIncome = investments.reduce(
 
   loadInvestments();
 }, [user]);
-}, []);
 
   return (
     <main className="container">
