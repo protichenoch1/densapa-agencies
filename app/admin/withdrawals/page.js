@@ -36,6 +36,18 @@ export default function AdminWithdrawals() {
     return;
   }
 
+    await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: withdrawal.user_id,
+      title: "✅ Withdrawal Approved",
+      message: `Your withdrawal of KES ${Number(
+        withdrawal.amount
+      ).toLocaleString()} has been approved.`,
+    },
+  ]);
+
   alert("Withdrawal approved successfully");
   loadWithdrawals();
   }
@@ -72,6 +84,18 @@ if (error) {
   console.log(error);
   return;
 }
+
+     await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: withdrawal.user_id,
+      title: "❌ Withdrawal Rejected",
+      message: `Your withdrawal of KES ${Number(
+        withdrawal.amount
+      ).toLocaleString()} was rejected and the funds have been returned to your balance.`,
+    },
+  ]);
 
 alert("Withdrawal rejected successfully");
 
