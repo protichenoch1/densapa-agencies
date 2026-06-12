@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
 
-export default function InvitePage() {
+export default function TeamPage() {
   const [user, setUser] = useState(null);
   const [referrals, setReferrals] = useState([]);
 
