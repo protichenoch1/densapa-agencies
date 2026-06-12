@@ -20,6 +20,7 @@ export default function AdminWithdrawals() {
   }
 
   async function approveWithdrawal(withdrawal) {
+    if (withdrawal.status === "SUCCESSFUL") return;
   const { data, error } = await supabase
     .from("withdrawals")
     .update({
