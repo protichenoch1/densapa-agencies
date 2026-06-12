@@ -149,20 +149,15 @@ export default function DepositPage() {
     return;
   }
 
-    const notifications = JSON.parse(
-  localStorage.getItem("notifications") || "[]"
-);
-
-notifications.push({
-  title: "💰 Deposit",
-  message: `Deposit of KES ${Number(amount).toLocaleString()} submitted successfully.`,
-  date: new Date().toLocaleString(),
-});
-
-localStorage.setItem(
-  "notifications",
-  JSON.stringify(notifications)
-);
+    await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: user.id,
+      title: "💰 Deposit Submitted",
+      message: `Deposit of KES ${Number(amount).toLocaleString()} submitted successfully.`,
+    },
+  ]);
 
   alert("Deposit submitted successfully");
 
