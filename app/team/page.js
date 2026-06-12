@@ -316,7 +316,7 @@ setReferrals(referralList || []);
 )}
       </div>
 
-    <BottonNav />
+    <BottomNav />
       </main>
   );
           }
