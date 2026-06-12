@@ -607,35 +607,8 @@ investments.filter(
       );
 })}
         </div>
-
-      <div className="stats">
-
-        <div className="stat-card">
-  <h2>KES 0</h2>
-  <p>Total Deposits</p>
-</div>
-
-<div className="stat-card">
-  <h2>KES 0</h2>
-  <p>Total Withdrawals</p>
-</div>
-
-<div className="stat-card">
-  <h2>
-  KES {Number(user?.referral_earnings || 0).toLocaleString()}
-</h2>
-<p>Referral Earnings</p>
-</div>
-
-<div className="stat-card">
-  <h2>0</h2>
-  <p>Active Plans</p>
-</div>
-
-      </div>
-
-
-      {showModal && selectedPlan && (
+        
+{showModal && selectedPlan && (
   <div
     style={{
       position: "fixed",
