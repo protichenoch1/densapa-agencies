@@ -108,74 +108,8 @@ setReferrals(referralList || []);
           📋 Copy Referral Code
         </button>
       </div>
-
-            <div
-  style={{
-    display: "flex",
-    gap: "10px",
-    marginTop: "15px",
-    flexWrap: "wrap"
-  }}
->
-  <button
-  className="invest-btn"
-  onClick={() =>
-    window.open(
-      `https://wa.me/?text=${encodeURIComponent(
-        `Join DENSAPAL AGENCIES and earn daily.\n${referralLink}`
-      )}`
-    )
-  }
->
-  <img
-    src="/whatsapp.png"
-    width="20"
-    height="20"
-    style={{ marginRight: "8px" }}
-  />
-  WhatsApp
-</button>
-
-<button
-  className="invest-btn"
-  onClick={() =>
-    window.open(
-      `https://t.me/share/url?url=${encodeURIComponent(
-        referralLink
-      )}`
-    )
-  }
->
-  <img
-    src="/telegram.png"
-    width="20"
-    height="20"
-    style={{ marginRight: "8px" }}
-  />
-  Telegram
-</button>
-
-<button
-  className="invest-btn"
-  onClick={() =>
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-        referralLink
-      )}`
-    )
-  }
->
-  <img
-    src="/facebook.png"
-    width="20"
-    height="20"
-    style={{ marginRight: "8px" }}
-  />
-  Facebook
-</button>
-</div>
-
-      <div
+            
+        <div
         className="announcement"
         style={{ marginTop: "20px" }}
       >
@@ -206,6 +140,105 @@ setReferrals(referralList || []);
           📋 Copy Referral Link
         </button>
       </div>
+
+            <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+    marginTop: "15px"
+  }}
+>
+  <button
+    onClick={() =>
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(
+          `Join DENSAPAL AGENCIES and earn daily.\n${referralLink}`
+        )}`
+      )
+    }
+    style={{
+      background: "#fff",
+      border: "1px solid #ddd",
+      borderRadius: "12px",
+      padding: "12px 15px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      cursor: "pointer",
+      fontWeight: "bold"
+    }}
+  >
+    <img
+      src="/whatsapp.png"
+      width="24"
+      height="24"
+    />
+    <span style={{ flex: 1, textAlign: "center" }}>
+      WhatsApp
+    </span>
+  </button>
+
+  <button
+    onClick={() =>
+      window.open(
+        `https://t.me/share/url?url=${encodeURIComponent(
+          referralLink
+        )}`
+      )
+    }
+    style={{
+      background: "#fff",
+      border: "1px solid #ddd",
+      borderRadius: "12px",
+      padding: "12px 15px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      cursor: "pointer",
+      fontWeight: "bold"
+    }}
+  >
+    <img
+      src="/telegram.png"
+      width="24"
+      height="24"
+    />
+    <span style={{ flex: 1, textAlign: "center" }}>
+      Telegram
+    </span>
+  </button>
+
+  <button
+    onClick={() =>
+      window.open(
+        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          referralLink
+        )}`
+      )
+    }
+    style={{
+      background: "#fff",
+      border: "1px solid #ddd",
+      borderRadius: "12px",
+      padding: "12px 15px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      cursor: "pointer",
+      fontWeight: "bold"
+    }}
+  >
+    <img
+      src="/facebook.png"
+      width="24"
+      height="24"
+    />
+    <span style={{ flex: 1, textAlign: "center" }}>
+      Facebook
+    </span>
+  </button>
+</div>
 
       <div
         className="announcement"
