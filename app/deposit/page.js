@@ -149,6 +149,21 @@ export default function DepositPage() {
     return;
   }
 
+    const notifications = JSON.parse(
+  localStorage.getItem("notifications") || "[]"
+);
+
+notifications.push({
+  title: "💰 Deposit",
+  message: `Deposit of KES ${Number(amount).toLocaleString()} submitted successfully.`,
+  date: new Date().toLocaleString(),
+});
+
+localStorage.setItem(
+  "notifications",
+  JSON.stringify(notifications)
+);
+
   alert("Deposit submitted successfully");
 
   setAmount("");
