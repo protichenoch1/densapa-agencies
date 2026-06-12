@@ -81,11 +81,6 @@ const totalDailyIncome = investments.reduce(
       <div className="stats">
 
         <div className="stat-card">
-          <h2>KES {totalInvested.toLocaleString()}</h2>
-<p>Total Invested</p>
-        </div>
-
-        <div className="stat-card">
           <h2>
   KES {(user?.total_withdrawals || 0).toLocaleString()}
 </h2>
@@ -93,53 +88,10 @@ const totalDailyIncome = investments.reduce(
         </div>
 
         <div className="stat-card">
-         <h2>KES {totalDailyIncome.toLocaleString()}</h2>
-<p>Daily Earnings</p>
-        </div>
-
-        <div className="stat-card">
           <h2>{investments.length}</h2>
           <p>Active Plans</p>
         </div>
 
-      </div>
-
-      <div
-        className="announcement"
-        style={{ marginTop: "20px" }}
-      >
-        <h3>📈 Active Investments</h3>
-
-        {investments.length === 0 ? (
-          <p style={{ marginTop: "10px" }}>
-            No active investments.
-          </p>
-        ) : (
-          investments.map((plan, index) => (
-            <div
-              key={index}
-              style={{
-                marginTop: "15px",
-                padding: "10px",
-                background: "#f5f7fb",
-                borderRadius: "10px"
-              }}
-            >
-              <p><strong>Plan:</strong> {plan.type}</p>
-              <p><strong>Amount:</strong> {plan.amount}</p>
-              <p><strong>Daily Income:</strong> {plan.daily}</p>
-              <p><strong>Duration:</strong> {plan.days}</p>
-              <p><strong>Total Return:</strong> {plan.total}</p>
-                          <p>
-  <strong>Status:</strong>
-  <span style={{ color: "green" }}>
-    {" "}🟢 Active
-  </span>
-</p>
-              <p><strong>Date:</strong> {plan.date}</p>
-            </div>
-          ))
-        )}
       </div>
 
       <div
