@@ -22,21 +22,11 @@ export default function TeamPage() {
         </div>
 
         <div className="stat-card">
-          <h2>0</h2>
-          <p>Total Team</p>
-        </div>
-
-        <div className="stat-card">
           <h2>KES 0</h2>
           <p>Referral Income</p>
         </div>
 
-        <div className="stat-card">
-          <h2>0</h2>
-          <p>Active Members</p>
         </div>
-
-      </div>
 
       <div
         className="announcement"
