@@ -519,13 +519,10 @@ investments.filter(
 <div className="plans-container">
             
       {plans.map((plan, index) => {
-  const isLocked = investments.some(
-    (item) =>
-      item.amount === plan.amount &&
-      item.type === tab.toUpperCase()
-  );
-
-  return (
+        
+        const isLocked = false;
+        
+        return (
         <div className="plan-card" key={index}>
 
           <div
@@ -583,14 +580,10 @@ investments.filter(
 >
   <button
   className="invest-btn"
-  disabled={isLocked}
   style={{
-    width: "120px",
-    background: isLocked ? "#999" : "",
-    cursor: isLocked ? "not-allowed" : "pointer"
+    width: "120px"
   }}
   onClick={() => {
-    if (isLocked) return;
 
     setSelectedPlan({
       ...plan,
@@ -600,7 +593,7 @@ investments.filter(
     setShowModal(true);
   }}
 >
-  {isLocked ? "🔒 LOCKED" : "INVEST NOW"}
+  INVEST NOW
 </button>
 </div>
 </div>
