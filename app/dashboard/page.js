@@ -85,20 +85,15 @@ useEffect(() => {
     },
   ]);
 
-    const notifications = JSON.parse(
-  localStorage.getItem("notifications") || "[]"
-);
-
-notifications.push({
-  title: "🎉 Daily Earnings",
-  message: `KES ${totalEarnings.toLocaleString()} credited successfully.`,
-  date: new Date().toLocaleString(),
-});
-
-localStorage.setItem(
-  "notifications",
-  JSON.stringify(notifications)
-);
+    await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: user.id,
+      title: "📈 Investment Activated",
+      message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
+    },
+  ]);
 
     const newEarningsPaid =
       Number(investment.earnings_paid || 0) +
