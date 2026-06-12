@@ -43,6 +43,9 @@ console.log("INVESTMENTS FOUND:", investments);
 
     const dailyIncome = Number(investment.daily_income || 0);
 
+    console.log("PROCESSING:", investment);
+console.log("DAILY INCOME:", dailyIncome);
+
     const { data: currentUser } = await supabase
       .from("users")
       .select("balance")
@@ -64,12 +67,19 @@ console.log("USER UPDATE ERROR:", userUpdateError);
     console.log("ADDING DAILY INCOME:", dailyIncome);
 console.log("NEW BALANCE:", newBalance);
 
-    await supabase
-      .from("users")
-      .update({
-        balance: newBalance,
-      })
-      .eq("id", userId);
+    const { error: userUpdateError } = await supabase
+  .from("users")
+  .update({
+    balance: newBalance,
+  })
+  .eq("id", userId);
+
+console.log("USER UPDATE ERROR:", userUpdateError);
+
+    if (error || !investments) return;
+
+    console.log("TODAY:", today);
+console.log("INVESTMENTS FOUND:", investments);
 
     const earningsPaid =
       Number(investment.earnings_paid || 0) + 1;
