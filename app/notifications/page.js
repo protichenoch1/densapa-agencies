@@ -1,76 +1,86 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BottomNav from "../../components/BottomNav";
+import { supabase } from "../../lib/supabase";
 
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    const savedNotifications = JSON.parse(
-      localStorage.getItem("notifications") || "[]"
-    );
+    async function loadNotifications() {
+      const user = JSON.parse(
+        localStorage.getItem("user") || "{}"
+      );
 
-    setNotifications(savedNotifications.reverse());
+      if (!user.id) return;
+
+      const { data, error } = await supabase
+        .from("notifications")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", {
+          ascending: false,
+        });
+
+      if (!error) {
+        setNotifications(data || []);
+      }
+    }
+
+    loadNotifications();
   }, []);
+
+  function timeAgo(date) {
+    const seconds =
+      Math.floor(
+        (new Date() - new Date(date)) / 1000
+      );
+
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (minutes < 1) return "Just now";
+    if (minutes < 60) return `${minutes} mins ago`;
+    if (hours < 24) return `${hours} hours ago`;
+    if (days === 1) return "Yesterday";
+
+    return `${days} days ago`;
+  }
 
   return (
     <main className="container">
-      <h1 style={{ marginBottom: "20px" }}>
-        🔔 Notifications
-      </h1>
+      <h1>🔔 Notifications</h1>
 
       {notifications.length === 0 ? (
-        <div
-          className="announcement"
-          style={{
-            textAlign: "center",
-            padding: "30px"
-          }}
-        >
+        <div className="announcement">
           No notifications yet.
         </div>
       ) : (
-        notifications.map((item, index) => (
+        notifications.map((item) => (
           <div
-            key={index}
+            key={item.id}
             className="announcement"
             style={{
-              marginBottom: "15px"
+              marginTop: "15px",
             }}
           >
-            <div
-              style={{
-                fontWeight: "bold",
-                color: "#0A3D91"
-              }}
-            >
-              {item.title}
-            </div>
+            <h3>{item.title}</h3>
 
-            <div
-              style={{
-                marginTop: "8px",
-                color: "#666"
-              }}
-            >
+            <p style={{ marginTop: "10px" }}>
               {item.message}
-            </div>
+            </p>
 
-            <div
+            <small
               style={{
-                marginTop: "10px",
-                fontSize: "12px",
-                color: "#999"
+                color: "#888",
               }}
             >
-              {item.date}
-            </div>
+              {timeAgo(item.created_at)}
+            </small>
           </div>
         ))
       )}
-
-      <BottomNav />
     </main>
   );
               }
