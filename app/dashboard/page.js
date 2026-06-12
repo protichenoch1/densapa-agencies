@@ -75,6 +75,16 @@ useEffect(() => {
       })
       .eq("id", userId);
 
+    await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: userId,
+      title: "🎉 Daily Earnings",
+      message: `KES ${totalEarnings.toLocaleString()} has been credited to your account.`,
+    },
+  ]);
+
     const notifications = JSON.parse(
   localStorage.getItem("notifications") || "[]"
 );
