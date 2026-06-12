@@ -86,38 +86,6 @@ useEffect(() => {
     },
   ]);
 
-    await supabase
-  .from("notifications")
-  .insert([
-    {
-      user_id: user.id,
-      title: "📈 Investment Activated",
-      message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
-    },
-  ]);
-
-    useEffect(() => {
-  async function loadNotificationCount() {
-    const savedUser = JSON.parse(
-      localStorage.getItem("user") || "{}"
-    );
-
-    if (!savedUser.id) return;
-
-    const { count } = await supabase
-      .from("notifications")
-      .select("*", {
-        count: "exact",
-        head: true,
-      })
-      .eq("user_id", savedUser.id);
-
-    setNotificationCount(count || 0);
-  }
-
-  loadNotificationCount();
-}, []);
-
     const newEarningsPaid =
       Number(investment.earnings_paid || 0) +
       daysMissed;
@@ -224,6 +192,27 @@ useEffect(() => {
 
   loadInvestments();
 }, [user]);
+  useEffect(() => {
+  async function loadNotificationCount() {
+    const savedUser = JSON.parse(
+      localStorage.getItem("user") || "{}"
+    );
+
+    if (!savedUser.id) return;
+
+    const { count } = await supabase
+      .from("notifications")
+      .select("*", {
+        count: "exact",
+        head: true,
+      })
+      .eq("user_id", savedUser.id);
+
+    setNotificationCount(count || 0);
+  }
+
+  loadNotificationCount();
+}, []);
   
   const basicPlans = [
   {
@@ -736,20 +725,15 @@ if (error) {
   return;
       }
           
-    const notifications = JSON.parse(
-  localStorage.getItem("notifications") || "[]"
-);
-
-notifications.push({
-  title: "📈 Investment Activated",
-  message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
-  date: new Date().toLocaleString()
-});
-
-localStorage.setItem(
-  "notifications",
-  JSON.stringify(notifications)
-);
+    await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: user.id,
+      title: "📈 Investment Activated",
+      message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
+    },
+  ]);
           const newBalance =
   Number(user.balance || 0) - planAmount;
           await supabase
