@@ -66,10 +66,6 @@ console.log("USER UPDATE ERROR:", userUpdateError);
 
     console.log("ADDING DAILY INCOME:", dailyIncome);
 console.log("NEW BALANCE:", newBalance);
-    if (error || !investments) return;
-    console.log("TODAY:", today);
-console.log("INVESTMENTS FOUND:", investments);
-
     const earningsPaid =
       Number(investment.earnings_paid || 0) + 1;
 
@@ -82,10 +78,16 @@ console.log("INVESTMENTS FOUND:", investments);
       updateData.status = "Completed";
     }
 
-    await supabase
-      .from("investments")
-      .update(updateData)
-      .eq("id", investment.id);
+    const { error: investmentUpdateError } =
+  await supabase
+    .from("investments")
+    .update(updateData)
+    .eq("id", investment.id);
+
+console.log(
+  "INVESTMENT UPDATE ERROR:",
+  investmentUpdateError
+);
   }
   }
 
@@ -668,19 +670,31 @@ return (
     {
       user_id: user.id,
       plan_type: selectedPlan.type,
-      amount: Number(
-  selectedPlan.amount.replace(/[^0-9]/g, "")
-),
 
-daily_income: Number(
-  selectedPlan.daily.replace(/[^0-9]/g, "")
-),
+      amount: Number(
+        selectedPlan.amount.replace(/[^0-9]/g, "")
+      ),
+
+      daily_income: Number(
+        selectedPlan.daily.replace(/[^0-9]/g, "")
+      ),
+
       days: Number(
-  selectedPlan.days.replace(/[^0-9]/g, "")
-),
+        selectedPlan.days.replace(/[^0-9]/g, "")
+      ),
+
       total_return: Number(
-  selectedPlan.total.replace(/[^0-9]/g, "")
-),
+        selectedPlan.total.replace(/[^0-9]/g, "")
+      ),
+
+      status: "Active",
+      earnings_paid: 0,
+      last_earning_date: new Date().toLocaleDateString(
+        "en-CA",
+        {
+          timeZone: "Africa/Nairobi",
+        }
+      ),
     },
   ]);
 
