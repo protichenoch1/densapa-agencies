@@ -7,28 +7,51 @@ export default function NotificationsPage() {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    async function loadNotifications() {
-      const user = JSON.parse(
-        localStorage.getItem("user") || "{}"
-      );
+  const user = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
 
-      if (!user.id) return;
+  if (!user.id) return;
 
-      const { data, error } = await supabase
-        .from("notifications")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("created_at", {
-          ascending: false,
-        });
+  async function loadNotifications() {
+    const { data, error } = await supabase
+      .from("notifications")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", {
+        ascending: false,
+      });
 
-      if (!error) {
-        setNotifications(data || []);
-      }
+    if (!error) {
+      setNotifications(data || []);
     }
+  }
 
-    loadNotifications();
-  }, []);
+  loadNotifications();
+
+  const channel = supabase
+    .channel("notifications-channel")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "notifications",
+        filter: `user_id=eq.${user.id}`,
+      },
+      (payload) => {
+        setNotifications((prev) => [
+          payload.new,
+          ...prev,
+        ]);
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, []);
 
   function timeAgo(date) {
     const seconds =
