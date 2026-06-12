@@ -142,12 +142,13 @@ export default function DepositPage() {
       },
     ]);
 
-  setLoading(false);
-
   if (error) {
-    alert(error.message);
-    return;
+  setLoading(false);
+  alert(error.message);
+  return;
   }
+
+    setLoading(false);
 
     await supabase
   .from("notifications")
