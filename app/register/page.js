@@ -99,22 +99,7 @@ if (existingUser) {
       message: "KES 20 referral bonus has been added to your wallet.",
     },
   ]);
-
-    const notifications = JSON.parse(
-  localStorage.getItem("notifications") || "[]"
-);
-
-notifications.push({
-  title: "👥 Referral Bonus",
-  message: "KES 20 referral bonus credited successfully.",
-  date: new Date().toLocaleString(),
-});
-
-localStorage.setItem(
-  "notifications",
-  JSON.stringify(notifications)
-);
-  }
+     }
     }
 
     alert("Registration successful!");
