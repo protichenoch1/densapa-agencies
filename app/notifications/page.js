@@ -23,7 +23,15 @@ export default function NotificationsPage() {
       });
 
     if (!error) {
-      setNotifications(data || []);
+  setNotifications(data || []);
+
+  await supabase
+    .from("notifications")
+    .update({
+      is_read: true,
+    })
+    .eq("user_id", user.id)
+    .eq("is_read", false);
     }
   }
 
