@@ -46,6 +46,7 @@ export default function AdminWithdrawals() {
       message: `Your withdrawal of KES ${Number(
         withdrawal.amount
       ).toLocaleString()} has been approved.`,
+      is_read: false,
     },
   ]);
 
