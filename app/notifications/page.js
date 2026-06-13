@@ -16,21 +16,13 @@ alert(user.id);
   if (!user.id) return;
 
   async function loadNotifications() {
-  console.log("LOCAL USER ID:", user.id);
-
   const { data, error } = await supabase
-  .from("notifications")
-  .select("*");
-
-alert(JSON.stringify(data));
-alert(JSON.stringify(error));
-
-if (!error) {
-  setNotifications(data || []);
-}
-
-  console.log("NOTIFICATIONS:", data);
-  console.log("ERROR:", error);
+    .from("notifications")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("created_at", {
+      ascending: false,
+    });
 
   if (!error) {
     setNotifications(data || []);
@@ -43,9 +35,9 @@ if (!error) {
       .eq("user_id", user.id)
       .eq("is_read", false);
   }
-  }
+}
 
-  loadNotifications();
+loadNotifications();
 
   const channel = supabase
     .channel("notifications-channel")
