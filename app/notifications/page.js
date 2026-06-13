@@ -14,7 +14,6 @@ export default function NotificationsPage() {
   if (!user.id) return;
 
   async function loadNotifications() {
-  async function loadNotifications() {
   console.log("LOCAL USER ID:", user.id);
 
   const { data, error } = await supabase
