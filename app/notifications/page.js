@@ -8,8 +8,10 @@ export default function NotificationsPage() {
 
   useEffect(() => {
   const user = JSON.parse(
-    localStorage.getItem("user") || "{}"
-  );
+  localStorage.getItem("user") || "{}"
+);
+
+alert(user.id);
 
   if (!user.id) return;
 
