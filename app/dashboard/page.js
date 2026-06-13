@@ -83,6 +83,7 @@ useEffect(() => {
       user_id: userId,
       title: "🎉 Daily Earnings",
       message: `KES ${totalEarnings.toLocaleString()} has been credited to your account.`,
+    is_read: false,
     },
   ]);
 
@@ -732,6 +733,7 @@ if (error) {
       user_id: user.id,
       title: "📈 Investment Activated",
       message: `${selectedPlan.amount} ${selectedPlan.type} plan activated successfully.`,
+    is_read: false,
     },
   ]);
           const newBalance =
