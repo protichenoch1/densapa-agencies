@@ -14,25 +14,31 @@ export default function NotificationsPage() {
   if (!user.id) return;
 
   async function loadNotifications() {
-    const { data, error } = await supabase
-      .from("notifications")
-      .select("*")
-      .eq("user_id", user.id)
-      .order("created_at", {
-        ascending: false,
-      });
+  async function loadNotifications() {
+  console.log("LOCAL USER ID:", user.id);
 
-    if (!error) {
-  setNotifications(data || []);
-
-  await supabase
+  const { data, error } = await supabase
     .from("notifications")
-    .update({
-      is_read: true,
-    })
+    .select("*")
     .eq("user_id", user.id)
-    .eq("is_read", false);
-    }
+    .order("created_at", {
+      ascending: false,
+    });
+
+  console.log("NOTIFICATIONS:", data);
+  console.log("ERROR:", error);
+
+  if (!error) {
+    setNotifications(data || []);
+
+    await supabase
+      .from("notifications")
+      .update({
+        is_read: true,
+      })
+      .eq("user_id", user.id)
+      .eq("is_read", false);
+  }
   }
 
   loadNotifications();
