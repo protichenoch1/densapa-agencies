@@ -61,6 +61,7 @@ await supabase
       message: `Your deposit of KES ${Number(
         deposit.amount
       ).toLocaleString()} has been approved.`,
+      is_read: false,
     },
   ]);
 
