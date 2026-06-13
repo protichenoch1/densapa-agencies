@@ -97,6 +97,7 @@ if (existingUser) {
       user_id: referrer.id,
       title: "👥 Referral Bonus",
       message: "KES 20 referral bonus has been added to your wallet.",
+    is_read: false,
     },
   ]);
      }
