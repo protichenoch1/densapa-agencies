@@ -157,6 +157,7 @@ export default function DepositPage() {
       user_id: user.id,
       title: "💰 Deposit Submitted",
       message: `Deposit of KES ${Number(amount).toLocaleString()} submitted successfully.`,
+    is_read: false,
     },
   ]);
 
