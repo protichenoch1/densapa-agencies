@@ -33,6 +33,9 @@ export default function NotificationsPage() {
       .eq("user_id", user.id)
       .eq("is_read", false);
   }
+    window.dispatchEvent(
+  new Event("notifications-read")
+);
 }
 
 loadNotifications();
