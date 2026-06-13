@@ -48,10 +48,17 @@ export default function NotificationsPage() {
         filter: `user_id=eq.${user.id}`,
       },
       (payload) => {
-        setNotifications((prev) => [
-          payload.new,
-          ...prev,
-        ]);
+  setNotifications((prev) => [
+    payload.new,
+    ...prev,
+  ]);
+
+  supabase
+    .from("notifications")
+    .update({
+      is_read: true,
+    })
+    .eq("id", payload.new.id);
       }
     )
     .subscribe();
