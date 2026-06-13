@@ -216,21 +216,14 @@ useEffect(() => {
 
   loadNotificationCount();
 
-    window.addEventListener(
-  "notifications-read",
-  () => {
+  const handleNotificationsRead = () => {
     setNotificationCount(0);
-  }
-);
+  };
 
-    return () => {
-  window.removeEventListener(
+  window.addEventListener(
     "notifications-read",
-    () => {
-      setNotificationCount(0);
-    }
+    handleNotificationsRead
   );
-};
 
   const channel = supabase
     .channel("notification-count")
@@ -249,6 +242,11 @@ useEffect(() => {
     .subscribe();
 
   return () => {
+    window.removeEventListener(
+      "notifications-read",
+      handleNotificationsRead
+    );
+
     supabase.removeChannel(channel);
   };
 }, []);
