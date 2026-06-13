@@ -119,12 +119,22 @@ loadNotifications();
             </p>
 
             <small
-              style={{
-                color: "#888",
-              }}
-            >
-              {timeAgo(item.created_at + "Z")}
-            </small>
+  style={{
+    color: "#888",
+  }}
+>
+  {new Date(item.created_at + "Z").toLocaleString(
+    "en-KE",
+    {
+      timeZone: "Africa/Nairobi",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }
+  )}
+</small>
           </div>
         ))
       )}
