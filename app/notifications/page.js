@@ -123,7 +123,7 @@ loadNotifications();
                 color: "#888",
               }}
             >
-              {timeAgo(item.created_at)}
+              {timeAgo(item.created_at + "Z")}
             </small>
           </div>
         ))
