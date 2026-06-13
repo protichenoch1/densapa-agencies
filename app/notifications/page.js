@@ -11,8 +11,6 @@ export default function NotificationsPage() {
   localStorage.getItem("user") || "{}"
 );
 
-alert(user.id);
-
   if (!user.id) return;
 
   async function loadNotifications() {
