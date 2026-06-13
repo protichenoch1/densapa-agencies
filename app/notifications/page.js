@@ -19,12 +19,15 @@ alert(user.id);
   console.log("LOCAL USER ID:", user.id);
 
   const { data, error } = await supabase
-    .from("notifications")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("created_at", {
-      ascending: false,
-    });
+  .from("notifications")
+  .select("*");
+
+alert(JSON.stringify(data));
+alert(JSON.stringify(error));
+
+if (!error) {
+  setNotifications(data || []);
+}
 
   console.log("NOTIFICATIONS:", data);
   console.log("ERROR:", error);
