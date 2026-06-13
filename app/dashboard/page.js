@@ -193,26 +193,48 @@ useEffect(() => {
 
   loadInvestments();
 }, [user]);
+  
   useEffect(() => {
+  const savedUser = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+
+  if (!savedUser.id) return;
+
   async function loadNotificationCount() {
-    const savedUser = JSON.parse(
-      localStorage.getItem("user") || "{}"
-    );
-
-    if (!savedUser.id) return;
-
     const { count } = await supabase
       .from("notifications")
       .select("*", {
         count: "exact",
         head: true,
       })
-      .eq("user_id", savedUser.id);
+      .eq("user_id", savedUser.id)
+      .eq("is_read", false);
 
     setNotificationCount(count || 0);
   }
 
   loadNotificationCount();
+
+  const channel = supabase
+    .channel("notification-count")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "notifications",
+        filter: `user_id=eq.${savedUser.id}`,
+      },
+      () => {
+        setNotificationCount((prev) => prev + 1);
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
 }, []);
   
   const basicPlans = [
@@ -379,25 +401,27 @@ return (
       >
         🔔
 
-        <span
-          style={{
-            position: "absolute",
-            top: "-5px",
-            right: "-8px",
-            background: "#D4AF37",
-            color: "#000",
-            borderRadius: "50%",
-            width: "16px",
-            height: "16px",
-            fontSize: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "bold"
-          }}
-        >
-{notificationCount}
-        </span>
+        {notificationCount > 0 && (
+  <span
+    style={{
+      position: "absolute",
+      top: "-5px",
+      right: "-8px",
+      background: "#D4AF37",
+      color: "#000",
+      borderRadius: "50%",
+      width: "18px",
+      height: "18px",
+      fontSize: "10px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontWeight: "bold"
+    }}
+  >
+    {notificationCount}
+  </span>
+)}
       </div>
     </a>
 
