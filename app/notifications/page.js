@@ -54,23 +54,27 @@ export default function NotificationsPage() {
 }, []);
 
   function timeAgo(date) {
-    const seconds =
-      Math.floor(
-        (new Date() - new Date(date)) / 1000
-      );
+  const seconds = Math.floor(
+    (new Date() - new Date(date)) / 1000
+  );
 
-    const minutes = Math.floor(seconds / 60);
-    const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
 
-    if (minutes < 1) return "Just now";
-    if (minutes === 1) return "1 min ago";
-if (minutes < 60) return `${minutes} mins ago`;
-    if (hours === 1) return "1 hour ago";
-if (hours < 24) return `${hours} hours ago`;
-    if (days === 1) return "Yesterday";
+  if (minutes < 1) return "Just now";
 
-    return `${days} days ago`;
+  if (minutes === 1) return "1 min ago";
+  if (minutes < 60) return `${minutes} mins ago`;
+
+  if (hours === 1) return "1 hour ago";
+  if (hours < 24) return `${hours} hours ago`;
+
+  if (days === 1) return "Yesterday";
+
+  if (days < 7) return `${days} days ago`;
+
+  return new Date(date).toLocaleDateString("en-KE");
   }
 
   return (
