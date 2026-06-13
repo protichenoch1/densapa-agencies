@@ -161,6 +161,8 @@ export default function DepositPage() {
     },
   ]);
 
+    console.log(notificationError);
+
   alert("Deposit submitted successfully");
 
   setAmount("");
