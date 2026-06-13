@@ -140,8 +140,9 @@ loadNotifications();
         timeZone: "Africa/Nairobi",
         day: "numeric",
         month: "short",
-        hour12: true,
-        minute: "2-digit"
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
       }
     )}
   </span>
