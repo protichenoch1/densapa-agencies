@@ -32,11 +32,12 @@ export default function NotificationsPage() {
       })
       .eq("user_id", user.id)
       .eq("is_read", false);
-  }
+
     window.dispatchEvent(
   new Event("notifications-read")
 );
-}
+  }
+    }
 
 loadNotifications();
 
@@ -118,22 +119,12 @@ loadNotifications();
               {item.message}
             </p>
 
-            <small
+<small
   style={{
     color: "#888",
   }}
 >
-  {new Date(item.created_at + "Z").toLocaleString(
-    "en-KE",
-    {
-      timeZone: "Africa/Nairobi",
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    }
-  )}
+  {timeAgo(item.created_at + "Z")}
 </small>
           </div>
         ))
