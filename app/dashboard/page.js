@@ -216,6 +216,22 @@ useEffect(() => {
 
   loadNotificationCount();
 
+    window.addEventListener(
+  "notifications-read",
+  () => {
+    setNotificationCount(0);
+  }
+);
+
+    return () => {
+  window.removeEventListener(
+    "notifications-read",
+    () => {
+      setNotificationCount(0);
+    }
+  );
+};
+
   const channel = supabase
     .channel("notification-count")
     .on(
