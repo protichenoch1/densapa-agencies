@@ -119,13 +119,33 @@ loadNotifications();
               {item.message}
             </p>
 
-<small
+<div
   style={{
-    color: "#888",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: "10px",
+    fontSize: "12px",
+    color: "#888"
   }}
 >
-  {timeAgo(item.created_at + "Z")}
-</small>
+  <span>
+    {timeAgo(item.created_at)}
+  </span>
+
+  <span>
+    {new Date(item.created_at + "Z").toLocaleString(
+      "en-KE",
+      {
+        timeZone: "Africa/Nairobi",
+        day: "numeric",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    )}
+  </span>
+</div>
           </div>
         ))
       )}
