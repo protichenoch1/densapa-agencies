@@ -130,7 +130,7 @@ loadNotifications();
   }}
 >
   <span>
-    {timeAgo(item.created_at)}
+    {timeAgo(item.created_at + "Z")}
   </span>
 
   <span>
