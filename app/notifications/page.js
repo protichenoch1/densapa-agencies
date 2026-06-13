@@ -25,13 +25,15 @@ export default function NotificationsPage() {
   if (!error) {
     setNotifications(data || []);
 
-    await supabase
-      .from("notifications")
-      .update({
-        is_read: true,
-      })
-      .eq("user_id", user.id)
-      .eq("is_read", false);
+    const { error } = await supabase
+  .from("notifications")
+  .update({
+    is_read: true,
+  })
+  .eq("user_id", user.id)
+  .eq("is_read", false);
+
+console.log(error);
 
     window.dispatchEvent(
   new Event("notifications-read")
