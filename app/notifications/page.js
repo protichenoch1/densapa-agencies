@@ -129,7 +129,6 @@ if (!savedUser.id) return;
   onClick={async () => {
     if (!user?.id) return;
 
-    const { error } = await supabase
     const { data, error } = await supabase
   .from("notifications")
   .update({
