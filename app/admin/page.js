@@ -250,35 +250,71 @@ return (
       }}
     >
 
-      <div className="stat-card">
-        <h2>{usersCount}</h2>
-        <p>Users</p>
-      </div>
+      <div
+  className="stat-card"
+  style={{
+    background: "#0A3D91",
+    color: "#fff"
+  }}
+>
+  <h2 style={{ color: "#fff" }}>{usersCount}</h2>
+  <p>Users</p>
+</div>
 
-      <div className="stat-card">
-        <h2>{depositsCount}</h2>
-        <p>Deposits</p>
-      </div>
+      <div
+  className="stat-card"
+  style={{
+    background: "#28a745",
+    color: "#fff"
+  }}
+>
+  <h2 style={{ color: "#fff" }}>{depositsCount}</h2>
+  <p>Deposits</p>
+</div>
 
-      <div className="stat-card">
-        <h2>{withdrawalsCount}</h2>
-        <p>Withdrawals</p>
-      </div>
+      <div
+  className="stat-card"
+  style={{
+    background: "#fd7e14",
+    color: "#fff"
+  }}
+>
+  <h2 style={{ color: "#fff" }}>{withdrawalsCount}</h2>
+  <p>Withdrawals</p>
+</div>
 
-      <div className="stat-card">
-        <h2>{investmentsCount}</h2>
-        <p>Investments</p>
-      </div>
+      <div
+  className="stat-card"
+  style={{
+    background: "#6f42c1",
+    color: "#fff"
+  }}
+>
+  <h2 style={{ color: "#fff" }}>{investmentsCount}</h2>
+  <p>Investments</p>
+</div>
 
-      <div className="stat-card">
-        <h2>{pendingDeposits}</h2>
-        <p>Pending Deposits</p>
-      </div>
+      <div
+  className="stat-card"
+  style={{
+    background: "#D4AF37",
+    color: "#000"
+  }}
+>
+  <h2>{pendingDeposits}</h2>
+  <p>Pending Deposits</p>
+</div>
 
-      <div className="stat-card">
-        <h2>{pendingWithdrawals}</h2>
-        <p>Pending Withdrawals</p>
-      </div>
+      <div
+  className="stat-card"
+  style={{
+    background: "#dc3545",
+    color: "#fff"
+  }}
+>
+  <h2 style={{ color: "#fff" }}>{pendingWithdrawals}</h2>
+  <p>Pending Withdrawals</p>
+</div>
 
     </div>
       
