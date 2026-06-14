@@ -223,6 +223,77 @@ export default function AdminPage() {
       </div>
     </div>
 
+      {/* Management Buttons */}
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(2,1fr)",
+    gap: "15px",
+    marginTop: "20px"
+  }}
+>
+
+  <a href="/admin/deposits" className="stat-card">
+    <h1>💰</h1>
+    <h3>Deposits</h3>
+    <p>Manage requests</p>
+  </a>
+
+  <a href="/admin/withdrawals" className="stat-card">
+    <h1>🏧</h1>
+    <h3>Withdrawals</h3>
+    <p>Approve requests</p>
+  </a>
+
+  <a href="/admin/users" className="stat-card">
+    <h1>👥</h1>
+    <h3>Users</h3>
+    <p>View members</p>
+  </a>
+
+  <a href="/admin/stats" className="stat-card">
+    <h1>📊</h1>
+    <h3>Statistics</h3>
+    <p>View reports</p>
+  </a>
+
+</div>
+
+  <div className="announcement" style={{ marginTop: "20px" }}>
+  <h3>⚙ Quick Actions</h3>
+
+  <a
+    href="/"
+    style={{
+      display: "block",
+      marginTop: "15px",
+      color: "#0A3D91",
+      fontWeight: "bold"
+    }}
+  >
+    🏠 Go to Home Page
+  </a>
+
+  <button
+    onClick={() => {
+      setLoggedIn(false);
+      setPin("");
+    }}
+    style={{
+      width: "100%",
+      marginTop: "20px",
+      padding: "12px",
+      border: "none",
+      borderRadius: "12px",
+      background: "#dc3545",
+      color: "#fff",
+      fontWeight: "bold"
+    }}
+  >
+    🚪 Logout
+  </button>
+</div>
+
   </main>
 );
                 }
