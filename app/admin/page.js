@@ -159,69 +159,9 @@ export default function AdminPage() {
   }
 
   return (
-    <main className="container">
-
-      {/* Header */}
-      <div
-        style={{
-          background: "linear-gradient(135deg,#0A3D91,#06275e)",
-          color: "#fff",
-          borderRadius: "20px",
-          padding: "20px",
-          marginBottom: "20px"
-        }}
-      >
-        <h1>🛠 Admin Dashboard</h1>
-
-        <p
-          style={{
-            color: "#D4AF37",
-            marginTop: "10px"
-          }}
-        >
-          Welcome Administrator
-        </p>
-      </div>
-
-      {/* Statistics */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2,1fr)",
-          gap: "12px"
-        }}
-      >
-        <div className="stat-card">
-          <h2>{usersCount}</h2>
-          <p>Users</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>{depositsCount}</h2>
-          <p>Deposits</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>{withdrawalsCount}</h2>
-          <p>Withdrawals</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>{investmentsCount}</h2>
-          <p>Investments</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>{pendingDeposits}</h2>
-          <p>Pending Deposits</p>
-        </div>
-
-        <div className="stat-card">
-          <h2>{pendingWithdrawals}</h2>
-          <p>Pending Withdrawals</p>
-        </div>
-      </div>
-
-    </main>
-  );
+  <main className="container">
+    <h1>🛠 Admin Dashboard</h1>
+    <p>Login successful</p>
+  </main>
+);
                 }
