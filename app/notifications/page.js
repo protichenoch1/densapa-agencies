@@ -137,6 +137,7 @@ if (!savedUser.id) return;
       .eq("is_read", false);
 
     console.log(error);
+    alert(JSON.stringify(error));
 
     if (error) {
       alert(error.message);
