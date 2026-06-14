@@ -130,26 +130,23 @@ if (!savedUser.id) return;
     if (!user?.id) return;
 
     const { data, error } = await supabase
-  .fconst { data, error } = await supabase
-  .from("notifications")
-  .update({
-    is_read: true,
-  })
-  .eq("user_id", user.id)
-  .eq("is_read", false)
-  .select();
+      .from("notifications")
+      .update({
+        is_read: true,
+      })
+      .eq("user_id", user.id)
+      .eq("is_read", false)
+      .select();
 
-console.log("Updated rows:", data);
-console.log("Error:", error);
+    if (error) {
+      alert(error.message);
+      console.log(error);
+      return;
+    }
 
-alert(JSON.stringify(data));
+    console.log(data);
 
-if (error) {
-  alert(error.message);
-  return;
-}
-
-    // Update UI immediately
+    // Update notifications on screen
     setNotifications((prev) =>
       prev.map((item) => ({
         ...item,
@@ -157,7 +154,7 @@ if (error) {
       }))
     );
 
-    // Remove bell count
+    // Remove bell badge count
     window.dispatchEvent(
       new Event("notifications-read")
     );
