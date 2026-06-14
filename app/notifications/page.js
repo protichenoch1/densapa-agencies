@@ -130,15 +130,17 @@ if (!savedUser.id) return;
     if (!user?.id) return;
 
     const { data, error } = await supabase
+  .fconst { data, error } = await supabase
   .from("notifications")
   .update({
     is_read: true,
   })
   .eq("user_id", user.id)
+  .eq("is_read", false)
   .select();
 
-console.log(data);
-console.log(error);
+console.log("Updated rows:", data);
+console.log("Error:", error);
 
 alert(JSON.stringify(data));
 
