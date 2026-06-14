@@ -28,6 +28,7 @@ if (!savedUser.id) return;
       if (!error) {
         setNotifications(data || []);
       }
+      console.log(data);
     }
 
     loadNotifications();
