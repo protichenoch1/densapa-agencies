@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 
 export default function Register() {
-  const [fullName, setFullName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [pin, setPin] = useState("");
   const [confirmPin, setConfirmPin] = useState("");
@@ -58,7 +58,7 @@ if (existingUser) {
 
     const { error } = await supabase.from("users").insert([
   {
-    full_name: fullName,
+    full_name: fullName.toUpperCase(),
     phone_number: phoneNumber,
     pin,
     referral_code: referralCode,
@@ -170,13 +170,19 @@ if (existingUser) {
 
         <form onSubmit={handleRegister}>
           <input
-            type="text"
-            placeholder="Full Name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-            style={inputStyle}
-          />
+  type="text"
+  placeholder="First Name"
+  value={fullName}
+  onChange={(e) =>
+    setFullName(
+      e.target.value
+        .replace(/[^a-zA-Z]/g, "")
+        .toUpperCase()
+    )
+  }
+  required
+  style={inputStyle}
+/>
 
           <input
   type="tel"
