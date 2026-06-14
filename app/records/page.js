@@ -169,7 +169,6 @@ export default function MyInvestments() {
 >
   
   <p>
-  <p>
   Date:{" "}
   {new Date(item.created_at + "Z").toLocaleDateString(
     "en-KE",
