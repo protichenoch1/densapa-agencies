@@ -58,7 +58,7 @@ if (existingUser) {
 
     const { error } = await supabase.from("users").insert([
   {
-    full_name: fullName.toUpperCase(),
+    full_name: firstName.toUpperCase(),
     phone_number: phoneNumber,
     pin,
     referral_code: referralCode,
@@ -174,7 +174,7 @@ if (existingUser) {
   placeholder="First Name"
   value={fullName}
   onChange={(e) =>
-    setFullName(
+    setFirstName(
       e.target.value
         .replace(/[^a-zA-Z]/g, "")
         .toUpperCase()
