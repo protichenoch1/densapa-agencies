@@ -17,9 +17,61 @@ export default function AdminPage() {
   }
 
   if (!loggedIn) {
-    return (
-      <main className="container">
-        <h1>🔐 Admin Login</h1>
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg,#0A3D91,#06275e)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px"
+      }}
+    >
+      <div
+        style={{
+          background: "#fff",
+          width: "100%",
+          maxWidth: "400px",
+          padding: "30px",
+          borderRadius: "25px",
+          boxShadow: "0 10px 30px rgba(0,0,0,.2)"
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "25px"
+          }}
+        >
+          <img
+            src="/logo.png"
+            alt="DENSAPAL"
+            style={{
+              width: "90px",
+              height: "90px",
+              borderRadius: "50%"
+            }}
+          />
+
+          <h1
+            style={{
+              color: "#0A3D91",
+              marginTop: "10px"
+            }}
+          >
+            ADMIN PANEL
+          </h1>
+
+          <p
+            style={{
+              color: "#D4AF37",
+              fontWeight: "bold"
+            }}
+          >
+            DENSAPAL AGENCIES
+          </p>
+        </div>
 
         <input
           type="password"
@@ -28,23 +80,34 @@ export default function AdminPage() {
           onChange={(e) => setPin(e.target.value)}
           style={{
             width: "100%",
-            padding: "12px",
-            marginTop: "20px",
-            borderRadius: "10px",
-            border: "1px solid #ddd"
+            padding: "14px",
+            border: "1px solid #ddd",
+            borderRadius: "12px",
+            outline: "none"
           }}
         />
 
         <button
-          className="invest-btn"
-          style={{ marginTop: "15px" }}
           onClick={handleLogin}
+          style={{
+            width: "100%",
+            padding: "14px",
+            marginTop: "15px",
+            border: "none",
+            borderRadius: "12px",
+            background: "#D4AF37",
+            color: "#fff",
+            fontWeight: "bold",
+            fontSize: "16px",
+            cursor: "pointer"
+          }}
         >
           LOGIN
         </button>
-      </main>
-    );
-  }
+      </div>
+    </div>
+  );
+            }
 
   return (
     <main className="container">
