@@ -6,6 +6,7 @@ export default function AdminPage() {
   const ADMIN_PIN = "123456";
 
   const [pin, setPin] = useState("");
+  const [showPin, setShowPin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
   function handleLogin() {
@@ -73,19 +74,44 @@ export default function AdminPage() {
           </p>
         </div>
 
-        <input
-          type="password"
-          placeholder="Enter Admin PIN"
-          value={pin}
-          onChange={(e) => setPin(e.target.value)}
-          style={{
-            width: "100%",
-            padding: "14px",
-            border: "1px solid #ddd",
-            borderRadius: "12px",
-            outline: "none"
-          }}
-        />
+        <div
+  style={{
+    position: "relative"
+  }}
+>
+  <input
+    type={showPin ? "text" : "password"}
+    placeholder="Enter Admin PIN"
+    value={pin}
+    onChange={(e) => setPin(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "14px",
+      paddingRight: "70px",
+      border: "1px solid #ddd",
+      borderRadius: "12px",
+      outline: "none"
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowPin(!showPin)}
+    style={{
+      position: "absolute",
+      right: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+      border: "none",
+      background: "none",
+      cursor: "pointer",
+      color: "#0A3D91",
+      fontWeight: "bold"
+    }}
+  >
+    {showPin ? "Hide" : "Show"}
+  </button>
+</div>
 
         <button
           onClick={handleLogin}
