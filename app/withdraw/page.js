@@ -99,7 +99,7 @@ setUser(updatedUser);
     {
       user_id: user.id,
       title: "🏧 Withdrawal Submitted",
-      message: `Withdrawal request of KES ${Number(amount).toLocaleString()} submitted successfully.`,
+      message: `Withdrawal request submitted successfully. You will receive KES ${amountToReceive.toLocaleString()}.`,
     },
   ]);
 
@@ -201,15 +201,19 @@ setUser(updatedUser);
         <h3>Withdrawal Rules</h3>
 
         <p style={{ marginTop: "10px" }}>
-          ✅ Minimum withdrawal is KES 450
+          ✅ Minimum withdrawal amount is KES 450.
         </p>
 
         <p>
-          ✅ Withdrawals are processed manually
+          ✅ Withdrawal fee is 5%. If you withdraw KES 500, you will receive KES 475.
         </p>
 
         <p>
-          ✅ Ensure your M-Pesa number is correct
+          ✅ Ensure your M-Pesa number is correct.
+        </p>
+          
+        <p>
+          🕓 Withdrawal time is from 6:00 AM to 10:30 PM everyday.
         </p>
       </div>
 
