@@ -154,18 +154,21 @@ loadNotifications();
           No notifications yet.
         </div>
       ) : (
-        notifications.map((item) => (
-          console.log(item.is_read);
-       <div
-            key={item.id}
-            className="announcement"
-            style={{
-  marginTop: "15px",
-  background: item.is_read
-    ? "#fff"
-    : "#f3f3f3"
-}}
-          >
+        {notifications.map((item) => {
+  console.log(item.is_read);
+
+  return (
+    <div
+      key={item.id}
+      className="announcement"
+      style={{
+        marginTop: "15px",
+        backgroundColor: item.is_read
+          ? "#ffffff"
+          : "#e5e5e5",
+        border: "1px solid #ccc"
+      }}
+    >
             <h3>{item.title}</h3>
 
             <p style={{ marginTop: "10px" }}>
