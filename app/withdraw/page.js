@@ -34,16 +34,24 @@ const [loading, setLoading] = useState(false);
 
   setLoading(true);
 
+    const fee =
+  Math.floor(Number(amount) * 0.05);
+
+const amountToReceive =
+  Number(amount) - fee;
+
   const { error } = await supabase
-    .from("withdrawals")
-    .insert([
-      {
-        user_id: user.id,
-        amount: Number(amount),
-        phone_number: user.phone_number,
-        status: "PENDING",
-      },
-    ]);
+  .from("withdrawals")
+  .insert([
+    {
+      user_id: user.id,
+      amount: Number(amount),
+      withdrawal_fee: fee,
+      amount_received: amountToReceive,
+      phone_number: user.phone_number,
+      status: "PENDING",
+    },
+  ]);
 
   if (error) {
     setLoading(false);
@@ -143,22 +151,46 @@ setUser(updatedUser);
   </div>
 
   <div style={{ marginTop: "15px" }}>
-    <label>Withdrawal Amount</label>
+  <label>Withdrawal Amount</label>
 
-    <input
-      type="number"
-      placeholder="Enter Amount"
-      value={amount}
-      onChange={(e) => setAmount(e.target.value)}
+  <input
+    type="number"
+    placeholder="Enter Amount"
+    value={amount}
+    onChange={(e) => setAmount(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "12px",
+      marginTop: "8px",
+      borderRadius: "10px",
+      border: "1px solid #ddd"
+    }}
+  />
+
+  {amount && Number(amount) > 0 && (
+    <div
       style={{
-        width: "100%",
+        marginTop: "12px",
         padding: "12px",
-        marginTop: "8px",
-        borderRadius: "10px",
-        border: "1px solid #ddd"
+        background: "#f5f7fb",
+        borderRadius: "10px"
       }}
-    />
-  </div>
+    >
+      <p
+        style={{
+          color: "#0A3D91",
+          fontWeight: "bold"
+        }}
+      >
+        You Will Receive: KES{" "}
+        {(
+          Number(amount) -
+          Math.floor(Number(amount) * 0.05)
+        ).toLocaleString()}
+      </p>
+    </div>
+  )}
+</div>
 
 </div>
 
