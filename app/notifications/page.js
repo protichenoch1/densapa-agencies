@@ -100,7 +100,41 @@ loadNotifications();
 
   return (
     <main className="container">
-      <h1>🔔 Notifications</h1>
+      <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "20px"
+  }}
+>
+  <button
+    onClick={() => window.history.back()}
+    style={{
+      border: "none",
+      background: "transparent",
+      color: "#0A3D91",
+      fontSize: "14px",
+      fontWeight: "bold",
+      cursor: "pointer"
+    }}
+  >
+    ← Back
+  </button>
+
+  <h2
+    style={{
+      margin: 0,
+      fontSize: "18px",
+      color: "#0A3D91",
+      fontWeight: "bold"
+    }}
+  >
+    Notifications
+  </h2>
+
+  <div style={{ width: "50px" }}></div>
+</div>
 
       {notifications.length === 0 ? (
         <div className="announcement">
