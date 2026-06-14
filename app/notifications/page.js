@@ -159,8 +159,11 @@ loadNotifications();
             key={item.id}
             className="announcement"
             style={{
-              marginTop: "15px",
-            }}
+  marginTop: "15px",
+  background: item.is_read
+    ? "#fff"
+    : "#f3f3f3"
+}}
           >
             <h3>{item.title}</h3>
 
