@@ -129,21 +129,29 @@ if (!savedUser.id) return;
     if (!user?.id) return;
 
     const { error } = await supabase
-  .from("notifications")
-  .update({
-    is_read: true,
-  })
-  .eq("user_id", user.id)
-  .eq("is_read", false);
+      .from("notifications")
+      .update({
+        is_read: true,
+      })
+      .eq("user_id", user.id)
+      .eq("is_read", false);
 
-console.log(error);
+    console.log(error);
 
-if (error) {
-  alert(error.message);
-            }
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    // Update UI immediately
+    setNotifications((prev) =>
+      prev.map((item) => ({
+        ...item,
+        is_read: true,
       }))
     );
 
+    // Remove bell count
     window.dispatchEvent(
       new Event("notifications-read")
     );
