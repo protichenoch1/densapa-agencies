@@ -149,7 +149,8 @@ useEffect(() => {
   const [showSuccess, setShowSuccess] = useState(false);
 const [successMessage, setSuccessMessage] = useState("");
   
-  const userName = user?.full_name || "User";
+  const userName =
+  user?.full_name?.split(" ")[0] || "USER";
   
 const greeting =
   new Date().getHours() < 12
