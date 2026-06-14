@@ -459,7 +459,7 @@ return (
     marginBottom: "15px"
   }}
 >
-  <h3
+  <h4
     style={{
       color: "#0A3D91",
       fontSize: "22px",
@@ -467,7 +467,7 @@ return (
     }}
   >
     {greeting}, {userName} 👋
-  </h3>
+  </h4>
 
   <p
     style={{
