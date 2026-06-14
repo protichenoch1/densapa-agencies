@@ -129,24 +129,19 @@ if (!savedUser.id) return;
   onClick={async () => {
     if (!user?.id) return;
 
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("notifications")
       .update({
         is_read: true,
       })
       .eq("user_id", user.id)
-      .eq("is_read", false)
-      .select();
+      .eq("is_read", false);
 
     if (error) {
       alert(error.message);
-      console.log(error);
       return;
     }
 
-    console.log(data);
-
-    // Update notifications on screen
     setNotifications((prev) =>
       prev.map((item) => ({
         ...item,
@@ -154,7 +149,6 @@ if (!savedUser.id) return;
       }))
     );
 
-    // Remove bell badge count
     window.dispatchEvent(
       new Event("notifications-read")
     );
