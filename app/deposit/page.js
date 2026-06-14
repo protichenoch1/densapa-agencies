@@ -90,15 +90,15 @@ export default function DepositPage() {
         </p>
 
         <p>
-          ✅ Enter the amount deposited
+          ✅ Minimum deposit amount is KES 200.
         </p>
 
         <p>
-          ✅ Upload the M-Pesa payment screenshot
+          ✅ Upload the M-Pesa payment screenshot.
         </p>
 
         <p>
-          ✅ Wait for manual approval
+          ✅ Wait for deposit approval.
         </p>
       </div>
 
@@ -119,6 +119,11 @@ export default function DepositPage() {
     alert("Enter deposit amount");
     return;
   }
+
+    if (Number(amount) < 200) {
+  alert("Minimum deposit is KES 200");
+  return;
+            }
 
   const user = JSON.parse(
     localStorage.getItem("user") || "{}"
@@ -161,9 +166,7 @@ export default function DepositPage() {
     },
   ]);
 
-    console.log(notificationError);
-
-  alert("Deposit submitted successfully");
+    alert("Deposit submitted successfully");
 
   setAmount("");
 }}
