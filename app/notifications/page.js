@@ -24,21 +24,7 @@ export default function NotificationsPage() {
 
   if (!error) {
     setNotifications(data || []);
-
-    const { error } = await supabase
-  .from("notifications")
-  .update({
-    is_read: true,
-  })
-  .eq("user_id", user.id)
-  .eq("is_read", false);
-
-console.log(error);
-
-    window.dispatchEvent(
-  new Event("notifications-read")
-);
-  }
+}
     }
 
 loadNotifications();
@@ -58,14 +44,7 @@ loadNotifications();
     payload.new,
     ...prev,
   ]);
-
-  supabase
-    .from("notifications")
-    .update({
-      is_read: true,
-    })
-    .eq("id", payload.new.id);
-      }
+}
     )
     .subscribe();
 
@@ -135,6 +114,40 @@ loadNotifications();
 
   <div style={{ width: "50px" }}></div>
 </div>
+
+<button
+  onClick={async () => {
+    await supabase
+      .from("notifications")
+      .update({
+        is_read: true,
+      })
+      .eq("user_id", user.id)
+      .eq("is_read", false);
+
+    setNotifications((prev) =>
+      prev.map((item) => ({
+        ...item,
+        is_read: true,
+      }))
+    );
+
+    window.dispatchEvent(
+      new Event("notifications-read")
+    );
+  }}
+  style={{
+    background: "#0A3D91",
+    color: "#fff",
+    border: "none",
+    borderRadius: "10px",
+    padding: "8px 15px",
+    marginBottom: "15px",
+    fontSize: "13px"
+  }}
+>
+  ✓ Mark all as read
+</button>
 
       {notifications.length === 0 ? (
         <div className="announcement">
