@@ -125,7 +125,7 @@ setUser(updatedUser);
   <h3>Withdrawal Details</h3>
 
   <div style={{ marginTop: "15px" }}>
-    <label>Withdrawal Number</label>
+    <label>M-PESA Number</label>
 
     <input
       type="text"
