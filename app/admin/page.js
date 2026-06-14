@@ -243,7 +243,9 @@ setTotalWithdrawn(
       color: "#fff"
     }}
   >
-    <h2>{usersCount}</h2>
+    <h2 style={{ color: "#fff" }}>
+  {usersCount}
+</h2>
     <p>👥 Users</p>
   </div>
 
@@ -291,7 +293,9 @@ setTotalWithdrawn(
       color: "#fff"
     }}
   >
-    <h2>{investmentsCount}</h2>
+    <h2 style={{ color: "#fff" }}>
+  {investmentsCount}
+</h2>
     <p>📈 Investments</p>
   </div>
 
@@ -315,7 +319,9 @@ setTotalWithdrawn(
       color: "#fff"
     }}
   >
-    <h2>{pendingWithdrawals}</h2>
+    <h2 style={{ color: "#fff" }}>
+  {pendingWithdrawals}
+</h2>
     <p>⏳ Pending Withdrawals</p>
   </div>
 
