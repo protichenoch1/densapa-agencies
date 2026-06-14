@@ -28,7 +28,38 @@ export default function DepositHistory() {
 
   return (
     <main className="container">
-      <h1>💰 Deposit History</h1>
+      <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "20px"
+  }}
+>
+  <a
+    href="/profile"
+    style={{
+      textDecoration: "none",
+      color: "#0A3D91",
+      fontWeight: "bold",
+      fontSize: "14px"
+    }}
+  >
+    ← Back
+  </a>
+
+  <h2
+    style={{
+      margin: 0,
+      fontSize: "18px",
+      color: "#0A3D91"
+    }}
+  >
+    Deposit History
+  </h2>
+
+  <div style={{ width: "50px" }}></div>
+</div>
 
       {deposits.length === 0 ? (
         <p style={{ marginTop: "20px" }}>
