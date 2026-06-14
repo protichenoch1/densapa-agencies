@@ -155,7 +155,8 @@ loadNotifications();
         </div>
       ) : (
         notifications.map((item) => (
-          <div
+          console.log(item.is_read);
+       <div
             key={item.id}
             className="announcement"
             style={{
