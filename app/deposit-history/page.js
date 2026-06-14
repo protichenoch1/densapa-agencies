@@ -36,23 +36,26 @@ export default function DepositHistory() {
     marginBottom: "20px"
   }}
 >
-  <a
-    href="/profile"
+  <button
+    onClick={() => window.history.back()}
     style={{
-      textDecoration: "none",
+      border: "none",
+      background: "transparent",
       color: "#0A3D91",
+      fontSize: "14px",
       fontWeight: "bold",
-      fontSize: "14px"
+      cursor: "pointer"
     }}
   >
     ← Back
-  </a>
+  </button>
 
   <h2
     style={{
       margin: 0,
       fontSize: "18px",
-      color: "#0A3D91"
+      color: "#0A3D91",
+      fontWeight: "bold"
     }}
   >
     Deposit History
