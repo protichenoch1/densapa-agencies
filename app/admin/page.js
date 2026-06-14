@@ -227,48 +227,99 @@ setTotalWithdrawn(
 
     {/* Statistics */}
     <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2,1fr)",
-        gap: "12px",
-        marginBottom: "20px"
-      }}
-    >
-      <div className="stat-card">
-        <h2>{usersCount}</h2>
-        <p>Users</p>
-      </div>
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(2,1fr)",
+    gap: "12px",
+    marginBottom: "20px"
+  }}
+>
 
-      <div className="stat-card">
-  <h2>KES {totalBalance.toLocaleString()}</h2>
-  <p>Total Balance</p>
+  {/* Users */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#0A3D91",
+      color: "#fff"
+    }}
+  >
+    <h2>{usersCount}</h2>
+    <p>👥 Users</p>
+  </div>
+
+  {/* Total Balance */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#198754",
+      color: "#fff"
+    }}
+  >
+    <h2>KES {totalBalance.toLocaleString()}</h2>
+    <p>💳 Total Balance</p>
+  </div>
+
+  {/* Total Deposited */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#28a745",
+      color: "#fff"
+    }}
+  >
+    <h2>KES {totalDeposited.toLocaleString()}</h2>
+    <p>💰 Total Deposited</p>
+  </div>
+
+  {/* Total Withdrawn */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#fd7e14",
+      color: "#fff"
+    }}
+  >
+    <h2>KES {totalWithdrawn.toLocaleString()}</h2>
+    <p>🏧 Total Withdrawn</p>
+  </div>
+
+  {/* Investments */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#6f42c1",
+      color: "#fff"
+    }}
+  >
+    <h2>{investmentsCount}</h2>
+    <p>📈 Investments</p>
+  </div>
+
+  {/* Pending Deposits */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#D4AF37",
+      color: "#000"
+    }}
+  >
+    <h2>{pendingDeposits}</h2>
+    <p>⏳ Pending Deposits</p>
+  </div>
+
+  {/* Pending Withdrawals */}
+  <div
+    className="stat-card"
+    style={{
+      background: "#dc3545",
+      color: "#fff"
+    }}
+  >
+    <h2>{pendingWithdrawals}</h2>
+    <p>⏳ Pending Withdrawals</p>
+  </div>
+
 </div>
-
-<div className="stat-card">
-  <h2>KES {totalDeposited.toLocaleString()}</h2>
-  <p>Total Deposited</p>
-</div>
-
-<div className="stat-card">
-  <h2>KES {totalWithdrawn.toLocaleString()}</h2>
-  <p>Total Withdrawn</p>
-</div>
-
-      <div className="stat-card">
-        <h2>{investmentsCount}</h2>
-        <p>Investments</p>
-      </div>
-
-      <div className="stat-card">
-        <h2>{pendingDeposits}</h2>
-        <p>Pending Deposits</p>
-      </div>
-
-      <div className="stat-card">
-        <h2>{pendingWithdrawals}</h2>
-        <p>Pending Withdrawals</p>
-      </div>
-    </div>
 
       {/* Management Buttons */}
 <div
