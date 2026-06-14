@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
 
-export default function Records() {
+export default function MyInvestments() {
   const [investments, setInvestments] = useState([]);
 
   useEffect(() => {
@@ -31,14 +31,39 @@ export default function Records() {
 
   return (
     <main className="container">
-      <h2
-        style={{
-          color: "#0A3D91",
-          marginBottom: "20px"
-        }}
-      >
-        📋 Investment Records
-      </h2>
+      <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: "20px"
+  }}
+>
+  <button
+    onClick={() => window.history.back()}
+    style={{
+      border: "none",
+      background: "transparent",
+      color: "#0A3D91",
+      fontSize: "14px",
+      fontWeight: "bold"
+    }}
+  >
+    ← Back
+  </button>
+
+  <h2
+    style={{
+      margin: 0,
+      fontSize: "18px",
+      color: "#0A3D91"
+    }}
+  >
+    📈 My Investments
+  </h2>
+
+  <div style={{ width: "50px" }}></div>
+</div>
 
       {investments.length === 0 ? (
         <div className="stat-card">
@@ -80,7 +105,7 @@ export default function Records() {
   <span
   style={{
     background:
-      item.status === "completed"
+      item.status === "Completed"
         ? "#0A3D91"
         : "#28a745",
     color: "#fff",
