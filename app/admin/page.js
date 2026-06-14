@@ -136,51 +136,133 @@ export default function AdminPage() {
             }
 
   return (
-    <main className="container">
+  <main className="container">
+
+    <div
+      style={{
+        background: "linear-gradient(135deg,#0A3D91,#06275e)",
+        color: "#fff",
+        borderRadius: "20px",
+        padding: "20px",
+        marginBottom: "20px"
+      }}
+    >
       <h1>🛠 Admin Dashboard</h1>
 
-      <div className="announcement">
-        <h3>Admin Panel</h3>
+      <p
+        style={{
+          marginTop: "10px",
+          color: "#D4AF37"
+        }}
+      >
+        Welcome Administrator
+      </p>
+    </div>
 
-        <a
-          href="/admin/deposits"
-          style={{
-            display: "block",
-            marginTop: "10px",
-            color: "#0A3D91",
-            textDecoration: "none",
-            fontWeight: "bold"
-          }}
-        >
-          💰 Manage Deposits
-        </a>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2,1fr)",
+        gap: "15px"
+      }}
+    >
 
-        <a
-          href="/admin/withdrawals"
-          style={{
-            display: "block",
-            marginTop: "10px",
-            color: "#0A3D91",
-            textDecoration: "none",
-            fontWeight: "bold"
-          }}
-        >
-          🏧 Manage Withdrawals
-        </a>
+      <a
+        href="/admin/deposits"
+        className="stat-card"
+        style={{
+          textDecoration: "none",
+          color: "#000"
+        }}
+      >
+        <h1>💰</h1>
+        <h3>Deposits</h3>
+        <p>Manage requests</p>
+      </a>
 
-        <a
-          href="/admin/users"
-          style={{
-            display: "block",
-            marginTop: "10px",
-            color: "#0A3D91",
-            textDecoration: "none",
-            fontWeight: "bold"
-          }}
-        >
-          👥 View Users
-        </a>
-      </div>
-    </main>
-  );
+      <a
+        href="/admin/withdrawals"
+        className="stat-card"
+        style={{
+          textDecoration: "none",
+          color: "#000"
+        }}
+      >
+        <h1>🏧</h1>
+        <h3>Withdrawals</h3>
+        <p>Approve requests</p>
+      </a>
+
+      <a
+        href="/admin/users"
+        className="stat-card"
+        style={{
+          textDecoration: "none",
+          color: "#000"
+        }}
+      >
+        <h1>👥</h1>
+        <h3>Users</h3>
+        <p>View members</p>
+      </a>
+
+      <a
+        href="/admin/investments"
+        className="stat-card"
+        style={{
+          textDecoration: "none",
+          color: "#000"
+        }}
+      >
+        <h1>📈</h1>
+        <h3>Investments</h3>
+        <p>View plans</p>
+      </a>
+
+    </div>
+
+    <div
+      className="announcement"
+      style={{
+        marginTop: "20px"
+      }}
+    >
+      <h3>⚙ Quick Actions</h3>
+
+      <a
+        href="/"
+        style={{
+          display: "block",
+          marginTop: "15px",
+          color: "#0A3D91",
+          textDecoration: "none",
+          fontWeight: "bold"
+        }}
+      >
+        🏠 Go to Home Page
+      </a>
+
+      <button
+        onClick={() => {
+          setLoggedIn(false);
+          setPin("");
+        }}
+        style={{
+          width: "100%",
+          marginTop: "20px",
+          padding: "12px",
+          border: "none",
+          borderRadius: "12px",
+          background: "#dc3545",
+          color: "#fff",
+          fontWeight: "bold",
+          cursor: "pointer"
+        }}
+      >
+        🚪 Logout
+      </button>
+    </div>
+
+  </main>
+);
             }
