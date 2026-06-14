@@ -172,7 +172,7 @@ if (existingUser) {
           <input
   type="text"
   placeholder="First Name"
-  value={fullName}
+  value={firstName}
   onChange={(e) =>
     setFirstName(
       e.target.value
