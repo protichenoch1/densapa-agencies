@@ -154,58 +154,59 @@ loadNotifications();
           No notifications yet.
         </div>
       ) : (
-        {notifications.map((item) => {
+  notifications.map((item) => {
   console.log(item.is_read);
 
   return (
+  <div
+    key={item.id}
+    className="announcement"
+    style={{
+      marginTop: "15px",
+      backgroundColor: item.is_read
+        ? "#ffffff"
+        : "#e5e5e5",
+      border: "1px solid #ccc"
+    }}
+  >
+    <h3>{item.title}</h3>
+
+    <p style={{ marginTop: "10px" }}>
+      {item.message}
+    </p>
+
     <div
-      key={item.id}
-      className="announcement"
       style={{
-        marginTop: "15px",
-        backgroundColor: item.is_read
-          ? "#ffffff"
-          : "#e5e5e5",
-        border: "1px solid #ccc"
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginTop: "10px",
+        fontSize: "12px",
+        color: "#888"
       }}
     >
-            <h3>{item.title}</h3>
+      <span>
+        {timeAgo(item.created_at + "Z")}
+      </span>
 
-            <p style={{ marginTop: "10px" }}>
-              {item.message}
-            </p>
-
-<div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: "10px",
-    fontSize: "12px",
-    color: "#888"
-  }}
->
-  <span>
-    {timeAgo(item.created_at + "Z")}
-  </span>
-
-  <span>
-    {new Date(item.created_at + "Z").toLocaleString(
-      "en-KE",
-      {
-        timeZone: "Africa/Nairobi",
-        day: "numeric",
-        month: "short",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-      }
-    )}
-  </span>
-</div>
-          </div>
-        ))
-      )}
+      <span>
+        {new Date(item.created_at + "Z").toLocaleString(
+          "en-KE",
+          {
+            timeZone: "Africa/Nairobi",
+            day: "numeric",
+            month: "short",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+          }
+        )}
+      </span>
+    </div>
+  </div>
+);
+})
+)
     </main>
   );
               }
