@@ -281,9 +281,7 @@ return (
       </div>
 
     </div>
-
-</div>
-
+      
       <p
         style={{
           marginTop: "10px",
