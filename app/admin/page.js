@@ -282,17 +282,7 @@ return (
 
     </div>
       
-      <p
-        style={{
-          marginTop: "10px",
-          color: "#D4AF37"
-        }}
-      >
-        Welcome Administrator
-      </p>
-    </div>
-
-    <div
+      <div
       style={{
         display: "grid",
         gridTemplateColumns: "repeat(2,1fr)",
