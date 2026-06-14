@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabase";
 
 export default function AdminPage() {
   const ADMIN_PIN = "123456";
@@ -8,6 +9,14 @@ export default function AdminPage() {
   const [pin, setPin] = useState("");
   const [showPin, setShowPin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const [usersCount, setUsersCount] = useState(0);
+const [depositsCount, setDepositsCount] = useState(0);
+const [withdrawalsCount, setWithdrawalsCount] = useState(0);
+const [investmentsCount, setInvestmentsCount] = useState(0);
+
+const [pendingDeposits, setPendingDeposits] = useState(0);
+const [pendingWithdrawals, setPendingWithdrawals] = useState(0);
 
   function handleLogin() {
     if (pin === ADMIN_PIN) {
@@ -135,7 +144,78 @@ export default function AdminPage() {
   );
             }
 
-  return (
+  useEffect(() => {
+  if (!loggedIn) return;
+
+  async function loadStats() {
+
+    // Users
+    const { count: users } = await supabase
+      .from("users")
+      .select("*", {
+        count: "exact",
+        head: true,
+      });
+
+    setUsersCount(users || 0);
+
+    // Deposits
+    const { count: deposits } = await supabase
+      .from("deposits")
+      .select("*", {
+        count: "exact",
+        head: true,
+      });
+
+    setDepositsCount(deposits || 0);
+
+    // Withdrawals
+    const { count: withdrawals } = await supabase
+      .from("withdrawals")
+      .select("*", {
+        count: "exact",
+        head: true,
+      });
+
+    setWithdrawalsCount(withdrawals || 0);
+
+    // Investments
+    const { count: investments } = await supabase
+      .from("investments")
+      .select("*", {
+        count: "exact",
+        head: true,
+      });
+
+    setInvestmentsCount(investments || 0);
+
+    // Pending deposits
+    const { count: pendingDep } = await supabase
+      .from("deposits")
+      .select("*", {
+        count: "exact",
+        head: true,
+      })
+      .eq("status", "PENDING");
+
+    setPendingDeposits(pendingDep || 0);
+
+    // Pending withdrawals
+    const { count: pendingWith } = await supabase
+      .from("withdrawals")
+      .select("*", {
+        count: "exact",
+        head: true,
+      })
+      .eq("status", "PENDING");
+
+    setPendingWithdrawals(pendingWith || 0);
+  }
+
+  loadStats();
+}, [loggedIn]);
+
+return (
   <main className="container">
 
     <div
