@@ -227,16 +227,7 @@ return (
         marginBottom: "20px"
       }}
     >
-      <div
-  style={{
-    background: "linear-gradient(135deg,#0A3D91,#06275e)",
-    color: "#fff",
-    borderRadius: "20px",
-    padding: "20px",
-    marginBottom: "20px"
-  }}
->
-  <h1>🛠 Admin Dashboard</h1>
+      <h1>🛠 Admin Dashboard</h1>
 
   <p
     style={{
@@ -246,6 +237,47 @@ return (
   >
     Welcome Administrator
   </p>
+</div>
+
+      <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(2,1fr)",
+    gap: "12px",
+    marginBottom: "20px"
+  }}
+>
+
+  <div className="stat-card">
+    <h2>{usersCount}</h2>
+    <p>Users</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>{depositsCount}</h2>
+    <p>Deposits</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>{withdrawalsCount}</h2>
+    <p>Withdrawals</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>{investmentsCount}</h2>
+    <p>Investments</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>{pendingDeposits}</h2>
+    <p>Pending Deposits</p>
+  </div>
+
+  <div className="stat-card">
+    <h2>{pendingWithdrawals}</h2>
+    <p>Pending Withdrawals</p>
+  </div>
+
 </div>
 
       <p
