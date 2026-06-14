@@ -147,7 +147,26 @@ export default function AdminPage() {
         marginBottom: "20px"
       }}
     >
-      <h1>🛠 Admin Dashboard</h1>
+      <div
+  style={{
+    background: "linear-gradient(135deg,#0A3D91,#06275e)",
+    color: "#fff",
+    borderRadius: "20px",
+    padding: "20px",
+    marginBottom: "20px"
+  }}
+>
+  <h1>🛠 Admin Dashboard</h1>
+
+  <p
+    style={{
+      marginTop: "10px",
+      color: "#D4AF37"
+    }}
+  >
+    Welcome Administrator
+  </p>
+</div>
 
       <p
         style={{
