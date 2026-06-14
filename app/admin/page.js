@@ -70,9 +70,8 @@ const [totalWithdrawn, setTotalWithdrawn] = useState(0);
         .eq("status", "PENDING");
 
       setPendingWithdrawals(pendingWith || 0);
-    }
 
-    // Total balance
+      // Total balance
 const { data: usersData } = await supabase
   .from("users")
   .select("balance");
@@ -109,7 +108,8 @@ setTotalWithdrawn(
     0
   ) || 0
 );
-
+    }
+    
     loadStats();
   }, [loggedIn]);
 
