@@ -72,7 +72,7 @@ export default function AdminUsers() {
           >
             <span><strong>Joined:</strong></span>
             <span>
-              {new Date(user.created_at).toLocaleString(
+              {new Date(user.created_at + "Z").toLocaleString(
                 "en-KE",
                 { timeZone: "Africa/Nairobi" }
               )}
