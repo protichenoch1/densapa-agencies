@@ -130,20 +130,23 @@ if (!savedUser.id) return;
     if (!user?.id) return;
 
     const { error } = await supabase
-      .from("notifications")
-      .update({
-        is_read: true,
-      })
-      .eq("user_id", user.id)
-      .eq("is_read", false);
+    const { data, error } = await supabase
+  .from("notifications")
+  .update({
+    is_read: true,
+  })
+  .eq("user_id", user.id)
+  .select();
 
-    console.log(error);
-    alert(JSON.stringify(error));
+console.log(data);
+console.log(error);
 
-    if (error) {
-      alert(error.message);
-      return;
-    }
+alert(JSON.stringify(data));
+
+if (error) {
+  alert(error.message);
+  return;
+}
 
     // Update UI immediately
     setNotifications((prev) =>
