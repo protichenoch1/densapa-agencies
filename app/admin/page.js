@@ -216,7 +216,6 @@ const [pendingWithdrawals, setPendingWithdrawals] = useState(0);
 }, [loggedIn]);
 
 return (
-return (
   <main className="container">
 
     {/* Blue Header */}
