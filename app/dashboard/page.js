@@ -556,12 +556,12 @@ investments.filter(
 
         <a href="/invite" className="action-card">
           <div style={{ fontSize: "20px" }}>👥</div>
-          Invite
+          Invite Friends
         </a>
 
         <a href="/records" className="action-card">
           <div style={{ fontSize: "20px" }}>📋</div>
-          Records
+          My Investments
         </a>
 
       </div>
