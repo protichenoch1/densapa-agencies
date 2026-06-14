@@ -144,6 +144,23 @@ export default function MyInvestments() {
   Total Return: KES {Number(item.total_return).toLocaleString()}
 </p>
 
+  <p>
+  Earnings Paid: {item.earnings_paid || 0} Days
+</p>
+
+<p>
+  Days Remaining:{" "}
+  {Number(item.days) - Number(item.earnings_paid || 0)} Days
+</p>
+
+<p>
+  Earnings Received: KES{" "}
+  {(
+    Number(item.daily_income) *
+    Number(item.earnings_paid || 0)
+  ).toLocaleString()}
+</p>
+
 <p
   style={{
     fontSize: "12px",
@@ -151,6 +168,7 @@ export default function MyInvestments() {
   }}
 >
   
+  <p>
   <p>
   Date:{" "}
   {new Date(item.created_at + "Z").toLocaleDateString(
