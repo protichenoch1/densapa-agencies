@@ -5,19 +5,22 @@ import { supabase } from "../../lib/supabase";
 
 export default function NotificationsPage() {
   const [notifications, setNotifications] = useState([]);
-
-  const user = JSON.parse(
-    localStorage.getItem("user") || "{}"
-  );
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (!user.id) return;
+    const savedUser = JSON.parse(
+  localStorage.getItem("user") || "{}"
+);
+
+setUser(savedUser);
+
+if (!savedUser.id) return;
 
     async function loadNotifications() {
       const { data, error } = await supabase
         .from("notifications")
         .select("*")
-        .eq("user_id", user.id)
+        .eq("user_id", savedUser.id)
         .order("created_at", {
           ascending: false,
         });
@@ -37,7 +40,7 @@ export default function NotificationsPage() {
           event: "INSERT",
           schema: "public",
           table: "notifications",
-          filter: `user_id=eq.${user.id}`,
+          filter: `user_id=eq.${savedUser.id}`
         },
         (payload) => {
           setNotifications((prev) => [
@@ -122,38 +125,40 @@ export default function NotificationsPage() {
       </div>
 
       <button
-        onClick={async () => {
-          await supabase
-            .from("notifications")
-            .update({
-              is_read: true,
-            })
-            .eq("user_id", user.id)
-            .eq("is_read", false);
+  onClick={async () => {
+    if (!user?.id) return;
 
-          setNotifications((prev) =>
-            prev.map((item) => ({
-              ...item,
-              is_read: true,
-            }))
-          );
+    await supabase
+      .from("notifications")
+      .update({
+        is_read: true,
+      })
+      .eq("user_id", user.id)
+      .eq("is_read", false);
 
-          window.dispatchEvent(
-            new Event("notifications-read")
-          );
-        }}
-        style={{
-          background: "#0A3D91",
-          color: "#fff",
-          border: "none",
-          borderRadius: "10px",
-          padding: "8px 15px",
-          marginBottom: "15px",
-          fontSize: "13px",
-        }}
-      >
-        ✓ Mark all as read
-      </button>
+    setNotifications((prev) =>
+      prev.map((item) => ({
+        ...item,
+        is_read: true,
+      }))
+    );
+
+    window.dispatchEvent(
+      new Event("notifications-read")
+    );
+  }}
+  style={{
+    background: "#0A3D91",
+    color: "#fff",
+    border: "none",
+    borderRadius: "10px",
+    padding: "8px 15px",
+    marginBottom: "15px",
+    fontSize: "13px"
+  }}
+>
+  ✓ Mark all as read
+</button>
 
       {notifications.length === 0 ? (
         <div className="announcement">
