@@ -128,18 +128,19 @@ if (!savedUser.id) return;
   onClick={async () => {
     if (!user?.id) return;
 
-    await supabase
-      .from("notifications")
-      .update({
-        is_read: true,
-      })
-      .eq("user_id", user.id)
-      .eq("is_read", false);
+    const { error } = await supabase
+  .from("notifications")
+  .update({
+    is_read: true,
+  })
+  .eq("user_id", user.id)
+  .eq("is_read", false);
 
-    setNotifications((prev) =>
-      prev.map((item) => ({
-        ...item,
-        is_read: true,
+console.log(error);
+
+if (error) {
+  alert(error.message);
+            }
       }))
     );
 
