@@ -17,6 +17,10 @@ export default function AdminPage() {
   const [pendingDeposits, setPendingDeposits] = useState(0);
   const [pendingWithdrawals, setPendingWithdrawals] = useState(0);
 
+  const [totalBalance, setTotalBalance] = useState(0);
+const [totalDeposited, setTotalDeposited] = useState(0);
+const [totalWithdrawn, setTotalWithdrawn] = useState(0);
+
   function handleLogin() {
     if (pin === ADMIN_PIN) {
       setLoggedIn(true);
@@ -67,6 +71,44 @@ export default function AdminPage() {
 
       setPendingWithdrawals(pendingWith || 0);
     }
+
+    // Total balance
+const { data: usersData } = await supabase
+  .from("users")
+  .select("balance");
+
+setTotalBalance(
+  usersData?.reduce(
+    (sum, user) => sum + Number(user.balance || 0),
+    0
+  ) || 0
+);
+
+// Total deposited
+const { data: depositsData } = await supabase
+  .from("deposits")
+  .select("amount")
+  .eq("status", "SUCCESSFUL");
+
+setTotalDeposited(
+  depositsData?.reduce(
+    (sum, deposit) => sum + Number(deposit.amount || 0),
+    0
+  ) || 0
+);
+
+// Total withdrawn
+const { data: withdrawalsData } = await supabase
+  .from("withdrawals")
+  .select("amount")
+  .eq("status", "SUCCESSFUL");
+
+setTotalWithdrawn(
+  withdrawalsData?.reduce(
+    (sum, withdrawal) => sum + Number(withdrawal.amount || 0),
+    0
+  ) || 0
+);
 
     loadStats();
   }, [loggedIn]);
@@ -198,14 +240,19 @@ export default function AdminPage() {
       </div>
 
       <div className="stat-card">
-        <h2>{depositsCount}</h2>
-        <p>Deposits</p>
-      </div>
+  <h2>KES {totalBalance.toLocaleString()}</h2>
+  <p>Total Balance</p>
+</div>
 
-      <div className="stat-card">
-        <h2>{withdrawalsCount}</h2>
-        <p>Withdrawals</p>
-      </div>
+<div className="stat-card">
+  <h2>KES {totalDeposited.toLocaleString()}</h2>
+  <p>Total Deposited</p>
+</div>
+
+<div className="stat-card">
+  <h2>KES {totalWithdrawn.toLocaleString()}</h2>
+  <p>Total Withdrawn</p>
+</div>
 
       <div className="stat-card">
         <h2>{investmentsCount}</h2>
