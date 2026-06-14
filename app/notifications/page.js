@@ -144,13 +144,6 @@ if (!savedUser.id) return;
       return;
     }
 
-    setNotifications((prev) =>
-  prev.map((item) => ({
-    ...item,
-    is_read: true,
-  }))
-);
-
     // Update UI immediately
     setNotifications((prev) =>
       prev.map((item) => ({
