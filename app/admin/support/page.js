@@ -63,7 +63,24 @@ usersData.push({
             marginTop: "15px",
           }}
         >
-          <h3>{user.full_name}</h3>
+          <h3>
+  {user.full_name}
+
+  {user.unread > 0 && (
+    <span
+      style={{
+        background: "red",
+        color: "#fff",
+        borderRadius: "50%",
+        padding: "4px 10px",
+        fontSize: "12px",
+        marginLeft: "10px",
+      }}
+    >
+      {user.unread}
+    </span>
+  )}
+</h3>
 
           <p>{user.phone_number}</p>
 
