@@ -99,7 +99,8 @@ return;
     >
       <div
         style={{
-          background: "#fff",
+          background: "rgba(255,255,255,0.95)",
+          backdropFilter: "blur(10px)",
           width: "100%",
           maxWidth: "420px",
           borderRadius: "25px",
