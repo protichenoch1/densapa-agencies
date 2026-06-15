@@ -20,6 +20,30 @@ export default function SupportPage() {
     }
   }, []);
 
+  useEffect(() => {
+  if (!user?.id) return;
+
+  const channel = supabase
+    .channel("support-chat")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "support_chat",
+        filter: `user_id=eq.${user.id}`,
+      },
+      () => {
+        loadMessages(user.id);
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, [user]);
+
   async function loadMessages(userId) {
     const { data } = await supabase
       .from("support_chat")
