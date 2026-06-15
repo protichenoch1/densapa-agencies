@@ -249,8 +249,8 @@ return;
           </a>
         </p>
       </div>
-              {showPopup && (
-  <div
+    {showPopup && (
+   <div
     style={{
       position: "fixed",
       top: "20px",
@@ -259,14 +259,15 @@ return;
       background: popupColor,
       color: "#fff",
       padding: "15px 25px",
-      borderRadius: "12px",
+      borderRadius: "15px",
       fontWeight: "bold",
       zIndex: 9999,
-      boxShadow: "0 5px 15px rgba(0,0,0,.2)"
+      boxShadow: "0 5px 15px rgba(0,0,0,.2)",
+      animation: "slideDown .4s ease"
     }}
   >
     {popupMessage}
-  </div>
+   </div>
 )}
     </div>
   );
