@@ -864,7 +864,30 @@ setShowModal(false);
         Success
       </h2>
         
-{showError && (
+          <p
+        style={{
+          marginTop: "10px",
+          color: "#555"
+        }}
+      >
+        {successMessage}
+      </p>
+
+      <button
+        className="invest-btn"
+        style={{
+          marginTop: "20px",
+          width: "100%"
+        }}
+        onClick={() => setShowSuccess(false)}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
+
+  {showError && (
   <div
     style={{
       position: "fixed",
@@ -918,33 +941,11 @@ setShowModal(false);
       <button
         className="invest-btn"
         style={{
-          marginTop: "20px",
           width: "100%",
+          marginTop: "20px",
           background: "#dc3545"
         }}
         onClick={() => setShowError(false)}
-      >
-        OK
-      </button>
-    </div>
-  </div>
-)}
-      <p
-        style={{
-          marginTop: "10px",
-          color: "#555"
-        }}
-      >
-        {successMessage}
-      </p>
-
-      <button
-        className="invest-btn"
-        style={{
-          marginTop: "20px",
-          width: "100%"
-        }}
-        onClick={() => setShowSuccess(false)}
       >
         OK
       </button>
