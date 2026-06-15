@@ -5,6 +5,7 @@ import { supabase } from "../../../lib/supabase";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadUsers();
@@ -22,8 +23,32 @@ export default function AdminUsers() {
   return (
     <main className="container">
       <h1>👥 Users</h1>
+  <input
+  type="text"
+  placeholder="Search by name or phone..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  style={{
+    width: "100%",
+    padding: "12px",
+    marginTop: "15px",
+    marginBottom: "20px",
+    border: "1px solid #ddd",
+    borderRadius: "10px"
+  }}
+/>
 
-      {users.map((user) => (
+      {users
+  .filter(
+    (user) =>
+      user.full_name
+        ?.toLowerCase()
+        .includes(search.toLowerCase()) ||
+      user.phone_number
+        ?.toLowerCase()
+        .includes(search.toLowerCase())
+  )
+  .map((user) => (
         <div
           key={user.id}
           className="announcement"
