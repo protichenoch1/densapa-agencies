@@ -124,6 +124,19 @@ export default function AccountPage() {
         >
           👨‍👩‍👧‍👦 My Team
         </a>
+
+            <a
+  href="/support"
+  className="invest-btn"
+  style={{
+    display: "block",
+    textAlign: "center",
+    textDecoration: "none",
+    marginTop: "10px"
+  }}
+>
+  💬 Customer Support
+</a>
       </div>
 
       <button
