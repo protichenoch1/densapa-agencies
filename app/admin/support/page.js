@@ -33,10 +33,18 @@ export default function AdminSupport() {
         .single();
 
       if (user) {
-        usersData.push({
-          id,
-          ...user,
-        });
+        const { count } = await supabase
+  .from("support_chat")
+  .select("*", { count: "exact", head: true })
+  .eq("user_id", id)
+  .eq("sender", "USER")
+  .eq("is_read", false);
+
+usersData.push({
+  id,
+  ...user,
+  unread: count || 0,
+});
       }
     }
 
