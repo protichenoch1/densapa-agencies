@@ -51,6 +51,27 @@ export default function AdminUsers() {
             <span>{user.phone_number}</span>
           </div>
 
+            <div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    marginBottom: "8px"
+  }}
+>
+  <span><strong>Status:</strong></span>
+  <span
+    style={{
+      background: "#28a745",
+      color: "#fff",
+      padding: "4px 10px",
+      borderRadius: "20px",
+      fontSize: "12px"
+    }}
+  >
+    ACTIVE
+  </span>
+</div>
+
           <div
             style={{
               display: "flex",
@@ -59,9 +80,14 @@ export default function AdminUsers() {
             }}
           >
             <span><strong>Balance:</strong></span>
-            <span>
-              KES {Number(user.balance || 0).toLocaleString()}
-            </span>
+            <span
+  style={{
+    color: "#28a745",
+    fontWeight: "bold"
+  }}
+>
+  KES {Number(user.balance || 0).toLocaleString()}
+</span>
           </div>
 
           <div
