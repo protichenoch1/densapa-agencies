@@ -1,85 +1,76 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "../../../lib/supabase";
 
-export default function AdminSupportPage() {
-  const [messages, setMessages] = useState([]);
-  const [reply, setReply] = useState("");
-
-  async function loadMessages() {
-    const { data } = await supabase
-      .from("support_chat")
-      .select("*")
-      .order("created_at", { ascending: true });
-
-    setMessages(data || []);
-  }
+export default function AdminSupport() {
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    loadMessages();
+    loadUsers();
   }, []);
 
-  async function sendReply(userId) {
-    if (!reply.trim()) return;
+  async function loadUsers() {
+    const { data } = await supabase
+      .from("support_chat")
+      .select("user_id")
+      .order("created_at", { ascending: false });
 
-    await supabase.from("support_chat").insert([
-      {
-        user_id: userId,
-        sender: "ADMIN",
-        message: reply,
-      },
-    ]);
+    if (!data) return;
 
-    setReply("");
-    loadMessages();
+    const uniqueUsers = [
+      ...new Set(data.map((item) => item.user_id)),
+    ];
+
+    const usersData = [];
+
+    for (const id of uniqueUsers) {
+      const { data: user } = await supabase
+        .from("users")
+        .select("full_name, phone_number")
+        .eq("id", id)
+        .single();
+
+      if (user) {
+        usersData.push({
+          id,
+          ...user,
+        });
+      }
+    }
+
+    setUsers(usersData);
   }
 
   return (
     <main className="container">
-      <h1>💬 Customer Support Admin</h1>
+      <h1>💬 Customer Support</h1>
 
-      {messages.map((msg) => (
+      {users.map((user) => (
         <div
-          key={msg.id}
+          key={user.id}
           className="announcement"
-          style={{ marginTop: "15px" }}
+          style={{
+            marginTop: "15px",
+          }}
         >
-          <p>
-            <strong>User ID:</strong> {msg.user_id}
-          </p>
+          <h3>{user.full_name}</h3>
 
-          <p>
-            <strong>{msg.sender}:</strong> {msg.message}
-          </p>
+          <p>{user.phone_number}</p>
 
-          {msg.sender === "USER" && (
-            <>
-              <input
-                type="text"
-                placeholder="Type reply..."
-                value={reply}
-                onChange={(e) => setReply(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  marginTop: "10px",
-                  borderRadius: "10px",
-                  border: "1px solid #ddd",
-                }}
-              />
-
-              <button
-                className="invest-btn"
-                style={{ marginTop: "10px" }}
-                onClick={() => sendReply(msg.user_id)}
-              >
-                Send Reply
-              </button>
-            </>
-          )}
+          <Link href={`/admin/support/${user.id}`}>
+            <button
+              className="invest-btn"
+              style={{
+                marginTop: "10px",
+              }}
+            >
+              Open Chat
+            </button>
+          </Link>
         </div>
       ))}
     </main>
   );
-    }
+}
