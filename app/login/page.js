@@ -9,6 +9,9 @@ export default function Login() {
   const [pin, setPin] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPin, setShowPin] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+const [popupMessage, setPopupMessage] = useState("");
+const [popupColor, setPopupColor] = useState("#28a745");
 
   const router = useRouter();
   
@@ -16,14 +19,28 @@ export default function Login() {
   e.preventDefault();
 
   if (!/^0(1|7)\d{8}$/.test(phoneNumber)) {
-    alert("Enter a valid 10-digit phone number");
-    return;
-  }
+    setPopupColor("#D4AF37");
+setPopupMessage("⚠ Enter a valid 10-digit phone number");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
+    }
 
   if (pin.length !== 4) {
-    alert("PIN must be exactly 4 digits");
-    return;
-  }
+    setPopupColor("#D4AF37");
+setPopupMessage("⚠ PIN must be exactly 4 digits");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
+    }
 
   setLoading(true);
 
@@ -39,15 +56,29 @@ export default function Login() {
   setLoading(false);
 
   if (error || !data) {
-    alert("Invalid phone number or PIN");
-    return;
+    setPopupColor("#dc3545");
+setPopupMessage("❌ Invalid phone number or PIN");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
   }
 
   localStorage.setItem("user", JSON.stringify(data));
 
-    alert("✅ Login successful!");
+    setPopupColor("#28a745");
+setPopupMessage("✅ Login successful!");
+setShowPopup(true);
 
+setTimeout(() => {
+  setShowPopup(false);
   router.push("/dashboard");
+}, 2000);
+
+return;
   }
 
   return (
@@ -218,6 +249,25 @@ export default function Login() {
           </a>
         </p>
       </div>
+              {showPopup && (
+  <div
+    style={{
+      position: "fixed",
+      top: "20px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      background: popupColor,
+      color: "#fff",
+      padding: "15px 25px",
+      borderRadius: "12px",
+      fontWeight: "bold",
+      zIndex: 9999,
+      boxShadow: "0 5px 15px rgba(0,0,0,.2)"
+    }}
+  >
+    {popupMessage}
+  </div>
+)}
     </div>
   );
 }
