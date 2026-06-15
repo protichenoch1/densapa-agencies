@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
+import Popup from "../components/Popup";
 
 export default function DepositPage() {
   const [image, setImage] = useState(null);
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+const [popupMessage, setPopupMessage] = useState("");
+const [popupColor, setPopupColor] = useState("#28a745");
 
   return (
     <main className="container">
@@ -116,22 +120,43 @@ export default function DepositPage() {
   }}
   onClick={async () => {
   if (!amount) {
-    alert("Enter deposit amount");
-    return;
+  setPopupColor("#D4AF37");
+  setPopupMessage("⚠ Enter deposit amount");
+  setShowPopup(true);
+
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
+
+  return;
   }
 
     if (Number(amount) < 200) {
-  alert("Minimum deposit is KES 200");
+  setPopupColor("#D4AF37");
+  setPopupMessage("⚠ Minimum deposit is KES 200");
+  setShowPopup(true);
+
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
+
   return;
-            }
+        }
 
   const user = JSON.parse(
     localStorage.getItem("user") || "{}"
   );
 
   if (!user.id) {
-    alert("Please login again");
-    return;
+  setPopupColor("#dc3545");
+  setPopupMessage("❌ Please login again");
+  setShowPopup(true);
+
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
+
+  return;
   }
 
   setLoading(true);
@@ -149,9 +174,17 @@ export default function DepositPage() {
 
   if (error) {
   setLoading(false);
-  alert(error.message);
+
+  setPopupColor("#dc3545");
+  setPopupMessage(`❌ ${error.message}`);
+  setShowPopup(true);
+
+  setTimeout(() => {
+    setShowPopup(false);
+  }, 3000);
+
   return;
-  }
+    }
 
     setLoading(false);
 
@@ -166,7 +199,13 @@ export default function DepositPage() {
     },
   ]);
 
-    alert("Deposit submitted successfully");
+    setPopupColor("#28a745");
+setPopupMessage("✅ Deposit submitted successfully");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
 
   setAmount("");
 }}
