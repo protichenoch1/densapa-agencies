@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
+import Popup from "../components/Popup";
 
 export default function Home() {
   const [tab, setTab] = useState("basic");
@@ -12,6 +13,9 @@ const [showModal, setShowModal] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
   const [showError, setShowError] = useState(false);
 const [errorMessage, setErrorMessage] = useState("");
+  const [popupTitle, setPopupTitle] = useState("");
+const [popupColor, setPopupColor] = useState("#28a745");
+const [popupIcon, setPopupIcon] = useState("");
   
   const [loading, setLoading] = useState(true);
 
@@ -713,9 +717,12 @@ investments.filter(
 );
           
           if (Number(user?.balance || 0) < planAmount) {
+  setPopupTitle("Error");
   setErrorMessage("Deposit money to invest on this plan");
-setShowError(true);
-return;
+  setPopupColor("#dc3545");
+  setPopupIcon("❌");
+  setShowError(true);
+  return;
           }
 
   investments.push({
@@ -759,9 +766,12 @@ return;
   ]);
 
 if (error) {
+  setPopupTitle("Error");
   setErrorMessage(error.message);
-setShowError(true);
-return;
+  setPopupColor("#dc3545");
+  setPopupIcon("❌");
+  setShowError(true);
+  return;
       }
           
     await supabase
@@ -795,9 +805,12 @@ localStorage.setItem(
 
 setUser(updatedUser);
 
-  setSuccessMessage(
+  setPopupTitle("Success");
+setSuccessMessage(
   "Your investment has been activated successfully."
 );
+setPopupColor("#28a745");
+setPopupIcon("✅");
 
 setShowSuccess(true);
 setShowModal(false);
@@ -822,136 +835,24 @@ setShowModal(false);
   </div>
 )}
 
-  {showSuccess && (
-  <div
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: "rgba(0,0,0,0.5)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      zIndex: 10000
-    }}
-  >
-    <div
-      style={{
-        background: "#fff",
-        padding: "25px",
-        borderRadius: "20px",
-        width: "90%",
-        maxWidth: "320px",
-        textAlign: "center"
-      }}
-    >
-      <div
-        style={{
-          fontSize: "50px",
-          marginBottom: "10px"
-        }}
-      >
-        ✅
-      </div>
+<Popup
+  show={showSuccess}
+  title={popupTitle}
+  message={successMessage}
+  color={popupColor}
+  icon={popupIcon}
+  onClose={() => setShowSuccess(false)}
+/>
 
-      <h2
-        style={{
-          color: "#0A3D91"
-        }}
-      >
-        Success
-      </h2>
-        
-          <p
-        style={{
-          marginTop: "10px",
-          color: "#555"
-        }}
-      >
-        {successMessage}
-      </p>
-
-      <button
-        className="invest-btn"
-        style={{
-          marginTop: "20px",
-          width: "100%"
-        }}
-        onClick={() => setShowSuccess(false)}
-      >
-        OK
-      </button>
-    </div>
-  </div>
-)}
-
-  {showError && (
-  <div
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: "rgba(0,0,0,0.5)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      zIndex: 10000
-    }}
-  >
-    <div
-      style={{
-        background: "#fff",
-        padding: "25px",
-        borderRadius: "20px",
-        width: "90%",
-        maxWidth: "320px",
-        textAlign: "center"
-      }}
-    >
-      <div
-        style={{
-          fontSize: "50px",
-          marginBottom: "10px"
-        }}
-      >
-        ❌
-      </div>
-
-      <h2
-        style={{
-          color: "#dc3545"
-        }}
-      >
-        Error
-      </h2>
-
-      <p
-        style={{
-          marginTop: "10px",
-          color: "#555"
-        }}
-      >
-        {errorMessage}
-      </p>
-
-      <button
-        className="invest-btn"
-        style={{
-          width: "100%",
-          marginTop: "20px",
-          background: "#dc3545"
-        }}
-        onClick={() => setShowError(false)}
-      >
-        OK
-      </button>
-    </div>
-  </div>
-)}
+<Popup
+  show={showError}
+  title={popupTitle}
+  message={errorMessage}
+  color={popupColor}
+  icon={popupIcon}
+  onClose={() => setShowError(false)}
+/>
+    
   <BottomNav />
     </main>
   );
