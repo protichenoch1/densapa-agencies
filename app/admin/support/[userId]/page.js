@@ -49,13 +49,20 @@ export default function ChatPage() {
     setUser(userData);
 
     // Load messages
-    const { data } = await supabase
-      .from("support_chat")
-      .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: true });
+const { data } = await supabase
+  .from("support_chat")
+  .select("*")
+  .eq("user_id", userId)
+  .order("created_at", { ascending: true });
 
-    setMessages(data || []);
+// Mark all user messages as read
+await supabase
+  .from("support_chat")
+  .update({ is_read: true })
+  .eq("user_id", userId)
+  .eq("sender", "USER");
+
+setMessages(data || []);
   }
 
   async function sendReply() {
