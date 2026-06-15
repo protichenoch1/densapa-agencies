@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
-import toast from "react-hot-toast";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -46,7 +45,7 @@ export default function Login() {
 
   localStorage.setItem("user", JSON.stringify(data));
 
-    toast.success("Login successful");
+    alert("✅ Login successful!");
 
   router.push("/dashboard");
   }
