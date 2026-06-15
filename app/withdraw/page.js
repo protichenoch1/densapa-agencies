@@ -20,18 +20,30 @@ const [popupMessage, setPopupMessage] = useState("");
 
   async function handleWithdraw() {
   if (!amount || Number(amount) <= 0) {
-    alert("Enter a valid amount");
-    return;
+    setPopupTitle("Warning");
+setPopupMessage("Enter a valid amount");
+setPopupColor("#D4AF37");
+setPopupIcon("⚠️");
+setShowPopup(true);
+return;
   }
 
   if (Number(amount) < 450) {
-    alert("Minimum withdrawal is KES 450");
-    return;
+    setPopupTitle("Warning");
+setPopupMessage("Minimum withdrawal is KES 450");
+setPopupColor("#D4AF37");
+setPopupIcon("⚠️");
+setShowPopup(true);
+return;
   }
 
   if (Number(amount) > Number(user.balance || 0)) {
-    alert("Insufficient balance");
-    return;
+    setPopupTitle("Error");
+setPopupMessage("Insufficient balance");
+setPopupColor("#dc3545");
+setPopupIcon("❌");
+setShowPopup(true);
+return;
   }
 
   setLoading(true);
@@ -57,8 +69,13 @@ const amountToReceive =
 
   if (error) {
     setLoading(false);
-    alert(error.message);
-    return;
+    setPopupTitle("Error");
+setPopupMessage(error.message);
+setPopupColor("#dc3545");
+setPopupIcon("❌");
+setShowPopup(true);
+setLoading(false);
+return;
   }
     
   const newBalance =
@@ -108,7 +125,12 @@ setUser(updatedUser);
   setAmount("");
   setLoading(false);
 
-  setPopupMessage("Withdrawal request submitted successfully");
+  setPopupTitle("Success");
+setPopupMessage(
+  `Withdrawal request submitted successfully. You will receive KES ${amountToReceive.toLocaleString()}.`
+);
+setPopupColor("#28a745");
+setPopupIcon("✅");
 setShowPopup(true);
   }
 
@@ -258,44 +280,14 @@ setShowPopup(true);
   📋 View Withdrawal History
 </a>
 
-    {showPopup && (
-  <div
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: "rgba(0,0,0,0.4)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 1000
-    }}
-  >
-    <div
-      style={{
-        background: "#fff",
-        padding: "25px",
-        borderRadius: "20px",
-        width: "90%",
-        maxWidth: "320px",
-        textAlign: "center"
-      }}
-    >
-      <h2 style={{ color: "#28a745" }}>✅ Success</h2>
-
-      <p>{popupMessage}</p>
-
-      <button
-        className="invest-btn"
-        onClick={() => setShowPopup(false)}
-      >
-        OK
-      </button>
-    </div>
-  </div>
-)}
+     <Popup
+  show={showPopup}
+  title={popupTitle}
+  message={popupMessage}
+  color={popupColor}
+  icon={popupIcon}
+  onClose={() => setShowPopup(false)}
+/>
 
     </main>
   );
