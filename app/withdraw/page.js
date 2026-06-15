@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import Popup from "../components/Popup";
 
 export default function WithdrawPage() {
   const [user, setUser] = useState(null);
@@ -9,6 +10,9 @@ const [amount, setAmount] = useState("");
 const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 const [popupMessage, setPopupMessage] = useState("");
+  const [popupTitle, setPopupTitle] = useState("");
+const [popupColor, setPopupColor] = useState("#28a745");
+const [popupIcon, setPopupIcon] = useState("✅");
 
   useEffect(() => {
   const savedUser = JSON.parse(
@@ -95,7 +99,11 @@ console.log("UPDATED DATA:", data);
 console.log("UPDATE ERROR:", updateError);
 
 if (updateError) {
-  alert(updateError.message);
+  setPopupTitle("Error");
+  setPopupMessage(updateError.message);
+  setPopupColor("#dc3545");
+  setPopupIcon("❌");
+  setShowPopup(true);
   setLoading(false);
   return;
 }
