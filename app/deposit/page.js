@@ -235,6 +235,12 @@ setTimeout(() => {
   </div>
 </a>
 
+    <Popup
+  show={showPopup}
+  message={popupMessage}
+  color={popupColor}
+/>
+
     </main>
   );
               }
