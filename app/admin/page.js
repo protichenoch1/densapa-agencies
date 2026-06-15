@@ -9,6 +9,7 @@ export default function AdminPage() {
   const [pin, setPin] = useState("");
   const [showPin, setShowPin] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [usersCount, setUsersCount] = useState(0);
   const [depositsCount, setDepositsCount] = useState(0);
@@ -21,12 +22,18 @@ export default function AdminPage() {
 const [totalDeposited, setTotalDeposited] = useState(0);
 const [totalWithdrawn, setTotalWithdrawn] = useState(0);
 
-  function handleLogin() {
+  async function handleLogin() {
+  setLoading(true);
+
+  setTimeout(() => {
     if (pin === ADMIN_PIN) {
       setLoggedIn(true);
     } else {
       alert("Wrong Admin PIN");
     }
+
+    setLoading(false);
+  }, 1500);
   }
 
   useEffect(() => {
@@ -180,21 +187,37 @@ setTotalWithdrawn(
             </button>
           </div>
 
-          <button
-            onClick={handleLogin}
-            style={{
-              width: "100%",
-              padding: "14px",
-              marginTop: "20px",
-              border: "none",
-              borderRadius: "12px",
-              background: "#D4AF37",
-              color: "#fff",
-              fontWeight: "bold"
-            }}
-          >
-            LOGIN
-          </button>
+{loading && (
+  <div
+    style={{
+      border: "4px solid #f3f3f3",
+      borderTop: "4px solid #0A3D91",
+      borderRadius: "50%",
+      width: "30px",
+      height: "30px",
+      animation: "spin 1s linear infinite",
+      margin: "20px auto"
+    }}
+  />
+)}
+  
+  <button
+  onClick={handleLogin}
+  disabled={loading}
+  style={{
+    width: "100%",
+    padding: "14px",
+    marginTop: "20px",
+    border: "none",
+    borderRadius: "12px",
+    background: "#D4AF37",
+    color: "#fff",
+    fontWeight: "bold",
+    cursor: "pointer"
+  }}
+>
+  {loading ? "⏳ Logging in..." : "LOGIN"}
+</button>
         </div>
       </div>
     );
