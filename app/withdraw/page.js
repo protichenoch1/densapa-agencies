@@ -7,6 +7,8 @@ export default function WithdrawPage() {
   const [user, setUser] = useState(null);
 const [amount, setAmount] = useState("");
 const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+const [popupMessage, setPopupMessage] = useState("");
 
   useEffect(() => {
   const savedUser = JSON.parse(
@@ -106,7 +108,8 @@ setUser(updatedUser);
   setAmount("");
   setLoading(false);
 
-  alert("Withdrawal request submitted successfully");
+  setPopupMessage("Withdrawal request submitted successfully");
+setShowPopup(true);
   }
 
   if (!user) {
@@ -254,6 +257,45 @@ setUser(updatedUser);
 >
   📋 View Withdrawal History
 </a>
+
+    {showPopup && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "rgba(0,0,0,0.4)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 1000
+    }}
+  >
+    <div
+      style={{
+        background: "#fff",
+        padding: "25px",
+        borderRadius: "20px",
+        width: "90%",
+        maxWidth: "320px",
+        textAlign: "center"
+      }}
+    >
+      <h2 style={{ color: "#28a745" }}>✅ Success</h2>
+
+      <p>{popupMessage}</p>
+
+      <button
+        className="invest-btn"
+        onClick={() => setShowPopup(false)}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
 
     </main>
   );
