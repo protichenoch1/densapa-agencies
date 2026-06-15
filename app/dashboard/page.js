@@ -10,6 +10,8 @@ export default function Home() {
 const [selectedPlan, setSelectedPlan] = useState(null);
 const [showModal, setShowModal] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [showError, setShowError] = useState(false);
+const [errorMessage, setErrorMessage] = useState("");
   
   const [loading, setLoading] = useState(true);
 
@@ -711,8 +713,9 @@ investments.filter(
 );
           
           if (Number(user?.balance || 0) < planAmount) {
-  alert("Insufficient balance");
-  return;
+  setErrorMessage("Deposit money to invest on this plan");
+setShowError(true);
+return;
           }
 
   investments.push({
@@ -756,9 +759,9 @@ investments.filter(
   ]);
 
 if (error) {
-  alert(error.message);
-  console.log(error);
-  return;
+  setErrorMessage(error.message);
+setShowError(true);
+return;
       }
           
     await supabase
@@ -860,7 +863,72 @@ setShowModal(false);
       >
         Success
       </h2>
+        
+{showError && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: "rgba(0,0,0,0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 10000
+    }}
+  >
+    <div
+      style={{
+        background: "#fff",
+        padding: "25px",
+        borderRadius: "20px",
+        width: "90%",
+        maxWidth: "320px",
+        textAlign: "center"
+      }}
+    >
+      <div
+        style={{
+          fontSize: "50px",
+          marginBottom: "10px"
+        }}
+      >
+        ❌
+      </div>
 
+      <h2
+        style={{
+          color: "#dc3545"
+        }}
+      >
+        Error
+      </h2>
+
+      <p
+        style={{
+          marginTop: "10px",
+          color: "#555"
+        }}
+      >
+        {errorMessage}
+      </p>
+
+      <button
+        className="invest-btn"
+        style={{
+          marginTop: "20px",
+          width: "100%",
+          background: "#dc3545"
+        }}
+        onClick={() => setShowError(false)}
+      >
+        OK
+      </button>
+    </div>
+  </div>
+)}
       <p
         style={{
           marginTop: "10px",
