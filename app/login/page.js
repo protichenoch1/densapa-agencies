@@ -147,6 +147,20 @@ export default function Login() {
   </button>
 </div>
 
+          {loading && (
+  <div
+    style={{
+      border: "4px solid #f3f3f3",
+      borderTop: "4px solid #0A3D91",
+      borderRadius: "50%",
+      width: "30px",
+      height: "30px",
+      animation: "spin 1s linear infinite",
+      margin: "20px auto",
+    }}
+  />
+)}
+          
           <button
             type="submit"
             disabled={loading}
