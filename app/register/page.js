@@ -110,13 +110,17 @@ if (existingUser) {
   return (
     <div
       style={{
-        minHeight: "100vh",
-        background: "linear-gradient(135deg,#0A3D91,#06275e)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "20px",
-      }}
+  minHeight: "100vh",
+  background:
+    "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/background.jpg')",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "20px",
+}}
     >
       <div
         style={{
