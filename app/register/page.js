@@ -112,7 +112,7 @@ if (existingUser) {
       style={{
   minHeight: "100vh",
   background:
-    "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/background.jpg')",
+    "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/background1.jpg')",
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
