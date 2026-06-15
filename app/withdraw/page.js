@@ -217,15 +217,27 @@ setUser(updatedUser);
         </p>
       </div>
 
-      <button
+      {loading && (
+  <div
+    style={{
+      border: "4px solid #f3f3f3",
+      borderTop: "4px solid #0A3D91",
+      borderRadius: "50%",
+      width: "30px",
+      height: "30px",
+      animation: "spin 1s linear infinite",
+      margin: "20px auto"
+    }}
+  />
+)}
+  
+  <button
   className="invest-btn"
   style={{ marginTop: "20px" }}
   onClick={handleWithdraw}
   disabled={loading}
 >
-  {loading
-    ? "Processing..."
-    : "SUBMIT WITHDRAWAL"}
+  {loading ? "Processing..." : "SUBMIT WITHDRAWAL"}
 </button>
 
   <a
