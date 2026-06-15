@@ -16,6 +16,28 @@ export default function ChatPage() {
     loadChat();
   }, []);
 
+  useEffect(() => {
+  const channel = supabase
+    .channel("admin-support-chat")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "support_chat",
+        filter: `user_id=eq.${userId}`,
+      },
+      () => {
+        loadChat();
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, []);
+
   async function loadChat() {
     // Load user details
     const { data: userData } = await supabase
