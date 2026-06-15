@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import Popup from "../components/Popup";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
