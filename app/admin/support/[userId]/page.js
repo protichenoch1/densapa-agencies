@@ -151,18 +151,27 @@ setMessages(data || []);
 
     <React.Fragment key={msg.id}>
   {showDate && (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      margin: "20px 0",
+    }}
+  >
     <div
       style={{
-        textAlign: "center",
-        margin: "20px 0",
-        color: "#888",
-        fontSize: "13px",
+        background: "#e5e5e5",
+        color: "#666",
+        padding: "6px 14px",
+        borderRadius: "20px",
+        fontSize: "12px",
         fontWeight: "bold",
       }}
     >
       {currentDate}
     </div>
-  )}
+  </div>
+)}
           <div
               style={{
               textAlign:
@@ -173,21 +182,22 @@ setMessages(data || []);
             }}
           >
             <div
-              style={{
-                display: "inline-block",
-                background:
-                  msg.sender === "ADMIN"
-                    ? "#0A3D91"
-                    : "#f1f1f1",
-                color:
-                  msg.sender === "ADMIN"
-                    ? "#fff"
-                    : "#000",
-                padding: "12px",
-                borderRadius: "15px",
-                maxWidth: "80%",
-              }}
-            >
+  style={{
+    display: "inline-block",
+    background:
+      msg.sender === "ADMIN"
+        ? "#DCF8C6"
+        : "#fff",
+    color: "#000",
+    padding: "10px 14px",
+    borderRadius:
+      msg.sender === "ADMIN"
+        ? "18px 18px 4px 18px"
+        : "18px 18px 18px 4px",
+    maxWidth: "75%",
+    boxShadow: "0 1px 3px rgba(0,0,0,.12)",
+  }}
+>
               <div>
   <div>{msg.message}</div>
 
