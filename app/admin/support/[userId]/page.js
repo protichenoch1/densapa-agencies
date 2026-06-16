@@ -95,6 +95,29 @@ setMessages(data || []);
     loadChat();
   }
 
+  function formatDate(dateString) {
+  const date = new Date(dateString);
+
+  const today = new Date();
+  const yesterday = new Date();
+
+  yesterday.setDate(today.getDate() - 1);
+
+  if (date.toDateString() === today.toDateString()) {
+    return "Today";
+  }
+
+  if (date.toDateString() === yesterday.toDateString()) {
+    return "Yesterday";
+  }
+
+  return date.toLocaleDateString([], {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+  }
+
   return (
     <main className="container">
       <h1>💬 Customer Support</h1>
@@ -118,9 +141,7 @@ setMessages(data || []);
     let lastDate = "";
 
     return messages.map((msg) => {
-      const currentDate = new Date(
-        msg.created_at
-      ).toLocaleDateString();
+      const currentDate = formatDate(msg.created_at);
 
       const showDate = currentDate !== lastDate;
 
