@@ -286,6 +286,45 @@ margin-bottom:3px;
   transform: none !important;
 }
 
+.support-container{
+  max-width:500px;
+  margin:auto;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  padding:15px;
+}
+
+.support-header{
+  background:#075E54;
+  color:white;
+  padding:15px 20px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
+  flex-shrink:0;
+}
+
+.support-messages{
+  flex:1;
+  overflow-y:auto;
+  min-height:0;
+  margin-top:20px;
+  background:#F5F5F5;
+  border-radius:15px;
+  padding:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.support-input{
+  flex-shrink:0;
+  background:white;
+  padding-top:15px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
