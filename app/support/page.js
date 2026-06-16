@@ -167,7 +167,7 @@ loadMessages();
   style={{
     background: "#075E54",
     color: "#fff",
-    padding: "15px 20px",
+    padding: "10px 15px",
     borderRadius: "15px",
     display: "flex",
     alignItems: "center",
