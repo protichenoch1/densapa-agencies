@@ -55,18 +55,30 @@ export default function SupportPage() {
   }
 
   async function sendMessage() {
-    if (!newMessage.trim()) return;
+  if (!newMessage.trim()) return;
 
-    await supabase.from("support_chat").insert([
+  // Get session id from localStorage
+  let sessionId = localStorage.getItem("support_session");
+
+  // Create one if it doesn't exist
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    localStorage.setItem("support_session", sessionId);
+  }
+
+  await supabase
+    .from("support_chat")
+    .insert([
       {
-        user_id: user.id,
+        session_id: sessionId,
+        phone_number: phoneNumber,
         sender: "USER",
         message: newMessage,
       },
     ]);
 
-    setNewMessage("");
-    loadMessages(user.id);
+  setNewMessage("");
+  loadMessages();
   }
 
   return (
