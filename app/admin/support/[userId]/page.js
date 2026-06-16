@@ -14,8 +14,10 @@ const userId = Array.isArray(params.userId)
   const [messages, setMessages] = useState([]);
   const [reply, setReply] = useState("");
   const [user, setUser] = useState(null);
+  const [typing, setTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
+  const typingTimeout = useRef(null);
 
   useEffect(() => {
   if (userId) {
@@ -158,15 +160,26 @@ setMessages(data || []);
         opacity: 0.9,
       }}
     >
-      {user?.phone_number}
+      🟢 Online • {user?.phone_number}
     </p>
+
+      <p
+    style={{
+      color: "#25D366",
+      fontSize: "13px",
+      marginTop: "3px",
+      fontStyle: "italic",
+    }}
+  >
+    typing...
+  </p>
   </div>
 </div>
 
       <div
   style={{
     marginTop: "20px",
-    background: "#ECE5DD",
+    background: "#F5F5F5",
     borderRadius: "15px",
     padding: "15px",
     height: "500px",
