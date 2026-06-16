@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { supabase } from "../../lib/supabase";
 
 export default function SupportPage() {
@@ -8,6 +9,8 @@ export default function SupportPage() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [typing, setTyping] = useState(false);
+  const typingTimeout = useRef(null);
 
   useEffect(() => {
   const savedUser = JSON.parse(
@@ -69,6 +72,14 @@ export default function SupportPage() {
     .order("created_at", { ascending: true });
 
   setMessages(data || []);
+
+    const adminTyping = data?.some(
+  (msg) =>
+    msg.sender === "ADMIN" &&
+    msg.typing === true
+);
+
+setTyping(adminTyping);
   }
 
   async function sendMessage() {
@@ -174,9 +185,30 @@ loadMessages();
           type="text"
           placeholder="Type your message..."
           value={newMessage}
-          onChange={(e) =>
-            setNewMessage(e.target.value)
-          }
+          onChange={async (e) => {
+  setNewMessage(e.target.value);
+
+  setTyping(true);
+
+  const sessionId =
+    localStorage.getItem("support_session");
+
+  await supabase
+    .from("support_chat")
+    .update({ typing: true })
+    .eq("session_id", sessionId);
+
+  clearTimeout(typingTimeout.current);
+
+  typingTimeout.current = setTimeout(async () => {
+    setTyping(false);
+
+    await supabase
+      .from("support_chat")
+      .update({ typing: false })
+      .eq("session_id", sessionId);
+  }, 2000);
+}}
           style={{
             flex: 1,
             padding: "12px",
