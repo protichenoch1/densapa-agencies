@@ -217,7 +217,7 @@ setMessages(data || []);
                 msg.sender === "ADMIN"
                   ? "right"
                   : "left",
-              marginBottom: "15px",
+              marginBottom: "8px",
             }}
           >
             <div
@@ -232,7 +232,10 @@ color: "#000",
 
 padding: "10px 14px",
 
-borderRadius: "12px",
+borderRadius:
+  msg.sender === "ADMIN"
+    ? "12px 12px 3px 12px"
+    : "12px 12px 12px 3px",
 
 maxWidth: "80%",
 
