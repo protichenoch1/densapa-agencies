@@ -384,6 +384,12 @@ setTotalWithdrawn(
     <p>View reports</p>
   </a>
 
+  <a href="/admin/support" className="stat-card">
+  <h1>💬</h1>
+  <h3>Support</h3>
+  <p>Customer chats</p>
+</a>
+
 </div>
 
   <div className="announcement" style={{ marginTop: "20px" }}>
