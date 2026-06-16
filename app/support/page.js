@@ -7,6 +7,7 @@ export default function SupportPage() {
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
     const savedUser = JSON.parse(
@@ -44,14 +45,18 @@ export default function SupportPage() {
   };
 }, [user]);
 
-  async function loadMessages(userId) {
-    const { data } = await supabase
-      .from("support_chat")
-      .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: true });
+  async function loadMessages() {
+  const sessionId = localStorage.getItem("support_session");
 
-    setMessages(data || []);
+  if (!sessionId) return;
+
+  const { data } = await supabase
+    .from("support_chat")
+    .select("*")
+    .eq("session_id", sessionId)
+    .order("created_at", { ascending: true });
+
+  setMessages(data || []);
   }
 
   async function sendMessage() {
@@ -132,6 +137,19 @@ export default function SupportPage() {
           marginTop: "20px",
         }}
       >
+        <input
+  type="tel"
+  placeholder="Enter your phone number"
+  value={phoneNumber}
+  onChange={(e) => setPhoneNumber(e.target.value)}
+  style={{
+    width: "100%",
+    padding: "12px",
+    borderRadius: "10px",
+    border: "1px solid #ddd",
+    marginBottom: "15px",
+  }}
+/>
         <input
           type="text"
           placeholder="Type your message..."
