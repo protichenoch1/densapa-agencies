@@ -224,17 +224,19 @@ setMessages(data || []);
   style={{
     display: "inline-block",
     background:
-      msg.sender === "ADMIN"
-        ? "#DCF8C6"
-        : "#fff",
-    color: "#000",
-    padding: "10px 14px",
-    borderRadius:
-      msg.sender === "ADMIN"
-        ? "18px 18px 4px 18px"
-        : "18px 18px 18px 4px",
-    maxWidth: "75%",
-    boxShadow: "0 1px 3px rgba(0,0,0,.12)",
+  msg.sender === "ADMIN"
+    ? "#DCF8C6"
+    : "#FFFFFF",
+
+color: "#000",
+
+padding: "10px 14px",
+
+borderRadius: "12px",
+
+maxWidth: "80%",
+
+boxShadow: "0 1px 2px rgba(0,0,0,.15)",
   }}
 >
               <div>
