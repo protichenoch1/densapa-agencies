@@ -163,7 +163,8 @@ setMessages(data || []);
       🟢 Online • {user?.phone_number}
     </p>
 
-      <p
+      {typing && (
+  <p
     style={{
       color: "#25D366",
       fontSize: "13px",
@@ -173,6 +174,7 @@ setMessages(data || []);
   >
     typing...
   </p>
+)}
   </div>
 </div>
 
@@ -305,9 +307,17 @@ boxShadow: "0 1px 2px rgba(0,0,0,.15)",
           type="text"
           placeholder="Type reply..."
           value={reply}
-          onChange={(e) =>
-            setReply(e.target.value)
-          }
+          onChange={(e) => {
+  setReply(e.target.value);
+
+  setTyping(true);
+
+  clearTimeout(typingTimeout.current);
+
+  typingTimeout.current = setTimeout(() => {
+    setTyping(false);
+  }, 2000);
+}}
           style={{
   flex: 1,
   padding: "14px 18px",
