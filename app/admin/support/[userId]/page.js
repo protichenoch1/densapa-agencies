@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import { supabase } from "../../../../lib/supabase";
 
@@ -107,7 +107,6 @@ setMessages(data || []);
     boxShadow: "0 5px 20px rgba(0,0,0,.08)",
   }}
 >
-        let lastDate = "";
 
         {messages.map((msg) => {
   const currentDate = new Date(
@@ -118,9 +117,11 @@ setMessages(data || []);
 
   lastDate = currentDate;
 
+          let lastDate = "";
+
   return (
 
-    <>
+    <React.Fragment key={msg.id}>
   {showDate && (
     <div
       style={{
@@ -135,8 +136,7 @@ setMessages(data || []);
     </div>
   )}
           <div
-            key={msg.id}
-            style={{
+              style={{
               textAlign:
                 msg.sender === "ADMIN"
                   ? "right"
@@ -185,7 +185,7 @@ setMessages(data || []);
 </div>
             </div>
           </div>
-        </>
+        </React.Fragment>
   );
 })}
 
