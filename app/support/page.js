@@ -152,7 +152,14 @@ loadMessages();
   }
   
   return (
-    <main className="container">
+    <main
+  style={{
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+  }}
+>
       <div
   style={{
     background: "#075E54",
@@ -163,6 +170,7 @@ loadMessages();
     alignItems: "center",
     gap: "15px",
     boxShadow: "0 3px 10px rgba(0,0,0,.15)",
+    flexShrink: 0,
   }}
 >
   <div
@@ -211,12 +219,12 @@ loadMessages();
 
       <div
   style={{
+    flex: 1,
+    overflowY: "auto",
     marginTop: "20px",
     background: "#F5F5F5",
     borderRadius: "15px",
     padding: "15px",
-    height: "500px",
-    overflowY: "auto",
     boxShadow: "0 5px 20px rgba(0,0,0,.08)",
   }}
 >
@@ -275,7 +283,15 @@ loadMessages();
           
       </div>
 
-    <input
+    <div
+  style={{
+    flexShrink: 0,
+    background: "#fff",
+    paddingTop: "15px",
+  }}
+>
+  
+  <input
   type="tel"
   placeholder="Enter your phone number"
   value={phoneNumber}
@@ -361,6 +377,7 @@ loadMessages();
   ➤
 </button>
       </div>
+    </div>
     </main>
   );
     }
