@@ -39,44 +39,42 @@ export default function ChatPage() {
 }, []);
 
   async function loadChat() {
-    // Load user details
-    const { data: userData } = await supabase
-      .from("users")
-      .select("full_name, phone_number")
-      .eq("id", userId)
-      .single();
-
-    setUser(userData);
-
     // Load messages
 const { data } = await supabase
   .from("support_chat")
   .select("*")
-  .eq("user_id", userId)
+  .eq("session_id", userId)
   .order("created_at", { ascending: true });
 
 // Mark all user messages as read
 await supabase
   .from("support_chat")
   .update({ is_read: true })
-  .eq("user_id", userId)
+  .eq("session_id", userId)
   .eq("sender", "USER");
 
 setMessages(data || []);
+
+    if (data && data.length > 0) {
+  setUser({
+    phone_number: data[0].phone_number,
+  });
+    }
   }
 
   async function sendReply() {
     if (!reply.trim()) return;
 
     await supabase
-      .from("support_chat")
-      .insert([
-        {
-          user_id: userId,
-          sender: "ADMIN",
-          message: reply,
-        },
-      ]);
+  .from("support_chat")
+  .insert([
+    {
+      session_id: userId,
+      phone_number: user?.phone_number,
+      sender: "ADMIN",
+      message: reply,
+    },
+  ]);
 
     setReply("");
 
@@ -85,9 +83,7 @@ setMessages(data || []);
 
   return (
     <main className="container">
-      <h1>
-        💬 {user?.full_name}
-      </h1>
+      <h1>💬 Customer Support</h1>
 
       <p>{user?.phone_number}</p>
 
