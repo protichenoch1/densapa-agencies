@@ -14,6 +14,9 @@ export default function SupportPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [adminTyping, setAdminTyping] = useState(false);
   const typingTimeout = useRef(null);
+  const messagesEndRef = useRef(null);
+const inputRef = useRef(null);
+const [typing, setTyping] = useState(false);
 
   useEffect(() => {
   const savedUser = JSON.parse(
@@ -54,12 +57,6 @@ export default function SupportPage() {
       },
       () => {
         loadMessages();
-
-        useEffect(() => {
-  messagesEndRef.current?.scrollIntoView({
-    behavior: "smooth",
-  });
-}, [messages]);
       }
     )
     .subscribe();
@@ -68,6 +65,12 @@ export default function SupportPage() {
     supabase.removeChannel(channel);
   };
 }, []);
+
+  useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({
+    behavior: "smooth",
+  });
+}, [messages]);
 
   async function loadMessages() {
   const sessionId = localStorage.getItem("support_session");
@@ -121,6 +124,7 @@ if (error) {
 }
 
 setNewMessage("");
+    inputRef.current?.focus();
 loadMessages();
   }
 
