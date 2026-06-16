@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import { supabase } from "../../../../lib/supabase";
 
@@ -11,6 +11,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [reply, setReply] = useState("");
   const [user, setUser] = useState(null);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     loadChat();
@@ -37,6 +38,12 @@ export default function ChatPage() {
     supabase.removeChannel(channel);
   };
 }, []);
+
+  useEffect(() => {
+  messagesEndRef.current?.scrollIntoView({
+    behavior: "smooth",
+  });
+}, [messages]);
 
   async function loadChat() {
     // Load messages
@@ -127,6 +134,8 @@ setMessages(data || []);
             </div>
           </div>
         ))}
+
+          <div ref={messagesEndRef}></div>
       </div>
 
       <div
