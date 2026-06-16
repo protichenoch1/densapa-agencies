@@ -10,14 +10,25 @@ export default function SupportPage() {
   const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
-    const savedUser = JSON.parse(
-      localStorage.getItem("user") || "{}"
+  const savedUser = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+
+  setUser(savedUser);
+
+  let sessionId = localStorage.getItem("support_session");
+
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+
+    localStorage.setItem(
+      "support_session",
+      sessionId
     );
+  }
 
-    setUser(savedUser);
-
-    loadMessages();
-  }, []);
+  loadMessages();
+}, []);
 
   useEffect(() => {
   const sessionId =
