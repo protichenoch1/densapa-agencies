@@ -127,7 +127,7 @@ setMessages(data || []);
       <div
   style={{
     marginTop: "20px",
-    background: "#fff",
+    background: "#ECE5DD",
     borderRadius: "15px",
     padding: "15px",
     height: "500px",
@@ -233,12 +233,16 @@ setMessages(data || []);
       </div>
 
       <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginTop: "20px",
-        }}
-      >
+  style={{
+    display: "flex",
+    gap: "10px",
+    marginTop: "20px",
+    alignItems: "center",
+    background: "#f0f0f0",
+    padding: "10px",
+    borderRadius: "20px",
+  }}
+>
         <input
           ref={inputRef}
           type="text"
@@ -248,11 +252,15 @@ setMessages(data || []);
             setReply(e.target.value)
           }
           style={{
-            flex: 1,
-            padding: "12px",
-            borderRadius: "10px",
-            border: "1px solid #ddd",
-          }}
+  flex: 1,
+  padding: "14px 18px",
+  borderRadius: "30px",
+  border: "none",
+  outline: "none",
+  background: "#fff",
+  boxShadow: "0 1px 3px rgba(0,0,0,.15)",
+  fontSize: "15px",
+}}
         />
 
         <button
