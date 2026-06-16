@@ -23,33 +23,41 @@ export default function AdminSupport() {
   ...new Set(data.map((item) => item.session_id)),
 ];
 
-    const usersData = [];
+    async function loadUsers() {
+  const { data } = await supabase
+    .from("support_chat")
+    .select("session_id, phone_number, is_read, sender")
+    .order("created_at", { ascending: false });
 
-    for (const id of uniqueUsers) {
-      const { data: user } = await supabase
-        .from("users")
-        .select("full_name, phone_number")
-        .eq("id", id)
-        .single();
+  if (!data) return;
 
-      if (user) {
-        const { count } = await supabase
-  .from("support_chat")
-  .select("*", { count: "exact", head: true })
-  .eq("user_id", id)
-  .eq("sender", "USER")
-  .eq("is_read", false);
+  const uniqueSessions = [
+    ...new Set(data.map((item) => item.session_id)),
+  ];
 
-usersData.push({
-  id,
-  ...user,
-  unread: count || 0,
-});
-      }
-    }
+  const usersData = [];
 
-    setUsers(usersData);
+  for (const sessionId of uniqueSessions) {
+    const chat = data.find(
+      (item) => item.session_id === sessionId
+    );
+
+    const unread = data.filter(
+      (item) =>
+        item.session_id === sessionId &&
+        item.sender === "USER" &&
+        item.is_read === false
+    ).length;
+
+    usersData.push({
+      sessionId,
+      phone_number: chat.phone_number,
+      unread,
+    });
   }
+
+  setUsers(usersData);
+    }
 
   return (
     <main className="container">
@@ -57,14 +65,14 @@ usersData.push({
 
       {users.map((user) => (
         <div
-          key={user.id}
+          key={user.sessionId}
           className="announcement"
           style={{
             marginTop: "15px",
           }}
         >
           <h3>
-  {user.full_name}
+  Customer
 
   {user.unread > 0 && (
     <span
@@ -84,7 +92,7 @@ usersData.push({
 
           <p>{user.phone_number}</p>
 
-          <Link href={`/admin/support/${user.id}`}>
+          <Link href={`/admin/support/${user.sessionId}`}>
             <button
               className="invest-btn"
               style={{
