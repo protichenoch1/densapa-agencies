@@ -12,6 +12,7 @@ export default function ChatPage() {
   const [reply, setReply] = useState("");
   const [user, setUser] = useState(null);
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     loadChat();
@@ -84,6 +85,7 @@ setMessages(data || []);
   ]);
 
     setReply("");
+    inputRef.current?.focus();
 
     loadChat();
   }
@@ -95,15 +97,43 @@ setMessages(data || []);
       <p>{user?.phone_number}</p>
 
       <div
-        style={{
-          marginTop: "20px",
-          background: "#fff",
-          borderRadius: "15px",
-          padding: "15px",
-          minHeight: "400px",
-        }}
-      >
-        {messages.map((msg) => (
+  style={{
+    marginTop: "20px",
+    background: "#fff",
+    borderRadius: "15px",
+    padding: "15px",
+    height: "500px",
+    overflowY: "auto",
+    boxShadow: "0 5px 20px rgba(0,0,0,.08)",
+  }}
+>
+        let lastDate = "";
+
+        {messages.map((msg) => {
+  const currentDate = new Date(
+    msg.created_at
+  ).toLocaleDateString();
+
+  const showDate = currentDate !== lastDate;
+
+  lastDate = currentDate;
+
+  return (
+
+    <>
+  {showDate && (
+    <div
+      style={{
+        textAlign: "center",
+        margin: "20px 0",
+        color: "#888",
+        fontSize: "13px",
+        fontWeight: "bold",
+      }}
+    >
+      {currentDate}
+    </div>
+  )}
           <div
             key={msg.id}
             style={{
@@ -130,10 +160,34 @@ setMessages(data || []);
                 maxWidth: "80%",
               }}
             >
-              {msg.message}
+              <div>
+  <div>{msg.message}</div>
+
+  <div
+    style={{
+      fontSize: "11px",
+      marginTop: "5px",
+      opacity: 0.7,
+      textAlign: "right",
+    }}
+  >
+    {new Date(msg.created_at).toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    })}
+
+    {msg.sender === "ADMIN" && (
+      <span style={{ marginLeft: "6px" }}>
+        {msg.is_read ? "✓✓" : "✓"}
+      </span>
+    )}
+  </div>
+</div>
             </div>
           </div>
-        ))}
+        </>
+  );
+})}
 
           <div ref={messagesEndRef}></div>
       </div>
@@ -146,6 +200,7 @@ setMessages(data || []);
         }}
       >
         <input
+          ref={inputRef}
           type="text"
           placeholder="Type reply..."
           value={reply}
