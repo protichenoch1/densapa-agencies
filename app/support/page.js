@@ -156,10 +156,9 @@ loadMessages();
   style={{
     maxWidth: "500px",
     margin: "auto",
-    height: "100vh",
+    minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
-    overflow: "hidden",
     padding: "15px",
   }}
 >
@@ -224,7 +223,7 @@ loadMessages();
   style={{
     flex: 1,
     overflowY: "auto",
-    marginTop: "20px",
+    marginTop: "10px",
     background: "#F5F5F5",
     borderRadius: "15px",
     padding: "15px",
@@ -290,7 +289,7 @@ loadMessages();
   style={{
     flexShrink: 0,
     background: "#fff",
-    paddingTop: "15px",
+    paddingTop: "8px",
   }}
 >
   
@@ -314,7 +313,7 @@ loadMessages();
   style={{
     display: "flex",
     gap: "10px",
-    marginTop: "20px",
+    marginTop: "8px",
     alignItems: "center",
     background: "#f0f0f0",
     padding: "10px",
