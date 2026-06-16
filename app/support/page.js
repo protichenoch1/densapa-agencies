@@ -111,7 +111,7 @@ setAdminTyping(isAdminTyping);
   .insert([
     {
       session_id: sessionId,
-      phone_number: phoneNumber,
+      phone_number: user?.phoneNumber || phoneNumber,
       sender: "USER",
       message: newMessage,
     },
@@ -291,19 +291,21 @@ loadMessages();
   }}
 >
   
+  {!user && (
   <input
-  type="tel"
-  placeholder="Enter your phone number"
-  value={phoneNumber}
-  onChange={(e) => setPhoneNumber(e.target.value)}
-  style={{
-    width: "100%",
-    padding: "12px",
-    borderRadius: "10px",
-    border: "1px solid #ddd",
-    marginBottom: "15px"
-  }}
-/>
+    type="tel"
+    placeholder="Enter your phone number"
+    value={phoneNumber}
+    onChange={(e) => setPhoneNumber(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "12px",
+      borderRadius: "10px",
+      border: "1px solid #ddd",
+      marginBottom: "15px",
+    }}
+  />
+)}
 
       <div
   style={{
