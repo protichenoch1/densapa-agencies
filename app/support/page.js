@@ -16,13 +16,14 @@ export default function SupportPage() {
 
     setUser(savedUser);
 
-    if (savedUser.id) {
-      loadMessages(savedUser.id);
-    }
+    loadMessages();
   }, []);
 
   useEffect(() => {
-  if (!user?.id) return;
+  const sessionId =
+    localStorage.getItem("support_session");
+
+  if (!sessionId) return;
 
   const channel = supabase
     .channel("support-chat")
@@ -32,10 +33,10 @@ export default function SupportPage() {
         event: "*",
         schema: "public",
         table: "support_chat",
-        filter: `user_id=eq.${user.id}`,
+        filter: `session_id=eq.${sessionId}`,
       },
       () => {
-        loadMessages(user.id);
+        loadMessages();
       }
     )
     .subscribe();
@@ -43,7 +44,7 @@ export default function SupportPage() {
   return () => {
     supabase.removeChannel(channel);
   };
-}, [user]);
+}, []);
 
   async function loadMessages() {
   const sessionId = localStorage.getItem("support_session");
@@ -130,14 +131,7 @@ export default function SupportPage() {
         ))}
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginTop: "20px",
-        }}
-      >
-        <input
+    <input
   type="tel"
   placeholder="Enter your phone number"
   value={phoneNumber}
@@ -147,9 +141,18 @@ export default function SupportPage() {
     padding: "12px",
     borderRadius: "10px",
     border: "1px solid #ddd",
-    marginBottom: "15px",
+    marginBottom: "15px"
   }}
 />
+
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginTop: "20px",
+        }}
+      >
+        
         <input
           type="text"
           placeholder="Type your message..."
