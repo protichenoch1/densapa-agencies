@@ -113,18 +113,20 @@ setMessages(data || []);
   }}
 >
 
-        {messages.map((msg) => {
-  const currentDate = new Date(
-    msg.created_at
-  ).toLocaleDateString();
+        {
+  (() => {
+    let lastDate = "";
 
-  const showDate = currentDate !== lastDate;
+    return messages.map((msg) => {
+      const currentDate = new Date(
+        msg.created_at
+      ).toLocaleDateString();
 
-  lastDate = currentDate;
+      const showDate = currentDate !== lastDate;
 
-          let lastDate = "";
+      lastDate = currentDate;
 
-  return (
+      return (
 
     <React.Fragment key={msg.id}>
   {showDate && (
@@ -191,8 +193,10 @@ setMessages(data || []);
             </div>
           </div>
         </React.Fragment>
-  );
-})}
+      );
+    });
+  })()
+              }
 
           <div ref={messagesEndRef}></div>
       </div>
