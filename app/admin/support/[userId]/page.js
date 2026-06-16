@@ -120,9 +120,48 @@ setMessages(data || []);
 
   return (
     <main className="container">
-      <h1>💬 Customer Support</h1>
+      <div
+  style={{
+    background: "#075E54",
+    color: "#fff",
+    padding: "15px 20px",
+    borderRadius: "15px",
+    display: "flex",
+    alignItems: "center",
+    gap: "15px",
+    boxShadow: "0 3px 10px rgba(0,0,0,.15)",
+  }}
+>
+  <div
+    style={{
+      width: "50px",
+      height: "50px",
+      borderRadius: "50%",
+      background: "#128C7E",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      fontSize: "24px",
+    }}
+  >
+    👤
+  </div>
 
-      <p>{user?.phone_number}</p>
+  <div>
+    <h2 style={{ margin: 0 }}>
+      Customer Support
+    </h2>
+
+    <p
+      style={{
+        margin: "5px 0 0 0",
+        opacity: 0.9,
+      }}
+    >
+      {user?.phone_number}
+    </p>
+  </div>
+</div>
 
       <div
   style={{
@@ -264,11 +303,23 @@ setMessages(data || []);
         />
 
         <button
-          className="invest-btn"
-          onClick={sendReply}
-        >
-          Send
-        </button>
+  onClick={sendReply}
+  style={{
+    width: "50px",
+    height: "50px",
+    borderRadius: "50%",
+    border: "none",
+    background: "#25D366",
+    color: "#fff",
+    fontSize: "20px",
+    cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }}
+>
+  ➤
+</button>
       </div>
     </main>
   );
