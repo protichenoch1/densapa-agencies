@@ -40,6 +40,8 @@ export default function AdminSupport() {
       .select("session_id, phone_number, is_read, sender")
       .order("created_at", { ascending: false });
 
+    console.log(data);
+
     if (!data) return;
 
     const uniqueSessions = [
