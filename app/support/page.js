@@ -83,19 +83,25 @@ export default function SupportPage() {
     localStorage.setItem("support_session", sessionId);
   }
 
-  await supabase
-    .from("support_chat")
-    .insert([
-      {
-        session_id: sessionId,
-        phone_number: phoneNumber,
-        sender: "USER",
-        message: newMessage,
-      },
-    ]);
+  const { error } = await supabase
+  .from("support_chat")
+  .insert([
+    {
+      session_id: sessionId,
+      phone_number: phoneNumber,
+      sender: "USER",
+      message: newMessage,
+    },
+  ]);
 
-  setNewMessage("");
-  loadMessages();
+if (error) {
+  alert(error.message);
+  console.log(error);
+  return;
+}
+
+setNewMessage("");
+loadMessages();
   }
 
   return (
