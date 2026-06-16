@@ -6,7 +6,10 @@ import { supabase } from "../../../../lib/supabase";
 
 export default function ChatPage() {
   const params = useParams();
-  const userId = params.userId;
+
+const userId = Array.isArray(params.userId)
+  ? params.userId[0]
+  : params.userId;
 
   const [messages, setMessages] = useState([]);
   const [reply, setReply] = useState("");
@@ -15,8 +18,10 @@ export default function ChatPage() {
   const inputRef = useRef(null);
 
   useEffect(() => {
+  if (userId) {
     loadChat();
-  }, []);
+  }
+}, [userId]);
 
   useEffect(() => {
   const channel = supabase
