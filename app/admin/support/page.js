@@ -11,6 +11,29 @@ export default function AdminSupport() {
     loadUsers();
   }, []);
 
+  useEffect(() => {
+  loadUsers();
+
+  const channel = supabase
+    .channel("support-list")
+    .on(
+      "postgres_changes",
+      {
+        event: "*",
+        schema: "public",
+        table: "support_chat",
+      },
+      () => {
+        loadUsers();
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, []);
+
   async function loadUsers() {
     const { data } = await supabase
       .from("support_chat")
@@ -58,7 +81,7 @@ export default function AdminSupport() {
           style={{ marginTop: "15px" }}
         >
           <h3>
-            Customer
+  Customer #{user.sessionId.slice(0, 6)}
 
             {user.unread > 0 && (
               <span
