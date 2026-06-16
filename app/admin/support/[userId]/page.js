@@ -25,7 +25,7 @@ export default function ChatPage() {
         event: "*",
         schema: "public",
         table: "support_chat",
-        filter: `user_id=eq.${userId}`,
+        filter: `session_id=eq.${userId}`,
       },
       () => {
         loadChat();
