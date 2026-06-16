@@ -60,11 +60,17 @@ export default function AdminSupport() {
           item.is_read === false
       ).length;
 
-      usersData.push({
-        sessionId,
-        phone_number: chat.phone_number,
-        unread,
-      });
+      const lastMessage = data.find(
+  (item) => item.session_id === sessionId
+);
+
+usersData.push({
+  sessionId,
+  phone_number: chat.phone_number,
+  unread,
+  lastMessage: lastMessage.message,
+  time: new Date(lastMessage.created_at).toLocaleTimeString(),
+});
     }
 
     setUsers(usersData);
@@ -99,7 +105,25 @@ export default function AdminSupport() {
             )}
           </h3>
 
-          <p>{user.phone_number}</p>
+          <p>📱 {user.phone_number}</p>
+
+<p
+  style={{
+    color: "#666",
+    marginTop: "8px",
+  }}
+>
+  {user.lastMessage}
+</p>
+
+<p
+  style={{
+    fontSize: "12px",
+    color: "#999",
+  }}
+>
+  {user.time}
+</p>
 
           <Link href={`/admin/support/${user.sessionId}`}>
             <button
