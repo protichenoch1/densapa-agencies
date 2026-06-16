@@ -14,14 +14,14 @@ export default function AdminSupport() {
   async function loadUsers() {
     const { data } = await supabase
       .from("support_chat")
-      .select("user_id")
+      .select("session_id, phone_number")
       .order("created_at", { ascending: false });
 
     if (!data) return;
 
-    const uniqueUsers = [
-      ...new Set(data.map((item) => item.user_id)),
-    ];
+    const uniqueSessions = [
+  ...new Set(data.map((item) => item.session_id)),
+];
 
     const usersData = [];
 
