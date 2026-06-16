@@ -154,17 +154,17 @@ loadMessages();
   return (
     <main
   style={{
+    maxWidth: "500px",
+    margin: "auto",
     height: "100vh",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
+    padding: "15px",
   }}
 >
       <div
   style={{
-    position: "sticky",
-    top: 0,
-    zIndex: 1000,
     background: "#075E54",
     color: "#fff",
     padding: "15px 20px",
@@ -173,6 +173,7 @@ loadMessages();
     alignItems: "center",
     gap: "15px",
     boxShadow: "0 3px 10px rgba(0,0,0,.15)",
+    flexShrink: 0,
   }}
 >
   <div
