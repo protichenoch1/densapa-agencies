@@ -120,11 +120,6 @@ setAdminTyping(isAdminTyping);
   loadMessages();
 }
 
-setNewMessage("");
-    inputRef.current?.focus();
-loadMessages();
-  }
-
 function formatDate(dateString) {
   const date = new Date(dateString);
 
