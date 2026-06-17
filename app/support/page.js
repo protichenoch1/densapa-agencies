@@ -305,27 +305,9 @@ function formatDate(dateString) {
   placeholder="Type a message..."
   value={newMessage}
   onChange={async (e) => {
-    setNewMessage(e.target.value);
-
-    setTyping(true);
-
-    const sessionId = user?.phone_number;
-    await supabase
-      .from("support_chat")
-      .update({ typing: true })
-      .eq("session_id", sessionId);
-
-    clearTimeout(typingTimeout.current);
-
-    typingTimeout.current = setTimeout(async () => {
-      setTyping(false);
-
-      await supabase
-        .from("support_chat")
-        .update({ typing: false })
-        .eq("session_id", sessionId);
-    }, 2000);
-  }}
+  onChange={(e) => {
+  setNewMessage(e.target.value);
+}}
   style={{
     flex: 1,
     padding: "14px 18px",
