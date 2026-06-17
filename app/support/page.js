@@ -304,7 +304,6 @@ function formatDate(dateString) {
   type="text"
   placeholder="Type a message..."
   value={newMessage}
-  onChange={async (e) => {
   onChange={(e) => {
   setNewMessage(e.target.value);
 }}
