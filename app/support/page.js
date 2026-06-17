@@ -219,7 +219,7 @@ loadMessages();
   </div>
 </div>
 
-    {!user && (
+    {!user?.phone_number && (
   <input
     type="tel"
     placeholder="Enter your phone number"
