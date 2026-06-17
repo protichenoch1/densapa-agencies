@@ -23,14 +23,20 @@ const [typing, setTyping] = useState(false);
   localStorage.getItem("user") || "null"
 );
 
-setUser(savedUser);
+if (
+  savedUser &&
+  savedUser.phone_number
+) {
+  setUser(savedUser);
+} else {
+  setUser(null);
+}
 
   loadMessages();
 }, []);
 
   useEffect(() => {
-  const sessionId =
-    localStorage.getItem("support_session");
+  const sessionId = user?.phone_number || phoneNumber;
 
   if (!sessionId) return;
 
@@ -219,7 +225,7 @@ loadMessages();
   </div>
 </div>
 
-    {!user?.phone_number && (
+    {!user && (
   <input
     type="tel"
     placeholder="Enter your phone number"
@@ -333,9 +339,7 @@ loadMessages();
 
     setTyping(true);
 
-    const sessionId =
-      localStorage.getItem("support_session");
-
+    const sessionId = user?.phone_number || phoneNumber;
     await supabase
       .from("support_chat")
       .update({ typing: true })
