@@ -36,23 +36,22 @@ if (
   }
 }, []);
 
-  useEffect(() => {
-  const sessionId = user?.phone_number;
+useEffect(() => {
+  if (!user?.phone_number) return;
 
-  if (!sessionId) return;
+  loadMessages();
 
   const channel = supabase
-    .channel("support-chat")
+    .channel(`support-chat-${user.phone_number}`)
     .on(
       "postgres_changes",
       {
         event: "*",
         schema: "public",
         table: "support_chat",
-        filter: `session_id=eq.${sessionId}`,
+        filter: `session_id=eq.${user.phone_number}`,
       },
       () => {
-        
         loadMessages();
       }
     )
