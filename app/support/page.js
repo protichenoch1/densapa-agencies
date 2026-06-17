@@ -38,7 +38,7 @@ if (
 }, []);
 
   useEffect(() => {
-  const sessionId = user?.phone_number || phoneNumber;
+  const sessionId = user?.phone_number;
 
   if (!sessionId) return;
 
@@ -62,7 +62,7 @@ if (
   return () => {
     supabase.removeChannel(channel);
   };
-}, [user, phoneNumber]);
+}, [user]);
 
   useEffect(() => {
   messagesEndRef.current?.scrollIntoView({
@@ -71,13 +71,7 @@ if (
 }, [messages]);
 
   async function loadMessages() {
-  let sessionId;
-
-if (user?.phone_number) {
-  sessionId = user.phone_number;
-} else {
-  sessionId = phoneNumber;
-}
+  const sessionId = user?.phone_number;
 
 if (!sessionId) return;
 
@@ -102,17 +96,9 @@ setAdminTyping(isAdminTyping);
   if (!newMessage.trim()) return;
 
   // Get session id from localStorage
-  let sessionId;
+  const sessionId = user?.phone_number;
 
-if (user?.phone_number) {
-  sessionId = user.phone_number;
-} else {
-  sessionId = phoneNumber;
-}
-
-if (!sessionId) {
-  alert("Enter your phone number first");
-  return;
+if (!sessionId) return;
 }
 
   const { error } = await supabase
@@ -120,7 +106,7 @@ if (!sessionId) {
   .insert([
     {
       session_id: sessionId,
-      phone_number: user?.phone_number || phoneNumber,
+      phone_number: user.phone_number,
       sender: "USER",
       message: newMessage,
     },
@@ -137,11 +123,7 @@ setNewMessage("");
 loadMessages();
   }
 
-  if (!user && !messages.length) {
-  setTimeout(() => loadMessages(), 500);
-  }
-
-  function formatDate(dateString) {
+function formatDate(dateString) {
   const date = new Date(dateString);
 
   const today = new Date();
@@ -232,31 +214,7 @@ loadMessages();
   </div>
 </div>
 
-    {!user && (
-  <input
-    type="tel"
-    placeholder="Enter your phone number"
-    value={phoneNumber}
-    onChange={(e) => {
-  setPhoneNumber(e.target.value);
-
-  if (e.target.value) {
-    loadMessages();
-  }
-}}
-    style={{
-      width: "100%",
-      padding: "12px",
-      borderRadius: "15px",
-      border: "1px solid #ddd",
-      marginTop: "10px",
-      marginBottom: "10px",
-      background: "#fff",
-    }}
-  />
-)}
-
-      <div
+    <div
   style={{
     flex: 1,
     overflowY: "auto",
@@ -352,7 +310,7 @@ loadMessages();
 
     setTyping(true);
 
-    const sessionId = user?.phone_number || phoneNumber;
+    const sessionId = user?.phone_number;
     await supabase
       .from("support_chat")
       .update({ typing: true })
