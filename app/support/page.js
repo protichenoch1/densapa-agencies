@@ -32,7 +32,9 @@ if (
   setUser(null);
 }
 
+  if (savedUser?.phone_number) {
   loadMessages();
+  }
 }, []);
 
   useEffect(() => {
@@ -51,6 +53,7 @@ if (
         filter: `session_id=eq.${sessionId}`,
       },
       () => {
+        
         loadMessages();
       }
     )
@@ -59,7 +62,7 @@ if (
   return () => {
     supabase.removeChannel(channel);
   };
-}, []);
+}, [user, phoneNumber]);
 
   useEffect(() => {
   messagesEndRef.current?.scrollIntoView({
@@ -132,6 +135,10 @@ if (error) {
 setNewMessage("");
     inputRef.current?.focus();
 loadMessages();
+  }
+
+  if (!user && !messages.length) {
+  setTimeout(() => loadMessages(), 500);
   }
 
   function formatDate(dateString) {
@@ -230,7 +237,13 @@ loadMessages();
     type="tel"
     placeholder="Enter your phone number"
     value={phoneNumber}
-    onChange={(e) => setPhoneNumber(e.target.value)}
+    onChange={(e) => {
+  setPhoneNumber(e.target.value);
+
+  if (e.target.value) {
+    loadMessages();
+  }
+}}
     style={{
       width: "100%",
       padding: "12px",
