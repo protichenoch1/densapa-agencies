@@ -25,17 +25,6 @@ const [typing, setTyping] = useState(false);
 
   setUser(savedUser);
 
-  let sessionId = localStorage.getItem("support_session");
-
-  if (!sessionId) {
-    sessionId = crypto.randomUUID();
-
-    localStorage.setItem(
-      "support_session",
-      sessionId
-    );
-  }
-
   loadMessages();
 }, []);
 
@@ -73,9 +62,15 @@ const [typing, setTyping] = useState(false);
 }, [messages]);
 
   async function loadMessages() {
-  const sessionId = localStorage.getItem("support_session");
+  let sessionId;
 
-  if (!sessionId) return;
+if (user?.phone_number) {
+  sessionId = user.phone_number;
+} else {
+  sessionId = phoneNumber;
+}
+
+if (!sessionId) return;
 
   const { data } = await supabase
     .from("support_chat")
@@ -98,20 +93,25 @@ setAdminTyping(isAdminTyping);
   if (!newMessage.trim()) return;
 
   // Get session id from localStorage
-  let sessionId = localStorage.getItem("support_session");
+  let sessionId;
 
-  // Create one if it doesn't exist
-  if (!sessionId) {
-    sessionId = crypto.randomUUID();
-    localStorage.setItem("support_session", sessionId);
-  }
+if (user?.phone_number) {
+  sessionId = user.phone_number;
+} else {
+  sessionId = phoneNumber;
+}
+
+if (!sessionId) {
+  alert("Enter your phone number first");
+  return;
+}
 
   const { error } = await supabase
   .from("support_chat")
   .insert([
     {
       session_id: sessionId,
-      phone_number: user?.phoneNumber || phoneNumber,
+      phone_number: user?.phone_number || phoneNumber,
       sender: "USER",
       message: newMessage,
     },
@@ -311,23 +311,7 @@ loadMessages();
   }}
 >
   
-  {!user && (
-  <input
-    type="tel"
-    placeholder="Enter your phone number"
-    value={phoneNumber}
-    onChange={(e) => setPhoneNumber(e.target.value)}
-    style={{
-      width: "100%",
-      padding: "12px",
-      borderRadius: "10px",
-      border: "1px solid #ddd",
-      marginBottom: "15px",
-    }}
-  />
-)}
-
-      <div
+  <div
   style={{
     display: "flex",
     gap: "10px",
