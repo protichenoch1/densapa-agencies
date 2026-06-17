@@ -230,7 +230,7 @@ return;
   }}
 >
   <a
-  href="/contact-support"
+  href="/support"
   style={{
     color: "#0A3D91",
     fontWeight: "bold",
