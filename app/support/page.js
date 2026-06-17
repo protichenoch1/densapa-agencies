@@ -219,6 +219,24 @@ loadMessages();
   </div>
 </div>
 
+    {!user && (
+  <input
+    type="tel"
+    placeholder="Enter your phone number"
+    value={phoneNumber}
+    onChange={(e) => setPhoneNumber(e.target.value)}
+    style={{
+      width: "100%",
+      padding: "12px",
+      borderRadius: "15px",
+      border: "1px solid #ddd",
+      marginTop: "10px",
+      marginBottom: "10px",
+      background: "#fff",
+    }}
+  />
+)}
+
       <div
   style={{
     flex: 1,
