@@ -69,25 +69,29 @@ useEffect(() => {
 }, [messages]);
 
   async function loadMessages() {
-  const sessionId = user?.phone_number;
+  async function loadMessages() {
+  if (!user?.phone_number) return;
 
-if (!sessionId) return;
-
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("support_chat")
     .select("*")
-    .eq("session_id", sessionId)
+    .eq("session_id", user.phone_number)
     .order("created_at", { ascending: true });
+
+  if (error) {
+    console.log(error);
+    return;
+  }
 
   setMessages(data || []);
 
-    const isAdminTyping = data?.some(
-  (msg) =>
-    msg.sender === "ADMIN" &&
-    msg.typing === true
-);
-
-setAdminTyping(isAdminTyping);
+  setAdminTyping(
+    data?.some(
+      (msg) =>
+        msg.sender === "ADMIN" &&
+        msg.typing === true
+    )
+  );
   }
 
   async function sendMessage() {
