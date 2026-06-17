@@ -69,7 +69,6 @@ useEffect(() => {
 }, [messages]);
 
   async function loadMessages() {
-  async function loadMessages() {
   if (!user?.phone_number) return;
 
   const { data, error } = await supabase
