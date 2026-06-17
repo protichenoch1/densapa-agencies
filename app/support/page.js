@@ -20,10 +20,10 @@ const [typing, setTyping] = useState(false);
 
   useEffect(() => {
   const savedUser = JSON.parse(
-    localStorage.getItem("user") || "{}"
-  );
+  localStorage.getItem("user") || "null"
+);
 
-  setUser(savedUser);
+setUser(savedUser);
 
   loadMessages();
 }, []);
