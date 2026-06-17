@@ -36,9 +36,15 @@ padding:15px;
 
 .balance-card{
   background-image: url("/balancebg1.jpg");
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 8px 25px rgba(10,61,145,.25);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(10,61,145,.25);
 }
 
 .balance-card h1{
