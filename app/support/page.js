@@ -11,7 +11,6 @@ export default function SupportPage() {
   const [user, setUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [adminTyping, setAdminTyping] = useState(false);
   const typingTimeout = useRef(null);
   const messagesEndRef = useRef(null);
@@ -95,27 +94,30 @@ setAdminTyping(isAdminTyping);
   async function sendMessage() {
   if (!newMessage.trim()) return;
 
-  // Get session id from localStorage
   const sessionId = user?.phone_number;
 
-if (!sessionId) return;
-}
+  if (!sessionId) return;
 
   const { error } = await supabase
-  .from("support_chat")
-  .insert([
-    {
-      session_id: sessionId,
-      phone_number: user.phone_number,
-      sender: "USER",
-      message: newMessage,
-    },
-  ]);
+    .from("support_chat")
+    .insert([
+      {
+        session_id: sessionId,
+        phone_number: user.phone_number,
+        sender: "USER",
+        message: newMessage,
+      },
+    ]);
 
-if (error) {
-  alert(error.message);
-  console.log(error);
-  return;
+  if (error) {
+    alert(error.message);
+    console.log(error);
+    return;
+  }
+
+  setNewMessage("");
+  inputRef.current?.focus();
+  loadMessages();
 }
 
 setNewMessage("");
