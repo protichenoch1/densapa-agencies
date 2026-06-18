@@ -27,95 +27,6 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, []);
   
-  async function processDailyEarnings(userId) {
-  const today = new Date().toLocaleDateString("en-CA", {
-    timeZone: "Africa/Nairobi",
-  });
-
-  const { data: investments, error } = await supabase
-    .from("investments")
-    .select("*")
-    .eq("user_id", userId)
-    .eq("status", "Active");
-
-  if (error || !investments) return;
-
-  for (const investment of investments) {
-    const lastDate = new Date(investment.last_earning_date);
-    const currentDate = new Date(today);
-
-    let daysMissed = Math.floor(
-      (currentDate - lastDate) /
-        (1000 * 60 * 60 * 24)
-    );
-
-    if (daysMissed <= 0) continue;
-
-    const remainingDays =
-      Number(investment.days) -
-      Number(investment.earnings_paid || 0);
-
-    if (remainingDays <= 0) continue;
-
-    if (daysMissed > remainingDays) {
-      daysMissed = remainingDays;
-    }
-
-    const totalEarnings =
-      Number(investment.daily_income) *
-      daysMissed;
-
-    const { data: currentUser } = await supabase
-      .from("users")
-      .select("balance")
-      .eq("id", userId)
-      .single();
-
-    const newBalance =
-      Number(currentUser?.balance || 0) +
-      totalEarnings;
-
-    await supabase
-      .from("users")
-      .update({
-        balance: newBalance,
-      })
-      .eq("id", userId);
-
-    await supabase
-  .from("notifications")
-  .insert([
-    {
-      user_id: userId,
-      title: "🎉 Daily Earnings",
-      message: `KES ${totalEarnings.toLocaleString()} has been credited to your account.`,
-    is_read: false,
-    },
-  ]);
-
-    const newEarningsPaid =
-      Number(investment.earnings_paid || 0) +
-      daysMissed;
-
-    const updateData = {
-      earnings_paid: newEarningsPaid,
-      last_earning_date: today,
-    };
-
-    if (
-      newEarningsPaid >=
-      Number(investment.days)
-    ) {
-      updateData.status = "Completed";
-    }
-
-    await supabase
-      .from("investments")
-      .update(updateData)
-      .eq("id", investment.id);
-  }
-    }
-
   useEffect(() => {
   async function loadUser() {
     const savedUser = JSON.parse(
@@ -131,8 +42,6 @@ useEffect(() => {
       .single();
 
     if (!error && data) {
-
-  await processDailyEarnings(data.id);
 
   const { data: updatedUser } = await supabase
     .from("users")
