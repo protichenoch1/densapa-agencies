@@ -150,8 +150,10 @@ if (!savedUser.id) return;
     );
 
     window.dispatchEvent(
-      new Event("notifications-read")
-    );
+  new CustomEvent("notifications-read", {
+    detail: { count: 0 }
+  })
+);
   }}
   style={{
     background: "#0A3D91",
