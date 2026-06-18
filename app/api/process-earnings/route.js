@@ -45,6 +45,17 @@ export async function GET() {
           })
           .eq("id", investment.user_id);
 
+        // Save earnings history
+await supabase
+  .from("earnings_history")
+  .insert([
+    {
+      phone_number: investment.phone_number,
+      investment_id: investment.id,
+      amount: investment.daily_income,
+    },
+  ]);
+        
         // Update investment
         await supabase
           .from("investments")
