@@ -139,6 +139,11 @@ const totalDailyIncome = investments.reduce(
         >
           🏧 Withdraw
         </a>
+
+            <a href="/earnings" className="action-card">
+  <div style={{ fontSize: "20px" }}>💸</div>
+  Earnings
+</a>
       </div>
             
 <BottomNav />
