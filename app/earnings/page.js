@@ -13,15 +13,15 @@ export default function EarningsPage() {
         localStorage.getItem("user") || "{}"
       );
 
-      if (!savedUser.phone_number) return;
+      if (!savedUser.id) return;
 
-      const { data, error } = await supabase
-        .from("earnings_history")
-        .select("*")
-        .eq("phone_number", savedUser.phone_number)
-        .order("created_at", {
-          ascending: false,
-        });
+const { data, error } = await supabase
+  .from("earnings_history")
+  .select("*")
+  .eq("user_id", savedUser.id)
+  .order("created_at", {
+    ascending: false,
+  });
 
       if (!error) {
         setEarnings(data || []);
