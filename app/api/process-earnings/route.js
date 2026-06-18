@@ -1,0 +1,70 @@
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
+export async function GET() {
+  try {
+    // Get active investments
+    const { data: investments, error } = await supabase
+      .from("investments")
+      .select("*")
+      .eq("status", "active");
+
+    if (error) throw error;
+
+    const now = new Date();
+
+    for (const investment of investments) {
+      const lastEarning = investment.last_earning_at
+        ? new Date(investment.last_earning_at)
+        : new Date(investment.created_at);
+
+      const hoursPassed =
+        (now - lastEarning) / (1000 * 60 * 60);
+
+      if (hoursPassed >= 24) {
+        // Get user balance
+        const { data: user } = await supabase
+          .from("users")
+          .select("balance")
+          .eq("id", investment.user_id)
+          .single();
+
+        if (!user) continue;
+
+        // Add daily income to balance
+        await supabase
+          .from("users")
+          .update({
+            balance:
+              Number(user.balance || 0) +
+              Number(investment.daily_income || 0),
+          })
+          .eq("id", investment.user_id);
+
+        // Update investment
+        await supabase
+          .from("investments")
+          .update({
+            earnings_paid:
+              Number(investment.earnings_paid || 0) + 1,
+            last_earning_at: now.toISOString(),
+          })
+          .eq("id", investment.id);
+      }
+    }
+
+    return Response.json({
+      success: true,
+      message: "Earnings processed",
+    });
+  } catch (error) {
+    return Response.json(
+      { error: error.message },
+      { status: 500 }
+    );
+  }
+    }
