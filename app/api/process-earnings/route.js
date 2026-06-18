@@ -57,14 +57,25 @@ await supabase
   ]);
         
         // Update investment
-        await supabase
-          .from("investments")
-          .update({
-            earnings_paid:
-              Number(investment.earnings_paid || 0) + 1,
-            last_earning_date: now.toISOString(),
-          })
-          .eq("id", investment.id);
+const newEarningsPaid =
+  Number(investment.earnings_paid || 0) + 1;
+
+const updateData = {
+  earnings_paid: newEarningsPaid,
+  last_earning_date: now.toISOString(),
+};
+
+if (
+  newEarningsPaid >=
+  Number(investment.days)
+) {
+  updateData.status = "Completed";
+}
+
+await supabase
+  .from("investments")
+  .update(updateData)
+  .eq("id", investment.id);
       }
     }
 
