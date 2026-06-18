@@ -18,8 +18,8 @@ export async function GET() {
     const now = new Date();
 
     for (const investment of investments) {
-      const lastEarning = investment.last_earning_at
-        ? new Date(investment.last_earning_at)
+      const lastEarning = investment.last_earning_date
+        ? new Date(investment.last_earning_date)
         : new Date(investment.created_at);
 
       const hoursPassed =
@@ -51,7 +51,7 @@ export async function GET() {
           .update({
             earnings_paid:
               Number(investment.earnings_paid || 0) + 1,
-            last_earning_at: now.toISOString(),
+            last_earning_date: now.toISOString(),
           })
           .eq("id", investment.id);
       }
