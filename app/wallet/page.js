@@ -94,10 +94,26 @@ const totalDailyIncome = investments.reduce(
         <p>Last Updated: Today</p>
       </div>
 
-  <a href="/earnings" className="action-card">
-  <div style={{ fontSize: "20px" }}>💸</div>
-  Earnings
-</a>
+  <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: "10px",
+    marginTop: "20px",
+    marginBottom: "20px"
+  }}
+>
+  <a
+    href="/earnings"
+    className="invest-btn"
+    style={{
+      textDecoration: "none",
+      textAlign: "center"
+    }}
+  >
+    💸 Earnings History
+  </a>
+</div>
 
       <div className="stats">
 
