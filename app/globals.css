@@ -354,8 +354,9 @@ margin-bottom:3px;
 .ticker {
   width: 100%;
   overflow: hidden;
-  background: #D4AF37;
-  color: #0A3D91;
+  background: "#fff",
+  color: "#0A3D91",
+  boxShadow: "0 4px 15px rgba(0,0,0,.08)",
   border-radius: 15px;
   padding: 10px 0;
   margin-top: 15px;
