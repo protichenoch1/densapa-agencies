@@ -188,9 +188,9 @@ useEffect(() => {
   {
     image: "/plans/basic4.jpg",
     amount: "KES 10,000",
-    daily: "KES 1,800",
-    days: "15 Days",
-    total: "KES 27,000"
+    daily: "KES 1,500",
+    days: "12 Days",
+    total: "KES 18,000"
   }
 ];
 
