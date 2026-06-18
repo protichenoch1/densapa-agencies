@@ -55,6 +55,19 @@ await supabase
       amount: investment.daily_income,
     },
   ]);
+
+        await supabase
+  .from("notifications")
+  .insert([
+    {
+      user_id: investment.user_id,
+      title: "🎉 Daily Earnings",
+      message: `KES ${Number(
+        investment.daily_income
+      ).toLocaleString()} has been credited to your account.`,
+      is_read: false,
+    },
+  ]);
         
         // Update investment
 const newEarningsPaid =
