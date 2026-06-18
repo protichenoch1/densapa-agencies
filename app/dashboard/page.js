@@ -133,12 +133,13 @@ useEffect(() => {
   loadNotificationCount();
 
   window.addEventListener(
-  "notifications-read",
-  loadNotificationCount
-);
+    "notifications-read",
+    () => setNotificationCount(0)
+  );
 
   const channel = supabase
     .channel("notification-count")
+
     .on(
       "postgres_changes",
       {
@@ -151,13 +152,36 @@ useEffect(() => {
         setNotificationCount((prev) => prev + 1);
       }
     )
+
+    .on(
+      "postgres_changes",
+      {
+        event: "UPDATE",
+        schema: "public",
+        table: "notifications",
+        filter: `user_id=eq.${savedUser.id}`,
+      },
+      async () => {
+        const { count } = await supabase
+          .from("notifications")
+          .select("*", {
+            count: "exact",
+            head: true,
+          })
+          .eq("user_id", savedUser.id)
+          .eq("is_read", false);
+
+        setNotificationCount(count || 0);
+      }
+    )
+
     .subscribe();
 
   return () => {
     window.removeEventListener(
-  "notifications-read",
-  loadNotificationCount
-);
+      "notifications-read",
+      () => setNotificationCount(0)
+    );
 
     supabase.removeChannel(channel);
   };
