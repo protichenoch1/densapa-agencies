@@ -12,6 +12,9 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [showPin, setShowPin] = useState(false);
   const [showConfirmPin, setShowConfirmPin] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+const [popupMessage, setPopupMessage] = useState("");
+const [popupColor, setPopupColor] = useState("#28a745");
 
 useEffect(() => {
   const params = new URLSearchParams(window.location.search);
@@ -70,7 +73,6 @@ return;
   .maybeSingle();
 
 if (existingUser) {
-  setLoading(false);
   setLoading(false);
 
 setPopupColor("#dc3545");
