@@ -26,18 +26,39 @@ useEffect(() => {
     e.preventDefault();
 
     if (!/^0(1|7)\d{8}$/.test(phoneNumber)) {
-  alert("Enter a valid 10-digit phone number");
-  return;
+  setPopupColor("#D4AF37");
+setPopupMessage("⚠ Enter a valid 10-digit phone number");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
     }
 
     if (pin.length !== 4) {
-  alert("PIN must be exactly 4 digits");
-  return;
+  setPopupColor("#D4AF37");
+setPopupMessage("⚠ PIN must be exactly 4 digits");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
     }
 
     if (pin !== confirmPin) {
-      alert("PINs do not match");
-      return;
+      setPopupColor("#dc3545");
+setPopupMessage("❌ PINs do not match");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
     }
 
     setLoading(true);
@@ -50,8 +71,17 @@ useEffect(() => {
 
 if (existingUser) {
   setLoading(false);
-  alert("Phone number already registered");
-  return;
+  setLoading(false);
+
+setPopupColor("#dc3545");
+setPopupMessage("❌ Phone number already registered");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
 }
    const myReferralCode =
   Math.random().toString(36).substring(2, 8).toUpperCase(); 
@@ -69,8 +99,15 @@ if (existingUser) {
     setLoading(false);
 
     if (error) {
-      alert(error.message);
-      return;
+      setPopupColor("#dc3545");
+setPopupMessage(`❌ ${error.message}`);
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+}, 3000);
+
+return;
     }
 
     if (referralCode) {
@@ -103,9 +140,15 @@ if (existingUser) {
      }
     }
 
-    alert("Registration successful!");
-    window.location.href = "/login";
-  }
+    setPopupColor("#28a745");
+setPopupMessage("✅ Registration successful!");
+setShowPopup(true);
+
+setTimeout(() => {
+  setShowPopup(false);
+  window.location.href = "/login";
+}, 2000);
+    }
 
   return (
     <div
@@ -345,6 +388,27 @@ if (existingUser) {
             Login
           </a>
         </p>
+
+              {showPopup && (
+  <div
+    style={{
+      position: "fixed",
+      top: "20px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      background: popupColor,
+      color: "#fff",
+      padding: "15px 25px",
+      borderRadius: "15px",
+      fontWeight: "bold",
+      zIndex: 9999,
+      boxShadow: "0 5px 15px rgba(0,0,0,.2)",
+      animation: "slideDown .4s ease"
+    }}
+  >
+    {popupMessage}
+  </div>
+)}
       </div>
     </div>
   );
