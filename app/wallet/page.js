@@ -94,6 +94,11 @@ const totalDailyIncome = investments.reduce(
         <p>Last Updated: Today</p>
       </div>
 
+  <a href="/earnings" className="action-card">
+  <div style={{ fontSize: "20px" }}>💸</div>
+  Earnings
+</a>
+
       <div className="stats">
 
         <div className="stat-card">
@@ -139,12 +144,7 @@ const totalDailyIncome = investments.reduce(
         >
           🏧 Withdraw
         </a>
-
-            <a href="/earnings" className="action-card">
-  <div style={{ fontSize: "20px" }}>💸</div>
-  Earnings
-</a>
-      </div>
+       </div>
             
 <BottomNav />
     </main>
