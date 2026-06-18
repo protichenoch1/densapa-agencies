@@ -11,7 +11,7 @@ export async function GET() {
     const { data: investments, error } = await supabase
       .from("investments")
       .select("*")
-      .eq("status", "active");
+      .eq("status", "Active");
 
     if (error) throw error;
 
@@ -27,11 +27,11 @@ export async function GET() {
 
       if (hoursPassed >= 24) {
         // Get user balance
-        const { data: user } = await supabase
-          .from("users")
-          .select("balance")
-          .eq("id", investment.user_id)
-          .single();
+      const { data: user } = await supabase
+         .from("users")
+         .select("balance, phone_number")
+         .eq("id", investment.user_id)
+         .single();
 
         if (!user) continue;
 
@@ -50,7 +50,7 @@ await supabase
   .from("earnings_history")
   .insert([
     {
-      phone_number: investment.phone_number,
+      phone_number: user.phone_number,
       investment_id: investment.id,
       amount: investment.daily_income,
     },
