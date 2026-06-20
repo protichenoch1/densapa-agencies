@@ -358,7 +358,6 @@ margin-bottom:3px;
   color:#fff;
   border-radius:15px;
   margin-top:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
   overflow:hidden;
   font-weight:bold;
 }
@@ -366,24 +365,25 @@ margin-bottom:3px;
 .ticker-icon{
   width:50px;
   min-width:50px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  text-align:center;
   font-size:22px;
-  background:#198754;
   z-index:2;
 }
 
 .ticker-wrapper{
-  flex:1;
   overflow:hidden;
-  white-space:nowrap;
+  flex:1;
+}
+
+.ticker-track{
+  display:flex;
+  width:max-content;
+  animation:tickerMove 25s linear infinite;
 }
 
 .ticker-text{
-  display:inline-block;
   white-space:nowrap;
-  animation:tickerMove 25s linear infinite;
+  padding-right:80px;
 }
 
 @keyframes tickerMove{
