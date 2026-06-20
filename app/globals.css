@@ -354,9 +354,9 @@ margin-bottom:3px;
 .ticker {
   width: 100%;
   overflow: hidden;
-  background: "#198754";
-  color: "#fff";
-  boxShadow: "0 4px 15px rgba(0,0,0,.08)";
+  background: #198754;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
   border-radius: 15px;
   padding: 10px 0;
   margin-top: 15px;
@@ -371,11 +371,11 @@ margin-bottom:3px;
 }
 
 @keyframes tickerMove {
-  from {
+  0% {
     transform: translateX(0);
   }
 
-  to {
+  100% {
     transform: translateX(-100%);
   }
-    }
+}
