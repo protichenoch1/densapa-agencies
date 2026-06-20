@@ -76,7 +76,7 @@ const greeting =
   
   const banners = [
   "🎉 Welcome to DENSAPAL AGENCIES",
-  "💰 Deposit via Till Number 8808802",
+  "💰 Minimum deposit is KES 200",
   "👥 Earn KES 20 Per Successful Referral",
   "🏧 Minimum Withdrawal KES 450"
 ];
@@ -460,18 +460,28 @@ investments.filter(
 </div>
 
   <div className="ticker">
-  <span className="ticker-icon">
-    📢
-  </span>
+  <span className="ticker-icon">📢</span>
 
-  <div className="ticker-content">
-    <div className="ticker-text">
-      0714xxx564 Deposited KES 3,000 successfully •
-      0720xxx235 Deposited KES 5,000 successfully •
-      0798xxx455 Withdrew KES 2,500 successfully •
-      0742xxx778 Withdrew KES 15,000 successfully •
-      0718xxx890 Withdrew KES 4,500 successfully •
-  </div>
+  <div className="ticker-wrapper">
+    <div className="ticker-track">
+
+      <div className="ticker-text">
+        0714xxx564 Deposited KES 3,000 successfully •
+        0720xxx235 Deposited KES 5,000 successfully •
+        0798xxx455 Withdrew KES 2,500 successfully •
+        0742xxx778 Withdrew KES 15,000 successfully •
+        0718xxx890 Withdrew KES 4,500 successfully •
+      </div>
+
+      <div className="ticker-text">
+        0714xxx564 Deposited KES 3,000 successfully •
+        0720xxx235 Deposited KES 5,000 successfully •
+        0798xxx455 Withdrew KES 2,500 successfully •
+        0742xxx778 Withdrew KES 15,000 successfully •
+        0718xxx890 Withdrew KES 4,500 successfully •
+      </div>
+
+    </div>
   </div>
 </div>
 
