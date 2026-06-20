@@ -280,8 +280,13 @@ setTotalWithdrawn(
       color: "#fff"
     }}
   >
-    <h2>KES {totalBalance.toLocaleString()}</h2>
-    <p>💳 Total Balance</p>
+    <h2 style={{ color: "#fff" }}>
+  KES {totalBalance.toLocaleString()}
+</h2>
+
+<p style={{ color: "#fff" }}>
+  💳 Total Balance
+</p>
   </div>
 
   {/* Total Deposited */}
@@ -292,8 +297,13 @@ setTotalWithdrawn(
       color: "#fff"
     }}
   >
-    <h2>KES {totalDeposited.toLocaleString()}</h2>
-    <p>💰 Total Deposited</p>
+    <h2 style={{ color: "#fff" }}>
+  KES {totalDeposited.toLocaleString()}
+</h2>
+
+<p style={{ color: "#fff" }}>
+  💰 Total Deposited
+</p>
   </div>
 
   {/* Total Withdrawn */}
@@ -304,8 +314,13 @@ setTotalWithdrawn(
       color: "#fff"
     }}
   >
-    <h2>KES {totalWithdrawn.toLocaleString()}</h2>
-    <p>🏧 Total Withdrawn</p>
+    <h2 style={{ color: "#fff" }}>
+  KES {totalWithdrawn.toLocaleString()}
+</h2>
+
+<p style={{ color: "#fff" }}>
+  🏧 Total Withdrawn
+</p>
   </div>
 
   {/* Investments */}
@@ -330,8 +345,13 @@ setTotalWithdrawn(
       color: "#000"
     }}
   >
-    <h2>{pendingDeposits}</h2>
-    <p>⏳ Pending Deposits</p>
+    <h2 style={{ color: "#fff" }}>
+  {pendingDeposits}
+</h2>
+
+<p style={{ color: "#fff" }}>
+  ⏳ Pending Deposits
+</p>
   </div>
 
   {/* Pending Withdrawals */}
