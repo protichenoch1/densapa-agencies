@@ -7,6 +7,7 @@ import BottomNav from "../../components/BottomNav";
 export default function Wallet() {
   const [investments, setInvestments] = useState([]);
   const [user, setUser] = useState(null);
+  const [totalWithdrawn, setTotalWithdrawn] = useState(0);
   
 const totalInvested = investments.reduce(
   (sum, plan) => sum + Number(plan.amount || 0),
@@ -86,6 +87,29 @@ const totalDailyIncome = investments.reduce(
         />
       </div>
 
+          useEffect(() => {
+  async function loadTotalWithdrawn() {
+    if (!user?.id) return;
+
+    const { data, error } = await supabase
+      .from("withdrawals")
+      .select("amount")
+      .eq("user_id", user.id)
+      .eq("status", "SUCCESSFUL");
+
+    if (!error) {
+      const total = data.reduce(
+        (sum, item) => sum + Number(item.amount || 0),
+        0
+      );
+
+      setTotalWithdrawn(total);
+    }
+  }
+
+  loadTotalWithdrawn();
+}, [user]);
+
       <div className="balance-card">
         <p>Available Balance</p>
         <h1>
@@ -119,7 +143,7 @@ const totalDailyIncome = investments.reduce(
 
         <div className="stat-card">
           <h2>
-  KES {(user?.total_withdrawals || 0).toLocaleString()}
+  KES {totalWithdrawn.toLocaleString()}
 </h2>
           <p>Total Withdrawals</p>
         </div>
