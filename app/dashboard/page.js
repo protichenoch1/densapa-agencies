@@ -466,8 +466,8 @@ investments.filter(
 
   <div className="ticker-content">
     <div className="ticker-text">
-      🎉 Welcome to DENSAPAL AGENCIES • 💰 Deposit via Till Number 8808802 • 👥 Earn KES 20 Per Successful Referral • 🏧 Minimum Withdrawal KES 450 •
-    </div>
+      0714xxx564 Deposited KES 3,000 successfully • 0720xxx235 Deposited KES 5,000 successfully • 0798xxx455 Withdrew KES 2,500 successfully • 0742xxx778 Withdrew KES 15,000 successfully • 0718xxx890 Withdrew KES 4,500 successfully •
+  </div>
   </div>
 </div>
 
