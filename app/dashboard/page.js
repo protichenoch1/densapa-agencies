@@ -460,9 +460,9 @@ investments.filter(
 </div>
 
   <div className="ticker">
-  <div className="ticker-icon">
+  <span className="ticker-icon">
     📢
-  </div>
+  </span>
 
   <div className="ticker-content">
     <div className="ticker-text">
