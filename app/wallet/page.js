@@ -64,6 +64,29 @@ const totalDailyIncome = investments.reduce(
   loadInvestments();
 }, [user]);
 
+  useEffect(() => {
+  async function loadTotalWithdrawn() {
+    if (!user?.id) return;
+
+    const { data, error } = await supabase
+      .from("withdrawals")
+      .select("amount")
+      .eq("user_id", user.id)
+      .eq("status", "SUCCESSFUL");
+
+    if (!error) {
+      const total = data.reduce(
+        (sum, item) => sum + Number(item.amount || 0),
+        0
+      );
+
+      setTotalWithdrawn(total);
+    }
+  }
+
+  loadTotalWithdrawn();
+}, [user]);
+
   return (
     <main className="container">
 
@@ -86,29 +109,6 @@ const totalDailyIncome = investments.reduce(
           }}
         />
       </div>
-
-          useEffect(() => {
-  async function loadTotalWithdrawn() {
-    if (!user?.id) return;
-
-    const { data, error } = await supabase
-      .from("withdrawals")
-      .select("amount")
-      .eq("user_id", user.id)
-      .eq("status", "SUCCESSFUL");
-
-    if (!error) {
-      const total = data.reduce(
-        (sum, item) => sum + Number(item.amount || 0),
-        0
-      );
-
-      setTotalWithdrawn(total);
-    }
-  }
-
-  loadTotalWithdrawn();
-}, [user]);
 
       <div className="balance-card">
         <p>Available Balance</p>
