@@ -50,6 +50,7 @@ await supabase
   .from("earnings_history")
   .insert([
     {
+      user_id: investment.user_id,
       phone_number: user.phone_number,
       investment_id: investment.id,
       amount: investment.daily_income,
