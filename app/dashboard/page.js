@@ -466,19 +466,19 @@ investments.filter(
     <div className="ticker-track">
 
       <div className="ticker-text">
-        0714xxx564 Deposited KES 3,000 successfully •
-        0720xxx235 Deposited KES 5,000 successfully •
-        0798xxx455 Withdrew KES 2,500 successfully •
-        0742xxx778 Withdrew KES 15,000 successfully •
-        0718xxx890 Withdrew KES 4,500 successfully •
+        0714xxx564 Deposited KES 3,000 5 minutes ago •
+        0720xxx235 Deposited KES 5,000 3 minutes ago •
+        0798xxx455 Withdrawn KES 2,500 3 minutes ago •
+        0742xxx778 Withdrawn KES 15,000 2 minutes ago •
+        0718xxx890 Withdrawn KES 4,500 Just now •
       </div>
 
       <div className="ticker-text">
-        0714xxx564 Deposited KES 3,000 successfully •
-        0720xxx235 Deposited KES 5,000 successfully •
-        0798xxx455 Withdrew KES 2,500 successfully •
-        0742xxx778 Withdrew KES 15,000 successfully •
-        0718xxx890 Withdrew KES 4,500 successfully •
+        0724xxx234 Deposited KES 2,000 6 minutes ago •
+        0790xxx456 Withdrawn KES 6,000 5 minutes ago •
+        0796xxx206 Deosited KES 500 4 minutes ago •
+        0741xxx801 Withdrawn KES 1,000 2 minutes ago •
+        0715xxx277 Deposited KES 10,000 1 minute ago •
       </div>
 
     </div>
