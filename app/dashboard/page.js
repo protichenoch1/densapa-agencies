@@ -674,10 +674,30 @@ investments.filter(
           const planAmount = Number(
   selectedPlan.amount.replace(/[^0-9]/g, "")
 );
+
+          // Prevent investing in KES 420 plan more than once
+if (planAmount === 420) {
+  const { data: existingPlan } = await supabase
+    .from("investments")
+    .select("id")
+    .eq("user_id", user.id)
+    .eq("amount", 420);
+
+  if (existingPlan && existingPlan.length > 0) {
+    setPopupTitle("Error");
+    setErrorMessage(
+      "You have already invested on this plan."
+    );
+    setPopupColor("#dc3545");
+    setPopupIcon("❌");
+    setShowError(true);
+    return;
+  }
+}
           
           if (Number(user?.balance || 0) < planAmount) {
   setPopupTitle("Error");
-  setErrorMessage("Deposit money to invest on this plan");
+  setErrorMessage("Insufficient balance. Deposit funds to invest");
   setPopupColor("#dc3545");
   setPopupIcon("❌");
   setShowError(true);
