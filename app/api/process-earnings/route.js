@@ -46,7 +46,7 @@ export async function GET() {
           .eq("id", investment.user_id);
 
         // Save earnings history
-await supabase
+const { error: earningsError } = await supabase
   .from("earnings_history")
   .insert([
     {
@@ -56,6 +56,10 @@ await supabase
       amount: investment.daily_income,
     },
   ]);
+
+if (earningsError) {
+  console.log(earningsError);
+}
 
         await supabase
   .from("notifications")
