@@ -673,15 +673,38 @@ investments.filter(
 </div>
 
 <div style={{ padding: "20px" }}>
-      <p><strong>Plan:</strong> {selectedPlan.type}</p>
-      <p><strong>Amount:</strong> {selectedPlan.amount}</p>
-      <p><strong>Daily Income:</strong> {selectedPlan.daily}</p>
-      <p><strong>Duration:</strong> {selectedPlan.days}</p>
-      <p><strong>Total Return:</strong> {selectedPlan.total}</p>
+      
+<div
+  style={{
+    background: "#f8f9fa",
+    padding: "15px",
+    borderRadius: "12px",
+    marginBottom: "20px"
+  }}
+>
+  <p><strong>Plan:</strong> {selectedPlan.type}</p>
+
+  <p><strong>Amount:</strong> {selectedPlan.amount}</p>
+
+  <p><strong>Daily Income:</strong> {selectedPlan.daily}</p>
+
+  <p><strong>Duration:</strong> {selectedPlan.days}</p>
+
+  <p
+    style={{
+      color: "#28a745",
+      fontWeight: "bold"
+    }}
+  >
+    Total Return: {selectedPlan.total}
+  </p>
+</div>
 
       <button
         className="invest-btn"
-        style={{ marginTop: "15px" }}
+        style={{
+  flex: 1
+}}
 
         onClick={async() => {
           const planAmount = Number(
@@ -808,21 +831,29 @@ setShowSuccess(true);
 setShowModal(false);
 }}
       >
+          <div
+  style={{
+    display: "flex",
+    gap: "10px"
+  }}
+>
         CONFIRM INVESTMENT
       </button>
 
       <button
         onClick={() => setShowModal(false)}
         style={{
-          width: "100%",
-          marginTop: "10px",
-          padding: "10px",
-          border: "none",
-          borderRadius: "10px"
-        }}
+  flex: 1,
+  padding: "12px",
+  border: "none",
+  borderRadius: "10px",
+  background: "#eee",
+  fontWeight: "bold"
+}}
       >
         Cancel
       </button>
+      </div>
     </div>
   </div>
 )}
