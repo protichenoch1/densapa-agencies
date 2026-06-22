@@ -650,16 +650,29 @@ investments.filter(
     }}
   >
     <div
-      style={{
-        background: "#fff",
-        padding: "20px",
-        borderRadius: "20px",
-        width: "90%",
-        maxWidth: "350px"
-      }}
-    >
-      <h2>💼 Confirm Investment</h2>
+  style={{
+    background: "#fff",
+    width: "90%",
+    maxWidth: "380px",
+    borderRadius: "16px",
+    overflow: "hidden",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.25)"
+  }}
+>
+      <div
+  style={{
+    background: "#0A3D91",
+    color: "#fff",
+    padding: "15px",
+    textAlign: "center"
+  }}
+>
+  <h2 style={{ margin: 0 }}>
+    Investment Confirmation
+  </h2>
+</div>
 
+<div style={{ padding: "20px" }}>
       <p><strong>Plan:</strong> {selectedPlan.type}</p>
       <p><strong>Amount:</strong> {selectedPlan.amount}</p>
       <p><strong>Daily Income:</strong> {selectedPlan.daily}</p>
