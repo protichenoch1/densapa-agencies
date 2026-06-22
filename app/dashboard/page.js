@@ -700,6 +700,13 @@ investments.filter(
   </p>
 </div>
 
+    <div
+  style={{
+    display: "flex",
+    gap: "10px"
+  }}
+>
+
       <button
         className="invest-btn"
         style={{
@@ -831,29 +838,24 @@ setShowSuccess(true);
 setShowModal(false);
 }}
       >
-          <div
+  CONFIRM INVESTMENT
+</button>
+
+<button
+  onClick={() => setShowModal(false)}
   style={{
-    display: "flex",
-    gap: "10px"
+    flex: 1,
+    padding: "12px",
+    border: "none",
+    borderRadius: "10px",
+    background: "#eee",
+    fontWeight: "bold"
   }}
 >
-        CONFIRM INVESTMENT
-      </button>
-
-      <button
-        onClick={() => setShowModal(false)}
-        style={{
-  flex: 1,
-  padding: "12px",
-  border: "none",
-  borderRadius: "10px",
-  background: "#eee",
-  fontWeight: "bold"
-}}
-      >
-        Cancel
-      </button>
-      </div>
+  Cancel
+</button>
+    </div>
+    </div>
     </div>
   </div>
 )}
