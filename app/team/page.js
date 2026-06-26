@@ -13,6 +13,7 @@ const [popupTitle, setPopupTitle] = useState("");
 const [popupMessage, setPopupMessage] = useState("");
 const [popupColor, setPopupColor] = useState("#28a745");
 const [popupIcon, setPopupIcon] = useState("");
+  const [showCopyPopup, setShowCopyPopup] = useState(false);
 
   useEffect(() => {
   async function loadUser() {
@@ -112,7 +113,11 @@ setReferrals(referralList || []);
   setPopupMessage("Referral link copied successfully.");
   setPopupColor("#ffffff");
   setPopupIcon("📋");
-  setShowSuccess(true);
+  setShowCopyPopup(true);
+
+setTimeout(() => {
+  setShowCopyPopup(false);
+}, 2000);
 }}
         >
           📋 Copy Referral Code
@@ -147,7 +152,11 @@ setReferrals(referralList || []);
   setPopupMessage("Referral link copied successfully.");
   setPopupColor("#ffffff");
   setPopupIcon("📋");
-  setShowSuccess(true);
+  setShowCopyPopup(true);
+
+setTimeout(() => {
+  setShowCopyPopup(false);
+}, 2000);
 }}
         >
           📋 Copy Referral Link
