@@ -7,6 +7,11 @@ import BottomNav from "../../components/BottomNav";
 export default function TeamPage() {
   const [user, setUser] = useState(null);
   const [referrals, setReferrals] = useState([]);
+  const [showSuccess, setShowSuccess] = useState(false);
+const [popupTitle, setPopupTitle] = useState("");
+const [popupMessage, setPopupMessage] = useState("");
+const [popupColor, setPopupColor] = useState("#28a745");
+const [popupIcon, setPopupIcon] = useState("");
 
   useEffect(() => {
   async function loadUser() {
@@ -100,10 +105,13 @@ setReferrals(referralList || []);
           className="invest-btn"
           style={{ marginTop: "15px" }}
           onClick={() => {
-            navigator.clipboard.writeText(
-              user.my_referral_code
-            );
-            alert("Referral code copied!");
+            await navigator.clipboard.writeText(referralLink);
+
+setPopupTitle("Copied");
+setPopupMessage("Referral link copied successfully.");
+setPopupColor("#ffffff");
+setPopupIcon("📋");
+setShowSuccess(true);
           }}
         >
           📋 Copy Referral Code
@@ -337,6 +345,15 @@ setReferrals(referralList || []);
 ))
 )}
       </div>
+
+        <Popup
+  show={showSuccess}
+  title={popupTitle}
+  message={popupMessage}
+  color={popupColor}
+  icon={popupIcon}
+  onClose={() => setShowSuccess(false)}
+/>
 
     <BottomNav />
       </main>
