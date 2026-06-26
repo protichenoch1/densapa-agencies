@@ -104,15 +104,15 @@ setReferrals(referralList || []);
         <button
           className="invest-btn"
           style={{ marginTop: "15px" }}
-          onClick={() => {
-            await navigator.clipboard.writeText(referralLink);
+          onClick={async () => {
+  await navigator.clipboard.writeText(referralLink);
 
-setPopupTitle("Copied");
-setPopupMessage("Referral link copied successfully.");
-setPopupColor("#ffffff");
-setPopupIcon("📋");
-setShowSuccess(true);
-          }}
+  setPopupTitle("Copied");
+  setPopupMessage("Referral link copied successfully.");
+  setPopupColor("#ffffff");
+  setPopupIcon("📋");
+  setShowSuccess(true);
+}}
         >
           📋 Copy Referral Code
         </button>
@@ -139,12 +139,15 @@ setShowSuccess(true);
         <button
           className="invest-btn"
           style={{ marginTop: "15px" }}
-          onClick={() => {
-            navigator.clipboard.writeText(
-              referralLink
-            );
-            alert("Referral link copied!");
-          }}
+          onClick={async () => {
+  await navigator.clipboard.writeText(referralLink);
+
+  setPopupTitle("Copied");
+  setPopupMessage("Referral link copied successfully.");
+  setPopupColor("#ffffff");
+  setPopupIcon("📋");
+  setShowSuccess(true);
+}}
         >
           📋 Copy Referral Link
         </button>
