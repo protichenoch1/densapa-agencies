@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
 import BottomNav from "../../components/BottomNav";
-import Popup from "../../components/Popup";
+import Popup from "../components/Popup";
 
 export default function TeamPage() {
   const [user, setUser] = useState(null);
