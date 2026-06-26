@@ -47,7 +47,7 @@ setReferrals(referralList || []);
 }
 
   const referralLink =
-    `https://densapal-agencies.vercel.app/register?ref=${user.my_referral_code}`;
+    `https://densapal.co.ke/register?ref=${user.my_referral_code}`;
 
   return (
     <main className="container">
