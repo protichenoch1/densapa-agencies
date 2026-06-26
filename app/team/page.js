@@ -105,7 +105,7 @@ setReferrals(referralList || []);
           className="invest-btn"
           style={{ marginTop: "15px" }}
           onClick={async () => {
-  await navigator.clipboard.writeText(referralLink);
+  navigator.clipboard.writeText(referralLink);
 
   setPopupTitle("Copied");
   setPopupMessage("Referral link copied successfully.");
@@ -140,7 +140,7 @@ setReferrals(referralList || []);
           className="invest-btn"
           style={{ marginTop: "15px" }}
           onClick={async () => {
-  await navigator.clipboard.writeText(referralLink);
+  navigator.clipboard.writeText(referralLink);
 
   setPopupTitle("Copied");
   setPopupMessage("Referral link copied successfully.");
