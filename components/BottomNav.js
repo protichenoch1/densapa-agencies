@@ -1,27 +1,27 @@
+import { HomeIcon, TeamIcon, WalletIcon, UserIcon } from './NavIcons';
+
 export default function BottomNav() {
   return (
-    <div className="bottom-nav">
-
+    <nav className="bottom-nav">
       <a href="/">
-        <span>🏠</span>
-        Home
+        <HomeIcon />
+        <span>Home</span>
       </a>
 
       <a href="/team">
-        <span>👥</span>
-        Team
+        <TeamIcon />
+        <span>Team</span>
       </a>
 
       <a href="/wallet">
-        <span>💳</span>
-        Wallet
+        <WalletIcon />
+        <span>Wallet</span>
       </a>
 
       <a href="/account">
-        <span>👤</span>
-        Account
+        <UserIcon />
+        <span>Account</span>
       </a>
-
-    </div>
+    </nav>
   );
 }
