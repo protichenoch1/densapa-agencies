@@ -56,11 +56,11 @@ padding:15px;
 margin-top:15px;
 background:linear-gradient(135deg,#0A3D91,#D4AF37);
 color:white;
-padding:18px;
+padding:15px;
 border-radius:18px;
 text-align:center;
 font-weight:bold;
-box-shadow:0 8px 25px rgba(0,0,0,.15);
+box-shadow:0 6px 20px rgba(0,0,0,.15);
 }
 
 .quick-actions{
